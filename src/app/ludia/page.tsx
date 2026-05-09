@@ -20,9 +20,9 @@ function getColumns(count: number): number {
 }
 
 export default async function LudiaPage() {
-  // Leaders = people not assigned to any specific ministry or city (general team)
+  // Leaders = ALL people not assigned to a specific ministry (includes city-assigned)
   const leaders = await db.person.findMany({
-    where: { published: true, ministryId: null, cityPageId: null },
+    where: { published: true, ministryId: null },
     orderBy: [{ order: "asc" }, { createdAt: "asc" }],
   });
 

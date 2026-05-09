@@ -34,7 +34,7 @@ export const sluzby: Sluzba[] = [
     titleShort: "Služba\nrodinám",
     description: "Služba pre manželské páry a rodiny, ktoré chcú budovať silné rodinné spoločenstvo v kresťanskom duchu.",
     image: "/images/sluzba-rodinam.jpg",
-    heroImage: "/images/sluzba-rodinam-hero.jpg",
+    heroImage: "/images/sluzby-hero.jpg",
     contact: { name: "Meno Priezvisko", phone: "0901 234 567", email: "meno@maranathapo.sk" },
     events: [
       { type: "nácvik", date: "6.5. 2026" },
@@ -50,7 +50,7 @@ export const sluzby: Sluzba[] = [
     titleShort: "Služba\nmladým",
     description: "Miesto pre mládež, kde môžeš rásť vo viere, nájsť priateľov a objaviť svoje dary v komunite.",
     image: "/images/sluzba-mladym.jpg",
-    heroImage: "/images/sluzba-mladym-hero.jpg",
+    heroImage: "/images/sluzby-hero.jpg",
     contact: { name: "Meno Priezvisko", phone: "0901 234 567", email: "meno@maranathapo.sk" },
     events: [
       { type: "nácvik", date: "6.5. 2026" },
@@ -64,7 +64,7 @@ export const sluzby: Sluzba[] = [
     titleShort: "Služba\nmodlitby",
     description: "Spoločná modlitba, adorácia a duchovné sprevádzanie pre všetkých, ktorí chcú prehlbovať vzťah s Bohom.",
     image: "/images/sluzba-modlitby.jpg",
-    heroImage: "/images/sluzba-modlitby-hero.jpg",
+    heroImage: "/images/sluzby-hero.jpg",
     contact: { name: "Meno Priezvisko", phone: "0901 234 567", email: "meno@maranathapo.sk" },
     events: [
       { type: "nácvik", date: "6.5. 2026" },
@@ -78,7 +78,7 @@ export const sluzby: Sluzba[] = [
     titleShort: "Služba\nmužom",
     description: "Stretnutia pre mužov — miesto rastu, bratstva a formácie v duchu kresťanského mužstva.",
     image: "/images/sluzba-muzom.jpg",
-    heroImage: "/images/sluzba-muzom-hero.jpg",
+    heroImage: "/images/sluzby-hero.jpg",
     contact: { name: "Meno Priezvisko", phone: "0901 234 567", email: "meno@maranathapo.sk" },
     events: [
       { type: "nácvik", date: "6.5. 2026" },
@@ -92,7 +92,7 @@ export const sluzby: Sluzba[] = [
     titleShort: "Služba\nženám",
     description: "Stretnutia pre ženy — miesto prijatia, rastu a sesterstva v kresťanskom spoločenstve.",
     image: "/images/sluzba-zenam.jpg",
-    heroImage: "/images/sluzba-zenam-hero.jpg",
+    heroImage: "/images/sluzby-hero.jpg",
     contact: { name: "Meno Priezvisko", phone: "0901 234 567", email: "meno@maranathapo.sk" },
     events: [
       { type: "nácvik", date: "6.5. 2026" },
@@ -106,7 +106,7 @@ export const sluzby: Sluzba[] = [
     titleShort: "Služba\nostatné ...",
     description: "Ďalšie aktivity a služby spoločenstva Marana Tha — pre každého, kto hľadá miesto, kde môže prispieť.",
     image: "/images/sluzba-ostatne.jpg",
-    heroImage: "/images/sluzba-ostatne-hero.jpg",
+    heroImage: "/images/sluzby-hero.jpg",
     contact: { name: "Meno Priezvisko", phone: "0901 234 567", email: "meno@maranathapo.sk" },
     events: [
       { type: "udalosť", date: "6.5. 2026" },
