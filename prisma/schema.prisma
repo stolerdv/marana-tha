@@ -1,0 +1,160 @@
+generator client {
+  provider = "prisma-client"
+  output   = "../src/generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+enum Role {
+  ADMIN
+  EDITOR
+}
+
+enum City {
+  PRESOV
+  BARDEJOV
+  KOSICE
+}
+
+// ─── Пользователи (администраторы) ───────────────────────────────────────────
+
+model User {
+  id        String   @id @default(cuid())
+  email     String   @unique
+  password  String
+  name      String
+  role      Role     @default(ADMIN)
+  createdAt DateTime @default(now())
+}
+
+// ─── Новости / Публикации ────────────────────────────────────────────────────
+
+model Post {
+  id         String   @id @default(cuid())
+  title      String
+  slug       String   @unique
+  content    String
+  excerpt    String?
+  coverImage String?
+  published  Boolean  @default(false)
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+}
+
+// ─── Мероприятия ─────────────────────────────────────────────────────────────
+
+model Event {
+  id                String         @id @default(cuid())
+  title             String
+  slug              String         @unique
+  description       String
+  content           String?
+  coverImage        String?
+  startDate         DateTime
+  endDate           DateTime?
+  location          String?
+  published         Boolean        @default(false)
+  isFeatured        Boolean        @default(false)
+  isEveningOfPraise Boolean        @default(false)
+  hasForm           Boolean        @default(false)
+  formFields        Json?
+  createdAt         DateTime       @default(now())
+  registrations     Registration[]
+  galleries         Gallery[]
+}
+
+// ─── Регистрации на мероприятия ───────────────────────────────────────────────
+
+model Registration {
+  id        String   @id @default(cuid())
+  eventId   String
+  event     Event    @relation(fields: [eventId], references: [id], onDelete: Cascade)
+  email     String
+  name      String
+  data      Json
+  createdAt DateTime @default(now())
+}
+
+// ─── Служения ────────────────────────────────────────────────────────────────
+
+model Ministry {
+  id          String   @id @default(cuid())
+  title       String
+  slug        String   @unique
+  description String
+  content     String?
+  coverImage  String?
+  icon        String?
+  order       Int      @default(0)
+  published   Boolean  @default(false)
+  createdAt   DateTime @default(now())
+  people      Person[]
+}
+
+// ─── Страницы городов ────────────────────────────────────────────────────────
+
+model CityPage {
+  id           String   @id @default(cuid())
+  city         City     @unique
+  title        String
+  content      String?
+  coverImage   String?
+  address      String?
+  mapUrl       String?
+  contactEmail String?
+  contactPhone String?
+  updatedAt    DateTime @updatedAt
+  people       Person[]
+}
+
+// ─── Команда / Люди ──────────────────────────────────────────────────────────
+
+model Person {
+  id         String    @id @default(cuid())
+  name       String
+  role       String
+  photo      String?
+  order      Int       @default(0)
+  published  Boolean   @default(false)
+  ministryId String?
+  ministry   Ministry? @relation(fields: [ministryId], references: [id], onDelete: SetNull)
+  cityPageId String?
+  cityPage   CityPage? @relation(fields: [cityPageId], references: [id], onDelete: SetNull)
+  createdAt  DateTime  @default(now())
+}
+
+// ─── Галереи ─────────────────────────────────────────────────────────────────
+
+model Gallery {
+  id         String   @id @default(cuid())
+  title      String
+  slug       String   @unique
+  coverImage String?
+  published  Boolean  @default(false)
+  eventId    String?
+  event      Event?   @relation(fields: [eventId], references: [id], onDelete: SetNull)
+  photos     Photo[]
+  createdAt  DateTime @default(now())
+}
+
+model Photo {
+  id        String  @id @default(cuid())
+  url       String
+  alt       String?
+  order     Int     @default(0)
+  galleryId String
+  gallery   Gallery @relation(fields: [galleryId], references: [id], onDelete: Cascade)
+}
+
+// ─── Видео ───────────────────────────────────────────────────────────────────
+
+model Video {
+  id         String   @id @default(cuid())
+  title      String
+  youtubeUrl String
+  thumbnail  String?
+  published  Boolean  @default(false)
+  createdAt  DateTime @default(now())
+}
