@@ -3,20 +3,31 @@ import Link from "next/link";
 
 const footerCols = [
   {
-    label: "Kontakt",
+    label: "Spoločenstvo",
     links: [
-      { href: "/kontakt", label: "Kontakt" },
-      { href: "/podpora", label: "Podpora" },
-      { href: "/gdpr", label: "GDPR" },
+      { href: "/o-nas", label: "O nás" },
+      { href: "/kde-sme", label: "Kde pôsobíme" },
+      { href: "/ludia", label: "Náš tím" },
+      { href: "/sluzby", label: "Naša služba" },
+      { href: "/pridaj-sa", label: "Pridaj sa k nám" },
     ],
   },
   {
-    label: "PRIDAJ SA K NÁM",
-    links: [{ href: "/pridaj-sa", label: "call to action" }],
+    label: "Aktivity",
+    links: [
+      { href: "/udalosti/vecer-chval", label: "Večer chvál" },
+      { href: "/aktivity", label: "Všetky aktivity" },
+      { href: "/udalosti", label: "Udalosti" },
+      { href: "/blog", label: "Blog" },
+    ],
   },
   {
-    label: "odber newslettera",
-    links: [{ href: "#newsletter", label: "form, sign up" }],
+    label: "Médiá & kontakt",
+    links: [
+      { href: "/media/podcasty", label: "Podcasty" },
+      { href: "/media/archiv", label: "Archív záznamy" },
+      { href: "/kontakt", label: "Kontakt" },
+    ],
   },
 ];
 

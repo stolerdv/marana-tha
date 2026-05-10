@@ -14,42 +14,42 @@ const activities = [
     slug: "vecer-chval",
     titleShort: "Večer\nchvál",
     description: "Pravidelné stretnutia chvál a modlitieb pre celé spoločenstvo. Prežívaj živú prítomnosť Boha spolu s nami.",
-    image: "/images/aktivity-vecer-chval.jpg",
+    image: "/images/vecer-chval-hero.jpg",
     href: "/udalosti/vecer-chval",
   },
   {
     slug: "piatky-mladych",
     titleShort: "Piatky\npre mladých",
     description: "Piatkové stretnutia pre mládež — čas spoločenstva, chvál a rastu vo viere v bezpečnom prostredí.",
-    image: "/images/aktivity-mladych.jpg",
+    image: "/images/sluzba-mladym.jpg",
     href: "/aktivity/piatky-mladych",
   },
   {
     slug: "adoracie",
     titleShort: "Celonočné\nadorácie",
     description: "Noc pred Bohom v tichu a adorácii. Osobitný čas modlitby a stretnutia s Ježišom.",
-    image: "/images/aktivity-adoracie.jpg",
+    image: "/images/sluzba-modlitby.jpg",
     href: "/aktivity/adoracie",
   },
   {
     slug: "modlitby-uzdravenie",
     titleShort: "Modlitby\nza uzdravenie",
     description: "Stretnutia zamerané na modlitbu za uzdravenie duše i tela. Prídi s dôverou, Boh ťa chce uzdraviť.",
-    image: "/images/aktivity-uzdravenie.jpg",
+    image: "/images/o-nas-1.jpg",
     href: "/aktivity/modlitby-uzdravenie",
   },
   {
     slug: "konferencia-zeny",
     titleShort: "ženská\nkonferencia",
     description: "Výročná konferencia pre ženy — čas formovania, sesterstva a sily v kresťanskej ženskosti.",
-    image: "/images/aktivity-zeny.jpg",
+    image: "/images/sluzba-zenam.jpg",
     href: "/aktivity/konferencia-zeny",
   },
   {
     slug: "konferencia-muzi",
     titleShort: "mužská\nkonferencia",
     description: "Výročná konferencia pre mužov — rast v kresťanskom mužstve, vodcovstve a bratskej komunite.",
-    image: "/images/aktivity-muzi.jpg",
+    image: "/images/sluzba-muzom.jpg",
     href: "/aktivity/konferencia-muzi",
   },
 ];
@@ -113,7 +113,7 @@ export function AktivityGrid() {
       <div className="relative w-full overflow-hidden" style={{ height: "488px" }}>
         <div
           className="absolute inset-0 bg-cover bg-center"
-          style={{ backgroundImage: "url('/images/aktivity-banner.jpg')" }}
+          style={{ backgroundImage: "url('/images/aktivity-hero.jpg')" }}
         />
         <div className="absolute inset-0 bg-black/20" />
       </div>
