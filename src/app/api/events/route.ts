@@ -28,29 +28,30 @@ export async function GET() {
 }
 
 async function saveGallery(eventId: string, eventSlug: string, photos: string[]) {
-  if (!photos || photos.length === 0) return;
-
-  // Upsert gallery for this event
   const existing = await db.gallery.findFirst({ where: { eventId } });
 
   if (existing) {
-    // Delete old photos and replace
-    await db.photo.deleteMany({ where: { galleryId: existing.id } });
-    await db.photo.createMany({
-      data: photos.map((url, i) => ({ url, galleryId: existing.id, order: i })),
-    });
-  } else {
-    await db.gallery.create({
+    // Delete old photos one by one (createMany not supported in Neon HTTP mode)
+    const oldPhotos = await db.photo.findMany({ where: { galleryId: existing.id }, select: { id: true } });
+    for (const p of oldPhotos) {
+      await db.photo.delete({ where: { id: p.id } });
+    }
+    // Create new photos
+    for (let i = 0; i < photos.length; i++) {
+      await db.photo.create({ data: { url: photos[i], galleryId: existing.id, order: i } });
+    }
+  } else if (photos.length > 0) {
+    const gallery = await db.gallery.create({
       data: {
-        title: `Galéria`,
+        title: "Galéria",
         slug: `gallery-${eventSlug}-${Date.now()}`,
         published: true,
         eventId,
-        photos: {
-          create: photos.map((url, i) => ({ url, order: i })),
-        },
       },
     });
+    for (let i = 0; i < photos.length; i++) {
+      await db.photo.create({ data: { url: photos[i], galleryId: gallery.id, order: i } });
+    }
   }
 }
 

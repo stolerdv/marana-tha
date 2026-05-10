@@ -5,22 +5,25 @@ import { db } from "@/lib/db";
 async function saveGallery(eventId: string, eventSlug: string, photos: string[]) {
   const existing = await db.gallery.findFirst({ where: { eventId } });
   if (existing) {
-    await db.photo.deleteMany({ where: { galleryId: existing.id } });
-    if (photos.length > 0) {
-      await db.photo.createMany({
-        data: photos.map((url, i) => ({ url, galleryId: existing.id, order: i })),
-      });
+    const oldPhotos = await db.photo.findMany({ where: { galleryId: existing.id }, select: { id: true } });
+    for (const p of oldPhotos) {
+      await db.photo.delete({ where: { id: p.id } });
+    }
+    for (let i = 0; i < photos.length; i++) {
+      await db.photo.create({ data: { url: photos[i], galleryId: existing.id, order: i } });
     }
   } else if (photos.length > 0) {
-    await db.gallery.create({
+    const gallery = await db.gallery.create({
       data: {
         title: "Galéria",
         slug: `gallery-${eventSlug}-${Date.now()}`,
         published: true,
         eventId,
-        photos: { create: photos.map((url, i) => ({ url, order: i })) },
       },
     });
+    for (let i = 0; i < photos.length; i++) {
+      await db.photo.create({ data: { url: photos[i], galleryId: gallery.id, order: i } });
+    }
   }
 }
 
