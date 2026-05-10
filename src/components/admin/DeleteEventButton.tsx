@@ -15,7 +15,7 @@ export function DeleteEventButton({ id, title }: { id: string; title: string }) 
       if (res.ok) {
         router.refresh();
       } else {
-        alert("Chyba pri mazaní meropriatia");
+        alert("Chyba pri mazaní akcie");
       }
     } finally {
       setLoading(false);

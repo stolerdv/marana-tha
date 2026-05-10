@@ -1,3 +1,5 @@
+export const dynamic = "force-dynamic";
+
 import { db } from "@/lib/db";
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
@@ -6,7 +8,7 @@ import { UdaiostiPageClient } from "@/components/udalosti/UdaiostiPageClient";
 
 export const metadata = {
   title: "Udalosti | Marana Tha",
-  description: "Nadchádzajúce meropriatia spoločenstva Marana Tha.",
+  description: "Nadchádzajúce akcie spoločenstva Marana Tha.",
 };
 
 export default async function UdaiostiPage() {
@@ -28,7 +30,7 @@ export default async function UdaiostiPage() {
     <>
       <Navbar />
       <main>
-        <PageHero title="Udalosti" description="Pridaj sa k nám na naše pravidelné stretnutia a špeciálne meropriatia." image="/images/udalosti-hero.jpg" titleTop={467} />
+        <PageHero title="Udalosti" description="Pridaj sa k nám na naše pravidelné stretnutia a špeciálne akcie." image="/images/udalosti-hero.jpg" titleTop={467} />
         <UdaiostiPageClient upcoming={upcoming} past={past} />
       </main>
       <Footer />

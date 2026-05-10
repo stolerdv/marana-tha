@@ -1,3 +1,5 @@
+export const dynamic = "force-dynamic";
+
 import { db } from "@/lib/db";
 import Link from "next/link";
 
@@ -16,7 +18,7 @@ export default async function AdminDashboard() {
   });
 
   const stats = [
-    { label: "Všetky meropriatia", value: eventCount, color: "#bea055" },
+    { label: "Všetky akcie", value: eventCount, color: "#bea055" },
     { label: "Publikované", value: publishedCount, color: "#977d3e" },
     { label: "Registrácie", value: registrationCount, color: "#866f36" },
   ];
@@ -54,21 +56,21 @@ export default async function AdminDashboard() {
       <div className="rounded-[15px] overflow-hidden" style={{ backgroundColor: "#ffffff", border: "1px solid #e4d5b2" }}>
         <div className="flex items-center justify-between px-6 py-4 border-b border-[#e4d5b2]">
           <h2 style={{ fontFamily: "var(--font-commissioner)", fontSize: "20px", fontWeight: 700, color: "#1c1d1e" }}>
-            Najbližšie meropriatia
+            Najbližšie akcie
           </h2>
           <Link
             href="/admin/events/new"
             className="inline-flex items-center gap-2 px-4 py-2 rounded-full transition-colors hover:bg-[#977d3e]"
             style={{ backgroundColor: "#bea055", fontFamily: "var(--font-commissioner)", fontSize: "14px", fontWeight: 700, color: "#fdf5f2" }}
           >
-            + Nové meropriatia
+            + Nová akcia
           </Link>
         </div>
 
         {upcomingEvents.length === 0 ? (
           <div className="px-6 py-10 text-center">
             <p style={{ fontFamily: "var(--font-commissioner)", fontSize: "16px", color: "#635f5b" }}>
-              Žiadne nadchádzajúce meropriatia
+              Žiadne nadchádzajúce akcie
             </p>
           </div>
         ) : (

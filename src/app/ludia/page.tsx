@@ -1,3 +1,5 @@
+export const dynamic = "force-dynamic";
+
 import { db } from "@/lib/db";
 import Image from "next/image";
 import { Navbar } from "@/components/layout/Navbar";

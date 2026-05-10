@@ -83,7 +83,7 @@ export function UdaiostiPageClient({ upcoming, past }: Props) {
           <>
             {upcoming.length === 0 ? (
               <p style={{ fontFamily: "var(--font-commissioner)", fontSize: "20px", color: "#635f5b", marginBottom: "60px" }}>
-                Momentálne žiadne plánované meropriatia.
+                Momentálne žiadne plánované akcie.
               </p>
             ) : (
               <div className="flex flex-col" style={{ marginBottom: "60px" }}>

@@ -1,3 +1,5 @@
+export const dynamic = "force-dynamic";
+
 import { db } from "@/lib/db";
 import Link from "next/link";
 
@@ -20,17 +22,17 @@ export default async function AdminRegistrationsPage() {
           Registrácie
         </h1>
         <p style={{ fontFamily: "var(--font-inter)", fontSize: "16px", color: "#635f5b", marginTop: "4px" }}>
-          {totalRegs} registrácií celkom, {events.length} meropriatí s formulárom
+          {totalRegs} registrácií celkom, {events.length} akcií s formulárom
         </p>
       </div>
 
       {events.length === 0 ? (
         <div className="rounded-[15px] p-16 text-center" style={{ backgroundColor: "#ffffff", border: "1px solid #e4d5b2" }}>
           <p style={{ fontFamily: "var(--font-commissioner)", fontSize: "20px", color: "#635f5b" }}>
-            Žiadne meropriatia s registračným formulárom.
+            Žiadne akcie s registračným formulárom.
           </p>
           <Link href="/admin/events" className="inline-block mt-4" style={{ color: "#bea055", fontFamily: "var(--font-commissioner)", fontSize: "15px" }}>
-            Pridaj formulár k meropriatiu →
+            Pridaj formulár k akcii →
           </Link>
         </div>
       ) : (

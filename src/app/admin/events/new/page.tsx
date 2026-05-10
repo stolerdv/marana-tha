@@ -10,7 +10,7 @@ export default function NewEventPage() {
         </Link>
         <span style={{ color: "#9ca3af" }}>/</span>
         <h1 style={{ fontFamily: "var(--font-commissioner)", fontSize: "28px", fontWeight: 700, color: "#1c1d1e" }}>
-          Nové meropriatia
+          Nová akcia
         </h1>
       </div>
       <EventForm mode="create" />

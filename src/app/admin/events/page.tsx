@@ -1,3 +1,5 @@
+export const dynamic = "force-dynamic";
+
 import { db } from "@/lib/db";
 import Link from "next/link";
 import { DeleteEventButton } from "@/components/admin/DeleteEventButton";
@@ -25,7 +27,7 @@ export default async function AdminEventsPage() {
             Meropriatia
           </h1>
           <p style={{ fontFamily: "var(--font-inter)", fontSize: "16px", color: "#635f5b", marginTop: "4px" }}>
-            {events.length} meropriatí celkom
+            {events.length} akcií celkom
           </p>
         </div>
         <Link
@@ -33,14 +35,14 @@ export default async function AdminEventsPage() {
           className="inline-flex items-center gap-2 px-6 py-3 rounded-full transition-colors hover:bg-[#977d3e]"
           style={{ backgroundColor: "#bea055", fontFamily: "var(--font-commissioner)", fontSize: "15px", fontWeight: 700, color: "#fdf5f2" }}
         >
-          + Nové meropriatia
+          + Nová akcia
         </Link>
       </div>
 
       {events.length === 0 ? (
         <div className="rounded-[15px] p-16 text-center" style={{ backgroundColor: "#ffffff", border: "1px solid #e4d5b2" }}>
           <p style={{ fontFamily: "var(--font-commissioner)", fontSize: "20px", color: "#635f5b" }}>
-            Zatiaľ žiadne meropriatia
+            Zatiaľ žiadne akcie
           </p>
           <Link href="/admin/events/new" className="inline-block mt-4" style={{ color: "#bea055", fontFamily: "var(--font-commissioner)", fontSize: "15px" }}>
             Vytvor prvé →

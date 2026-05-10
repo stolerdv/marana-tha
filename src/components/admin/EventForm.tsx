@@ -165,7 +165,7 @@ export function EventForm({ mode, eventId, initial }: EventFormProps) {
         {/* LEFT: main content */}
         <div className="flex flex-col gap-6 flex-1">
 
-          <FormField label="Názov meropriatia" required>
+          <FormField label="Názov akcie" required>
             <input
               type="text"
               value={form.title}
@@ -192,7 +192,7 @@ export function EventForm({ mode, eventId, initial }: EventFormProps) {
             <textarea
               value={form.description}
               onChange={e => set("description", e.target.value)}
-              placeholder="Krátky popis meropriatia (zobrazí sa v zozname a SEO)"
+              placeholder="Krátky popis akcie (zobrazí sa v zozname a SEO)"
               rows={3}
               style={{ ...inputStyle, resize: "vertical" }}
             />
@@ -202,7 +202,7 @@ export function EventForm({ mode, eventId, initial }: EventFormProps) {
             <RichEditor
               value={form.content}
               onChange={v => set("content", v)}
-              placeholder="Podrobné informácie o meropriatí, program, čo prinesť..."
+              placeholder="Podrobné informácie o akcii, program, čo prinesť..."
             />
           </FormField>
 
@@ -302,7 +302,7 @@ export function EventForm({ mode, eventId, initial }: EventFormProps) {
             className="py-3 rounded-full transition-colors hover:bg-[#977d3e]"
             style={{ backgroundColor: saving ? "#9ca3af" : "#bea055", fontFamily: "var(--font-commissioner)", fontSize: "15px", fontWeight: 700, color: "#fdf5f2", cursor: saving ? "not-allowed" : "pointer" }}
           >
-            {saving ? "Ukladám..." : mode === "create" ? "Vytvoriť meropriatia" : "Uložiť zmeny"}
+            {saving ? "Ukladám..." : mode === "create" ? "Vytvoriť akciu" : "Uložiť zmeny"}
           </button>
         </div>
       </div>
