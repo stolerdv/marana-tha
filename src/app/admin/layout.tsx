@@ -11,6 +11,7 @@ const editorNavItems = [
   { href: "/admin/registrations", label: "Registrácie", icon: "✓" },
   { href: "/admin/cities", label: "Mestá", icon: "📍" },
   { href: "/admin/posts", label: "Blog", icon: "📝" },
+  { href: "/admin/media", label: "Médiá", icon: "🎬" },
 ];
 
 const adminOnlyNavItems = [
