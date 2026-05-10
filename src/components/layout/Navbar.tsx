@@ -29,11 +29,11 @@ const spolocenstvoLinks = [
 // Dropdown: Aktivity
 const aktivityLinks = [
   { href: "/udalosti/vecer-chval", label: "Večer chvál" },
-  { href: "/aktivity#piatky", label: "Piatky pre mladých" },
-  { href: "/aktivity#adoracie", label: "Adorácie" },
-  { href: "/aktivity#modlitby", label: "Modlitby uzdr." },
-  { href: "/aktivity#kurzy", label: "Kurzy" },
-  { href: "/aktivity#misie", label: "Misie" },
+  { href: "/aktivity/piatky-mladych", label: "Piatky pre mladých" },
+  { href: "/aktivity/adoracie", label: "Adorácie" },
+  { href: "/aktivity/modlitby-uzdravenie", label: "Modlitby uzdr." },
+  { href: "/aktivity/kurzy", label: "Kurzy" },
+  { href: "/aktivity/misie", label: "Misie" },
 ];
 
 // Dropdown: Médiá

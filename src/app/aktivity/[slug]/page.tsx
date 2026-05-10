@@ -50,6 +50,20 @@ const ACTIVITIES: Record<string, {
     image: "/images/aktivity-hero.jpg",
     schedule: "Raz ročne",
   },
+  "kurzy": {
+    title: "Biblické kurzy",
+    description: "Formačné kurzy pre tých, ktorí chcú hlbšie spoznať Bibliu, kresťanskú vieru a žiť ju naplno.",
+    longDescription: "Naše biblické kurzy sú určené pre každého — od začiatočníkov až po tých, ktorí chcú ísť hlbšie. Kurzy prebiehajú v malých skupinách a pokrývajú témy od základov viery po praktický kresťanský život. Je to bezpečné miesto na otázky, rast a spoločenstvo.",
+    image: "/images/aktivity-hero.jpg",
+    schedule: "Pravidelne počas roka",
+  },
+  "misie": {
+    title: "Misie",
+    description: "Misijné výjazdy a evanjelizačné aktivity — nesi dobrú správu ďalej, doma aj v zahraničí.",
+    longDescription: "Misijné aktivity spoločenstva zahŕňajú lokálnu evanjelizáciu, misijné výjazdy na Slovensku i v zahraničí a modlitby za národy. Ak ťa ťahá srdce niesť evanjelium ďalej — toto je tvoje miesto.",
+    image: "/images/misie.jpg",
+    schedule: "Pravidelne a sezónne",
+  },
 };
 
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }) {

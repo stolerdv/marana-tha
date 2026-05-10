@@ -6,6 +6,7 @@ import { PageHero } from "@/components/shared/PageHero";
 import { ZistitViac } from "@/components/shared/ZistitViac";
 import { PodporteNasSection } from "@/components/home/PodporteNasSection";
 import { RegistrationForm } from "@/components/udalosti/RegistrationForm";
+import { AddToCalendar } from "@/components/udalosti/AddToCalendar";
 
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
@@ -57,14 +58,22 @@ export default async function EventPage({ params }: { params: Promise<{ slug: st
                 </>
               )}
 
-              {event.hasForm && (
-                <div className="ml-auto flex items-center">
+              <div className="ml-auto flex items-center gap-4">
+                <AddToCalendar
+                  eventId={event.id}
+                  title={event.title}
+                  description={event.description}
+                  startDate={event.startDate}
+                  endDate={event.endDate}
+                  location={event.location}
+                />
+                {event.hasForm && (
                   <a href="#registracia" className="inline-flex items-center gap-2 rounded-full px-8 py-3 transition-colors hover:bg-[#977d3e]"
                     style={{ backgroundColor: "#bea055", fontFamily: "var(--font-commissioner)", fontSize: "15px", fontWeight: 700, color: "#fdf5f2" }}>
                     Registrovať sa →
                   </a>
-                </div>
-              )}
+                )}
+              </div>
             </div>
 
             {/* Rich content */}

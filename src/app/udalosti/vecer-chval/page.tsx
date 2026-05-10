@@ -3,6 +3,7 @@ import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 import { PageHero } from "@/components/shared/PageHero";
 import { VecerChvalSection } from "@/components/udalosti/VecerChvalSection";
+import { AddToCalendar } from "@/components/udalosti/AddToCalendar";
 import { ZistitViac } from "@/components/shared/ZistitViac";
 import { PodporteNasSection } from "@/components/home/PodporteNasSection";
 
@@ -28,6 +29,18 @@ export default async function VecerChvalPage() {
           image={event?.coverImage ?? "/images/vecer-chval-hero.jpg"}
           titleTop={467}
         />
+        {event && (
+          <div className="bg-[var(--color-cream)]" style={{ paddingLeft: "235px", paddingRight: "235px", paddingTop: "32px" }}>
+            <AddToCalendar
+              eventId={event.id}
+              title={event.title}
+              description={event.description}
+              startDate={event.startDate}
+              endDate={event.endDate}
+              location={event.location}
+            />
+          </div>
+        )}
         <VecerChvalSection />
         <ZistitViac />
         <PodporteNasSection />
