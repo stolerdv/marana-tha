@@ -5,6 +5,7 @@ import { useRouter } from "next/navigation";
 import { RichEditor } from "./RichEditor";
 import { FormBuilder, type FormField } from "./FormBuilder";
 import { ImageUpload } from "./ImageUpload";
+import { GalleryUpload } from "./GalleryUpload";
 
 interface EventFormData {
   title: string;
@@ -12,6 +13,7 @@ interface EventFormData {
   description: string;
   content: string;
   coverImage: string;
+  photos: string[];
   startDate: string;
   endDate: string;
   location: string;
@@ -98,6 +100,7 @@ export function EventForm({ mode, eventId, initial }: EventFormProps) {
     description: initial?.description ?? "",
     content: initial?.content ?? "",
     coverImage: initial?.coverImage ?? "",
+    photos: initial?.photos ?? [],
     startDate: initial?.startDate ?? "",
     endDate: initial?.endDate ?? "",
     location: initial?.location ?? "",
@@ -210,6 +213,11 @@ export function EventForm({ mode, eventId, initial }: EventFormProps) {
             value={form.coverImage}
             onChange={v => set("coverImage", v)}
             label="Titulná fotografia"
+          />
+
+          <GalleryUpload
+            photos={form.photos}
+            onChange={v => set("photos", v)}
           />
 
           {/* Registration form builder — shown only when hasForm is on */}

@@ -23,8 +23,19 @@ function formatDate(d: Date, withTime = true) {
 
 export default async function EventPage({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
-  const event = await db.event.findUnique({ where: { slug, published: true } });
+  const event = await db.event.findUnique({
+    where: { slug, published: true },
+    include: {
+      galleries: {
+        where: { published: true },
+        include: { photos: { orderBy: { order: "asc" } } },
+        take: 1,
+      },
+    },
+  });
   if (!event) notFound();
+
+  const galleryPhotos = event.galleries[0]?.photos ?? [];
 
   // Parse formFields JSON — cast type to the union (values are always valid, stored by FormBuilder)
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -83,6 +94,28 @@ export default async function EventPage({ params }: { params: Promise<{ slug: st
                 style={{ fontFamily: "var(--font-commissioner)", fontSize: "20px", color: "#1c1d1e", lineHeight: "1.6" }}
                 dangerouslySetInnerHTML={{ __html: event.content }}
               />
+            )}
+
+            {/* Gallery */}
+            {galleryPhotos.length > 0 && (
+              <div style={{ marginBottom: "60px" }}>
+                <p style={{ fontFamily: "var(--font-commissioner)", fontSize: "36px", fontWeight: 400, lineHeight: "55px", color: "#977d3e", marginBottom: "24px" }}>
+                  Galéria
+                </p>
+                <div style={{ display: "grid", gridTemplateColumns: `repeat(${Math.min(galleryPhotos.length, 3)}, 1fr)`, gap: "12px" }}>
+                  {galleryPhotos.map((photo, i) => (
+                    <div key={photo.id} className="relative overflow-hidden group" style={{ borderRadius: "12px", aspectRatio: "4/3", backgroundColor: "#e6ded5" }}>
+                      {/* eslint-disable-next-line @next/next/no-img-element */}
+                      <img
+                        src={photo.url}
+                        alt={photo.alt ?? `Foto ${i + 1}`}
+                        style={{ width: "100%", height: "100%", objectFit: "cover" }}
+                        className="group-hover:scale-105 transition-transform duration-300"
+                      />
+                    </div>
+                  ))}
+                </div>
+              </div>
             )}
 
             {/* Registration form */}
