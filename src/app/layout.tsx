@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Commissioner, Inter } from "next/font/google";
 import "./globals.css";
+import { PodporaButton } from "@/components/shared/PodporaButton";
 
 const commissioner = Commissioner({
   variable: "--font-commissioner",
@@ -32,7 +33,10 @@ export default function RootLayout({
       lang="sk"
       className={`${commissioner.variable} ${inter.variable} h-full`}
     >
-      <body className="min-h-full flex flex-col antialiased">{children}</body>
+      <body className="min-h-full flex flex-col antialiased">
+        {children}
+        <PodporaButton />
+      </body>
     </html>
   );
 }

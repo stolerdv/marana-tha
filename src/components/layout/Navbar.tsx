@@ -66,12 +66,11 @@ const dropdownLinks: Record<string, { href: string; label: string }[]> = {
 export function Navbar() {
   const [openDropdown, setOpenDropdown] = useState<string | null>(null);
   const [mobileOpen, setMobileOpen] = useState(false);
-  const [loginData, setLoginData] = useState({ meno: "", heslo: "" });
 
   return (
     <header className="absolute top-0 left-0 right-0 z-50">
 
-      {/* ── Top bar: login inputs + business links ── */}
+      {/* ── Top bar: business links + member access ── */}
       <div className="flex justify-end items-center gap-3 px-[235px] pt-[28px] pb-[16px]">
         {/* M Aréna / M Caffé — external links */}
         {externalLinks.map((link) => (
@@ -80,8 +79,8 @@ export function Navbar() {
             href={link.href}
             target="_blank"
             rel="noopener noreferrer"
-            className="flex items-center transition-colors hover:text-[var(--color-gold)]"
-            style={{ height: "24px", paddingLeft: "12px", paddingRight: "12px", fontFamily: "var(--font-commissioner)", fontSize: "12px", fontWeight: 700, color: "#bea055", border: "1px solid #bea055", borderRadius: "50px" }}
+            className="flex items-center transition-colors hover:opacity-80"
+            style={{ height: "28px", paddingLeft: "14px", paddingRight: "14px", fontFamily: "var(--font-commissioner)", fontSize: "12px", fontWeight: 700, color: "#bea055", border: "1px solid #bea055", borderRadius: "50px" }}
           >
             {link.label}
           </a>
@@ -90,38 +89,17 @@ export function Navbar() {
         {/* Divider */}
         <div style={{ width: "1px", height: "16px", backgroundColor: "rgba(253,245,242,0.3)" }} />
 
-        {/* User icon */}
-        <svg width="20" height="20" viewBox="0 0 22 22" fill="none" className="text-[var(--color-cream-light)]">
-          <circle cx="11" cy="8" r="4" stroke="currentColor" strokeWidth="1.5" />
-          <path d="M3 20c0-4.418 3.582-8 8-8s8 3.582 8 8" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
-        </svg>
-
-        {/* Meno input */}
-        <input
-          type="text"
-          placeholder="Meno"
-          value={loginData.meno}
-          onChange={(e) => setLoginData({ ...loginData, meno: e.target.value })}
-          className="px-3 focus:outline-none"
-          style={{ width: "105px", height: "24px", borderRadius: "50px", backgroundColor: "#fdf5f2", fontFamily: "var(--font-commissioner)", fontSize: "12px", color: "var(--color-ink)" }}
-        />
-
-        {/* Heslo input */}
-        <input
-          type="password"
-          placeholder="Heslo"
-          value={loginData.heslo}
-          onChange={(e) => setLoginData({ ...loginData, heslo: e.target.value })}
-          className="px-3 focus:outline-none"
-          style={{ width: "105px", height: "24px", borderRadius: "50px", backgroundColor: "#fdf5f2", fontFamily: "var(--font-commissioner)", fontSize: "12px", color: "var(--color-ink)" }}
-        />
-
+        {/* Vstup pre členov — prominent button */}
         <Link
-          href="/admin"
-          className="flex items-center transition-colors hover:bg-[var(--color-gold)]/10"
-          style={{ height: "24px", paddingLeft: "16px", paddingRight: "16px", borderRadius: "50px", border: "1px solid #bea055", fontFamily: "var(--font-commissioner)", fontSize: "12px", color: "#fdf5f2" }}
+          href="/vstup-pre-clenov"
+          className="flex items-center gap-2 transition-colors hover:opacity-90"
+          style={{ height: "32px", paddingLeft: "18px", paddingRight: "18px", borderRadius: "50px", backgroundColor: "#bea055", fontFamily: "var(--font-commissioner)", fontSize: "12px", fontWeight: 700, color: "#fdf5f2" }}
         >
-          Vstúpiť
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2">
+            <circle cx="12" cy="8" r="4" />
+            <path d="M4 20c0-4.418 3.582-8 8-8s8 3.582 8 8" strokeLinecap="round" />
+          </svg>
+          Vstup pre členov
         </Link>
       </div>
 

@@ -1,5 +1,8 @@
+"use client";
+
 import Image from "next/image";
 import Link from "next/link";
+import { useState } from "react";
 
 const footerCols = [
   {
@@ -27,17 +30,93 @@ const footerCols = [
       { href: "/media/podcasty", label: "Podcasty" },
       { href: "/media/archiv", label: "Archív záznamy" },
       { href: "/kontakt", label: "Kontakt" },
+      { href: "/podpora", label: "Podpora" },
+      { href: "/gdpr", label: "GDPR" },
     ],
   },
 ];
 
+function NewsletterForm() {
+  const [email, setEmail] = useState("");
+  const [status, setStatus] = useState<"idle" | "done" | "error">("idle");
+
+  async function handleSubmit(e: React.FormEvent) {
+    e.preventDefault();
+    if (!email) return;
+    try {
+      await fetch("/api/newsletter", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email }),
+      });
+      setStatus("done");
+    } catch {
+      setStatus("error");
+    }
+  }
+
+  if (status === "done") {
+    return (
+      <p style={{ fontFamily: "var(--font-commissioner)", fontSize: "14px", color: "#fdf5f2", opacity: 0.8 }}>
+        ✓ Prihlásenie úspešné. Ďakujeme!
+      </p>
+    );
+  }
+
+  return (
+    <form onSubmit={handleSubmit} className="flex gap-2">
+      <input
+        type="email"
+        required
+        value={email}
+        onChange={e => setEmail(e.target.value)}
+        placeholder="váš@email.sk"
+        style={{
+          flex: 1,
+          height: "38px",
+          borderRadius: "50px",
+          border: "1px solid rgba(253,245,242,0.3)",
+          backgroundColor: "rgba(253,245,242,0.1)",
+          padding: "0 14px",
+          fontFamily: "var(--font-commissioner)",
+          fontSize: "13px",
+          color: "#fdf5f2",
+          outline: "none",
+        }}
+      />
+      <button
+        type="submit"
+        style={{
+          height: "38px",
+          paddingLeft: "18px",
+          paddingRight: "18px",
+          borderRadius: "50px",
+          backgroundColor: "#bea055",
+          border: "none",
+          fontFamily: "var(--font-commissioner)",
+          fontSize: "13px",
+          fontWeight: 700,
+          color: "#fdf5f2",
+          cursor: "pointer",
+          flexShrink: 0,
+        }}
+      >
+        Prihlásiť
+      </button>
+    </form>
+  );
+}
+
 export function Footer() {
   return (
-    <footer className="bg-[var(--color-gold-deeper)] pt-10 pb-8">
-      <div className="max-w-[1044px] mx-auto px-[235px] flex flex-col gap-8" style={{ maxWidth: "1512px", paddingLeft: "235px", paddingRight: "235px" }}>
-        <div className="flex items-start justify-between">
+    <footer className="bg-[var(--color-gold-deeper)] pt-12 pb-8">
+      <div style={{ maxWidth: "1512px", paddingLeft: "235px", paddingRight: "235px", margin: "0 auto" }}>
+
+        {/* Top row: logo + nav columns + newsletter */}
+        <div className="flex items-start justify-between gap-12" style={{ marginBottom: "48px" }}>
+
           {/* Logo + socials */}
-          <div className="flex flex-col gap-6">
+          <div className="flex flex-col gap-6" style={{ flexShrink: 0 }}>
             <Image
               src="/images/logo-beige.png"
               alt="Marana Tha"
@@ -45,22 +124,21 @@ export function Footer() {
               height={52}
               className="h-[52px] w-auto"
             />
-            {/* Social icons */}
             <div className="flex items-center gap-4">
               <a href="#" aria-label="Facebook" className="text-[var(--color-beige)] hover:text-white transition-colors">
-                <svg width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
+                <svg width="22" height="22" fill="currentColor" viewBox="0 0 24 24">
                   <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z" />
                 </svg>
               </a>
               <a href="#" aria-label="Instagram" className="text-[var(--color-beige)] hover:text-white transition-colors">
-                <svg width="24" height="24" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+                <svg width="22" height="22" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
                   <rect x="2" y="2" width="20" height="20" rx="5" ry="5" />
                   <circle cx="12" cy="12" r="4" />
                   <circle cx="17.5" cy="6.5" r="1" fill="currentColor" />
                 </svg>
               </a>
               <a href="#" aria-label="YouTube" className="text-[var(--color-beige)] hover:text-white transition-colors">
-                <svg width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
+                <svg width="22" height="22" fill="currentColor" viewBox="0 0 24 24">
                   <path d="M22.54 6.42a2.78 2.78 0 0 0-1.95-1.96C18.88 4 12 4 12 4s-6.88 0-8.59.46A2.78 2.78 0 0 0 1.46 6.42 29 29 0 0 0 1 12a29 29 0 0 0 .46 5.58 2.78 2.78 0 0 0 1.95 1.96C5.12 20 12 20 12 20s6.88 0 8.59-.46a2.78 2.78 0 0 0 1.96-1.96A29 29 0 0 0 23 12a29 29 0 0 0-.46-5.58z" />
                   <polygon points="9.75 15.02 15.5 12 9.75 8.98 9.75 15.02" fill="#866f36" />
                 </svg>
@@ -69,17 +147,18 @@ export function Footer() {
           </div>
 
           {/* Nav columns */}
-          <div className="flex gap-16">
+          <div className="flex gap-12">
             {footerCols.map((col) => (
-              <div key={col.label} className="flex flex-col gap-3">
-                <span className="font-[family-name:var(--font-inter)] text-[1rem] font-medium text-[var(--color-beige)] uppercase tracking-wide">
+              <div key={col.label} className="flex flex-col gap-2.5">
+                <span style={{ fontFamily: "var(--font-inter)", fontSize: "11px", fontWeight: 700, color: "rgba(253,245,242,0.5)", textTransform: "uppercase", letterSpacing: "0.1em", marginBottom: "4px" }}>
                   {col.label}
                 </span>
                 {col.links.map((link) => (
                   <Link
                     key={link.href}
                     href={link.href}
-                    className="font-[family-name:var(--font-inter)] text-[1rem] font-medium text-[var(--color-beige)] hover:text-white transition-colors"
+                    style={{ fontFamily: "var(--font-inter)", fontSize: "14px", fontWeight: 500, color: "rgba(253,245,242,0.8)" }}
+                    className="hover:text-white transition-colors"
                   >
                     {link.label}
                   </Link>
@@ -87,20 +166,33 @@ export function Footer() {
               </div>
             ))}
           </div>
+
+          {/* Newsletter */}
+          <div style={{ width: "260px", flexShrink: 0 }}>
+            <p style={{ fontFamily: "var(--font-inter)", fontSize: "11px", fontWeight: 700, color: "rgba(253,245,242,0.5)", textTransform: "uppercase", letterSpacing: "0.1em", marginBottom: "12px" }}>
+              Odber noviniek
+            </p>
+            <p style={{ fontFamily: "var(--font-commissioner)", fontSize: "14px", color: "rgba(253,245,242,0.7)", marginBottom: "14px", lineHeight: "1.5" }}>
+              Dostávaj novinky zo spoločenstva priamo do e-mailu.
+            </p>
+            <NewsletterForm />
+          </div>
         </div>
 
-        {/* Divider line */}
-        <div className="h-px bg-[var(--color-beige)]/30" />
+        {/* Divider */}
+        <div style={{ height: "1px", backgroundColor: "rgba(253,245,242,0.15)", marginBottom: "28px" }} />
 
         {/* Bottom row */}
-        <div className="flex items-center justify-center">
-          {/* MaranaTha wordmark */}
-          <div className="flex flex-col items-center gap-2">
-            <svg width="62" height="62" viewBox="0 0 62 62" fill="none">
-              <circle cx="31" cy="31" r="30" stroke="#fdf5f2" strokeWidth="1" />
-              <path d="M31 10 L31 52 M20 20 L31 10 L42 20" stroke="#fdf5f2" strokeWidth="1.5" />
+        <div className="flex items-center justify-between">
+          <p style={{ fontFamily: "var(--font-inter)", fontSize: "12px", color: "rgba(253,245,242,0.4)" }}>
+            © 2026 Spoločenstvo Marana Tha. Všetky práva vyhradené.
+          </p>
+          <div className="flex items-center gap-2">
+            <svg width="24" height="24" viewBox="0 0 62 62" fill="none">
+              <circle cx="31" cy="31" r="30" stroke="rgba(253,245,242,0.3)" strokeWidth="1" />
+              <path d="M31 10 L31 52 M20 20 L31 10 L42 20" stroke="rgba(253,245,242,0.3)" strokeWidth="1.5" />
             </svg>
-            <span className="font-[family-name:var(--font-commissioner)] text-[0.9375rem] font-bold text-[var(--color-cream-warm)] text-center">
+            <span style={{ fontFamily: "var(--font-commissioner)", fontSize: "12px", fontWeight: 700, color: "rgba(253,245,242,0.4)" }}>
               Made with ♡ by MaranaTha Design 2026
             </span>
           </div>
