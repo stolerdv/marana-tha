@@ -62,7 +62,8 @@ export default async function AdminRegistrationsPage() {
                   {event._count.registrations > 0 && (
                     <a
                       href={`/api/registrations/event/${event.id}?format=csv`}
-                      download={`registracie-${event.slug ?? event.id}.csv`}
+                      target="_blank"
+                      rel="noopener noreferrer"
                       className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full transition-colors hover:bg-[#977d3e]"
                       style={{ backgroundColor: "#bea055", fontFamily: "var(--font-commissioner)", fontSize: "14px", fontWeight: 700, color: "#fdf5f2" }}
                     >
