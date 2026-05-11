@@ -41,13 +41,13 @@ export function SluzbyGrid({ ministries }: SluzbyGridProps) {
         <div className="flex flex-col" style={{ gap: "144px" }}>
           {rows.map((row, rowIdx) => (
             <div key={rowIdx} className="relative flex justify-between">
-              {/* Per-row watermark */}
+              {/* Per-row watermark — offset so text falls in gaps between cards */}
               <div
                 className="absolute pointer-events-none select-none"
                 style={{
                   top: "50%",
                   left: "50%",
-                  transform: "translate(-50%, -50%)",
+                  transform: `translate(${rowIdx === 0 ? "-68%" : rowIdx === 2 ? "-32%" : "-50%"}, -50%)`,
                   fontFamily: "var(--font-commissioner)",
                   fontSize: "160px",
                   fontWeight: 700,
@@ -59,7 +59,7 @@ export function SluzbyGrid({ ministries }: SluzbyGridProps) {
                   zIndex: 0,
                 }}
               >
-                {rowIdx % 2 === 0 ? "SLUŽBA" : "MARANA THA"}
+                {rowIdx === 1 ? "MARANA THA" : "SLUŽBA"}
               </div>
 
               {row.map((sluzba, i) => {
