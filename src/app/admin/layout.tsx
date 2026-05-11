@@ -5,7 +5,7 @@ import { signOut } from "@/lib/auth";
 
 const editorNavItems = [
   { href: "/admin", label: "Dashboard", icon: "⊞" },
-  { href: "/admin/events", label: "Meropriatia", icon: "📅" },
+  { href: "/admin/events", label: "Akcie", icon: "📅" },
   { href: "/admin/ministries", label: "Naša služba", icon: "🙏" },
   { href: "/admin/people", label: "Ľudia", icon: "👥" },
   { href: "/admin/registrations", label: "Registrácie", icon: "✓" },
