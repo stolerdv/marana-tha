@@ -120,7 +120,7 @@ export function EventForm({ mode, eventId, initial }: EventFormProps) {
     if (mode === "create") set("slug", slugify(value));
   }
 
-  async function handleSubmit(e: React.FormEvent) {
+  async function handleSubmit(e: React.SyntheticEvent<HTMLFormElement>) {
     e.preventDefault();
     if (!form.title || !form.slug || !form.description || !form.startDate) {
       setError("Vyplň všetky povinné polia.");
@@ -226,8 +226,26 @@ export function EventForm({ mode, eventId, initial }: EventFormProps) {
               <h3 style={{ fontFamily: "var(--font-commissioner)", fontSize: "16px", fontWeight: 700, color: "#1c1d1e" }}>
                 Polia registračného formulára
               </h3>
+
+              {/* Always-present fields indicator */}
+              <div style={{ backgroundColor: "#f9efe2", borderRadius: "8px", padding: "10px 14px", border: "1px solid #e4d5b2" }}>
+                <p style={{ fontFamily: "var(--font-inter)", fontSize: "12px", fontWeight: 700, color: "#977d3e", textTransform: "uppercase", letterSpacing: "0.05em", marginBottom: "6px" }}>
+                  Automaticky zahrnuté (vždy)
+                </p>
+                <div className="flex gap-3">
+                  {["Meno", "Email"].map(f => (
+                    <span key={f} style={{ fontFamily: "var(--font-commissioner)", fontSize: "13px", fontWeight: 700, color: "#635f5b", backgroundColor: "#ffffff", border: "1px solid #e4d5b2", borderRadius: "50px", padding: "2px 12px" }}>
+                      {f}
+                    </span>
+                  ))}
+                </div>
+                <p style={{ fontFamily: "var(--font-inter)", fontSize: "11px", color: "#9ca3af", marginTop: "6px" }}>
+                  Tieto polia nepridávaj znova — sú vždy súčasťou formulára.
+                </p>
+              </div>
+
               <p style={{ fontFamily: "var(--font-inter)", fontSize: "13px", color: "#635f5b" }}>
-                Definuj aké informácie chceš zbierať od účastníkov.
+                Pridaj ďalšie polia ktoré chceš zbierať:
               </p>
               <FormBuilder
                 fields={form.formFields}

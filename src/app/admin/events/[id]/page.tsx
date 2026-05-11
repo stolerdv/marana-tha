@@ -51,6 +51,8 @@ export default async function EditEventPage({ params }: { params: Promise<{ id: 
           isFeatured: event.isFeatured,
           isEveningOfPraise: event.isEveningOfPraise,
           hasForm: event.hasForm,
+          // eslint-disable-next-line @typescript-eslint/no-explicit-any
+          formFields: (event.formFields as any[]) ?? [],
         }}
       />
     </div>
