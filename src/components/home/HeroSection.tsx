@@ -75,16 +75,19 @@ export function HeroSection({ vchByCity = {} }: Props) {
   }
 
   return (
-    <section className="relative overflow-hidden" style={{ minHeight: "100vh", backgroundColor: "#1c1d1e" }}>
-      {/* Background photo */}
-      <div className="absolute inset-0 bg-cover"
-        style={{ backgroundImage: "url('/images/hero-bg.jpg')", backgroundPosition: "72% 20%" }} />
-      {/* Warm colour-burn layer — restores amber/orange tones from original */}
-      <div className="absolute inset-0"
-        style={{ backgroundColor: "#dec4b0", mixBlendMode: "color-burn" }} />
-      {/* Dark gradient */}
-      <div className="absolute inset-0"
-        style={{ background: "linear-gradient(to bottom, #1c1d1e 12%, transparent 60%, rgba(28,29,30,0.7) 85%, rgba(28,29,30,0.97) 100%)", mixBlendMode: "multiply" }} />
+    <section className="relative" style={{ minHeight: "100vh", backgroundColor: "#1c1d1e" }}>
+      {/* Clipping wrapper for bg layers only — does not clip VCH card */}
+      <div className="absolute inset-0 overflow-hidden">
+        {/* Background photo */}
+        <div className="absolute inset-0 bg-cover"
+          style={{ backgroundImage: "url('/images/hero-bg.jpg')", backgroundPosition: "72% 20%" }} />
+        {/* Warm colour-burn layer — restores amber/orange tones from original */}
+        <div className="absolute inset-0"
+          style={{ backgroundColor: "#dec4b0", mixBlendMode: "color-burn" }} />
+        {/* Dark gradient */}
+        <div className="absolute inset-0"
+          style={{ background: "linear-gradient(to bottom, #1c1d1e 12%, transparent 60%, rgba(28,29,30,0.7) 85%, rgba(28,29,30,0.97) 100%)", mixBlendMode: "multiply" }} />
+      </div>
 
       {/* Social icons — right edge */}
       <div className="absolute flex flex-col items-center z-20" style={{ right: "56px", top: "50%", transform: "translateY(-50%)" }}>
@@ -108,25 +111,6 @@ export function HeroSection({ vchByCity = {} }: Props) {
       {/* ── MAIN CONTENT — vertically centered ── */}
       <div className="relative z-10 flex flex-col items-center justify-center text-center"
         style={{ minHeight: "calc(100vh - 260px)", paddingLeft: "235px", paddingRight: "235px", paddingTop: "140px", paddingBottom: "60px" }}>
-
-        {/* Eyebrow label */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.2, duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
-          style={{ marginBottom: "28px" }}
-        >
-          <span style={{
-            fontFamily: "var(--font-commissioner)",
-            fontSize: "13px",
-            fontWeight: 700,
-            letterSpacing: "6px",
-            textTransform: "uppercase",
-            color: "#bea055",
-          }}>
-            Spoločenstvo Marana Tha
-          </span>
-        </motion.div>
 
         {/* Main quote — large, centered */}
         <motion.h1
@@ -220,22 +204,31 @@ export function HeroSection({ vchByCity = {} }: Props) {
         </motion.div>
       </div>
 
-      {/* ── VCH Block — bottom, part of normal flow ── */}
-      <div className="relative z-20" style={{ paddingLeft: "235px", paddingRight: "235px" }}>
+      {/* ── VCH Block — overlaps next section with negative margin ── */}
+      <div className="relative z-20" style={{ paddingLeft: "235px", paddingRight: "235px", marginBottom: "-120px" }}>
         <motion.div
           initial={{ opacity: 0, y: 40 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 1.1, duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
           style={{
-            borderRadius: "20px 20px 0 0",
+            borderRadius: "20px",
             overflow: "hidden",
-            background: "linear-gradient(135deg, rgba(22,22,24,0.98) 0%, rgba(35,30,22,0.98) 100%)",
-            border: "1px solid rgba(190,160,85,0.2)",
-            borderBottom: "none",
-            boxShadow: "0 -12px 48px rgba(0,0,0,0.4)",
-            backdropFilter: "blur(16px)",
+            position: "relative",
+            background: "linear-gradient(160deg, rgba(18,17,15,0.97) 0%, rgba(30,25,16,0.97) 100%)",
+            border: "1px solid rgba(190,160,85,0.25)",
+            boxShadow: "0 24px 80px rgba(0,0,0,0.6), 0 4px 24px rgba(0,0,0,0.4)",
           }}
         >
+          {/* B&W photo background inside card */}
+          <div className="absolute inset-0"
+            style={{
+              backgroundImage: "url('/images/countdown-bg.jpg')",
+              backgroundSize: "cover",
+              backgroundPosition: "center 20%",
+              filter: "grayscale(100%)",
+              opacity: 0.12,
+            }}
+          />
           <div style={{ padding: "28px 40px 32px" }}>
             {/* Top: label + city tabs */}
             <div className="flex items-center justify-between" style={{ marginBottom: "16px" }}>

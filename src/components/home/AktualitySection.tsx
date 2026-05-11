@@ -28,11 +28,11 @@ const events: Event[] = [
 
 export function AktualitySection() {
   return (
-    <section className="relative overflow-hidden bg-[var(--color-cream)]">
+    <section className="relative overflow-hidden bg-[var(--color-cream)]" style={{ paddingTop: "140px" }}>
       <div className="max-w-[1512px] mx-auto" style={{ paddingLeft: "235px", paddingRight: "235px" }}>
 
         {/* Watermark */}
-        <div className="relative pt-16 pb-0">
+        <div className="relative pt-0 pb-0">
           <div className="absolute top-8 left-1/2 -translate-x-1/2 pointer-events-none select-none whitespace-nowrap"
             style={{ fontSize: "100px", fontFamily: "var(--font-commissioner)", fontWeight: 700, color: "transparent", WebkitTextStroke: "1px rgba(0,0,0,0.06)", letterSpacing: "-2px" }}>
             AKTUALITY
