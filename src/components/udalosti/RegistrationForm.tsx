@@ -22,16 +22,32 @@ const inputStyle: React.CSSProperties = {
 
 export function RegistrationForm({ eventId, fields }: RegistrationFormProps) {
   const [values, setValues] = useState<Record<string, string>>({});
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
   const [submitting, setSubmitting] = useState(false);
   const [submitted, setSubmitted] = useState(false);
   const [error, setError] = useState("");
 
-  async function handleSubmit(e: React.FormEvent) {
+  function setValue(id: string, val: string) {
+    setValues(prev => ({ ...prev, [id]: val }));
+  }
+
+  // Find name + email: prefer builtin IDs, fallback to first text/email field
+  function getNameEmail() {
+    const nameField = fields.find(f => f.id === "builtin_name") ?? fields.find(f => f.type === "text");
+    const emailField = fields.find(f => f.id === "builtin_email") ?? fields.find(f => f.type === "email");
+    return {
+      name: (nameField ? values[nameField.id] : "") ?? "",
+      email: (emailField ? values[emailField.id] : "") ?? "",
+    };
+  }
+
+  async function handleSubmit(e: React.SyntheticEvent<HTMLFormElement>) {
     e.preventDefault();
-    if (!name || !email) { setError("Vyplň meno a email."); return; }
-    setSubmitting(true); setError("");
+    const { name, email } = getNameEmail();
+    if (!name) { setError("Vyplň meno."); return; }
+    if (!email) { setError("Vyplň e-mail."); return; }
+
+    setSubmitting(true);
+    setError("");
     try {
       const res = await fetch("/api/registrations", {
         method: "POST",
@@ -48,13 +64,14 @@ export function RegistrationForm({ eventId, fields }: RegistrationFormProps) {
   }
 
   if (submitted) {
+    const { email } = getNameEmail();
     return (
       <div className="rounded-[15px] p-10 text-center" style={{ backgroundColor: "#ffffff", border: "1px solid #e4d5b2" }}>
         <p style={{ fontFamily: "var(--font-commissioner)", fontSize: "30px", fontWeight: 700, color: "#bea055", marginBottom: "8px" }}>
           Ďakujeme za registráciu! 🙏
         </p>
         <p style={{ fontFamily: "var(--font-commissioner)", fontSize: "20px", color: "#635f5b" }}>
-          Tešíme sa na teba. Potvrdenie sme zaslali na {email}.
+          Tešíme sa na teba.{email ? ` Potvrdenie sme zaslali na ${email}.` : ""}
         </p>
       </div>
     );
@@ -68,15 +85,6 @@ export function RegistrationForm({ eventId, fields }: RegistrationFormProps) {
         </div>
       )}
 
-      {/* Always: name + email */}
-      <div>
-        <input type="text" placeholder="Meno" value={name} onChange={e => setName(e.target.value)} required style={inputStyle} />
-      </div>
-      <div style={{ borderBottom: "1px solid #1c1d1e" }}>
-        <input type="email" placeholder="E-mail" value={email} onChange={e => setEmail(e.target.value)} required style={inputStyle} />
-      </div>
-
-      {/* Dynamic fields */}
       {fields.map((field) => (
         <div key={field.id}>
           {field.type === "checkbox" ? (
@@ -84,7 +92,7 @@ export function RegistrationForm({ eventId, fields }: RegistrationFormProps) {
               <div
                 className="shrink-0 mt-1"
                 style={{ width: "20px", height: "20px", border: "1px solid #1c1d1e", backgroundColor: values[field.id] === "true" ? "#1c1d1e" : "transparent", cursor: "pointer" }}
-                onClick={() => setValues(p => ({ ...p, [field.id]: p[field.id] === "true" ? "" : "true" }))}
+                onClick={() => setValue(field.id, values[field.id] === "true" ? "" : "true")}
               >
                 {values[field.id] === "true" && (
                   <svg viewBox="0 0 20 20" fill="none" style={{ width: "18px", height: "18px" }}>
@@ -92,27 +100,29 @@ export function RegistrationForm({ eventId, fields }: RegistrationFormProps) {
                   </svg>
                 )}
               </div>
-              <span style={{ fontFamily: "var(--font-inter)", fontSize: "18px", color: "#1c1d1e", lineHeight: 1.5 }}>{field.label}</span>
+              <span style={{ fontFamily: "var(--font-inter)", fontSize: "18px", color: "#1c1d1e", lineHeight: 1.5 }}>
+                {field.label}{field.required && <span style={{ color: "#dc2626" }}> *</span>}
+              </span>
             </label>
           ) : field.type === "select" && field.options ? (
             <div style={{ borderBottom: "1px solid #1c1d1e" }}>
               <select
                 value={values[field.id] ?? ""}
-                onChange={e => setValues(p => ({ ...p, [field.id]: e.target.value }))}
+                onChange={e => setValue(field.id, e.target.value)}
                 required={field.required}
                 style={{ ...inputStyle, borderBottom: "none" }}
               >
-                <option value="">{field.label}</option>
+                <option value="">{field.label}{field.required ? " *" : ""}</option>
                 {field.options.map(opt => <option key={opt} value={opt}>{opt}</option>)}
               </select>
             </div>
           ) : (
             <div style={{ borderBottom: "1px solid #1c1d1e" }}>
               <input
-                type={field.type === "phone" ? "tel" : "text"}
-                placeholder={field.label}
+                type={field.type === "phone" ? "tel" : field.type === "email" ? "email" : "text"}
+                placeholder={`${field.label}${field.required ? " *" : ""}`}
                 value={values[field.id] ?? ""}
-                onChange={e => setValues(p => ({ ...p, [field.id]: e.target.value }))}
+                onChange={e => setValue(field.id, e.target.value)}
                 required={field.required}
                 style={inputStyle}
               />
@@ -121,9 +131,18 @@ export function RegistrationForm({ eventId, fields }: RegistrationFormProps) {
         </div>
       ))}
 
-      <button type="submit" disabled={submitting}
+      {fields.length === 0 && (
+        <p style={{ fontFamily: "var(--font-commissioner)", fontSize: "16px", color: "#635f5b" }}>
+          Formulár nemá žiadne polia.
+        </p>
+      )}
+
+      <button
+        type="submit"
+        disabled={submitting}
         className="inline-flex items-center justify-center rounded-full transition-colors hover:bg-[#977d3e]"
-        style={{ width: "186px", height: "50px", backgroundColor: submitting ? "#9ca3af" : "#bea055", fontFamily: "var(--font-commissioner)", fontSize: "15px", fontWeight: 700, color: "#fdf5f2", border: "none", cursor: submitting ? "not-allowed" : "pointer" }}>
+        style={{ width: "186px", height: "50px", backgroundColor: submitting ? "#9ca3af" : "#bea055", fontFamily: "var(--font-commissioner)", fontSize: "15px", fontWeight: 700, color: "#fdf5f2", border: "none", cursor: submitting ? "not-allowed" : "pointer" }}
+      >
         {submitting ? "Odosielam..." : "Odoslať"}
       </button>
     </form>

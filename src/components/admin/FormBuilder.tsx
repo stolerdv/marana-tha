@@ -110,7 +110,7 @@ export function FormBuilder({ fields, onChange }: FormBuilderProps) {
         </button>
       </div>
       <p style={{ fontFamily: "var(--font-inter)", fontSize: "12px", color: "#9ca3af" }}>
-        Polia Meno a Email sú vždy zahrnuté automaticky.
+        Poradie polí môžeš zmeniť ich vymazaním a opätovným pridaním.
       </p>
     </div>
   );

@@ -227,25 +227,8 @@ export function EventForm({ mode, eventId, initial }: EventFormProps) {
                 Polia registračného formulára
               </h3>
 
-              {/* Always-present fields indicator */}
-              <div style={{ backgroundColor: "#f9efe2", borderRadius: "8px", padding: "10px 14px", border: "1px solid #e4d5b2" }}>
-                <p style={{ fontFamily: "var(--font-inter)", fontSize: "12px", fontWeight: 700, color: "#977d3e", textTransform: "uppercase", letterSpacing: "0.05em", marginBottom: "6px" }}>
-                  Automaticky zahrnuté (vždy)
-                </p>
-                <div className="flex gap-3">
-                  {["Meno", "Email"].map(f => (
-                    <span key={f} style={{ fontFamily: "var(--font-commissioner)", fontSize: "13px", fontWeight: 700, color: "#635f5b", backgroundColor: "#ffffff", border: "1px solid #e4d5b2", borderRadius: "50px", padding: "2px 12px" }}>
-                      {f}
-                    </span>
-                  ))}
-                </div>
-                <p style={{ fontFamily: "var(--font-inter)", fontSize: "11px", color: "#9ca3af", marginTop: "6px" }}>
-                  Tieto polia nepridávaj znova — sú vždy súčasťou formulára.
-                </p>
-              </div>
-
               <p style={{ fontFamily: "var(--font-inter)", fontSize: "13px", color: "#635f5b" }}>
-                Pridaj ďalšie polia ktoré chceš zbierať:
+                Pridaj, uprav alebo odstráň polia formulára. Meno a Email sú pridané štandardne, ale môžeš ich odstrániť.
               </p>
               <FormBuilder
                 fields={form.formFields}
@@ -266,7 +249,16 @@ export function EventForm({ mode, eventId, initial }: EventFormProps) {
             <Toggle checked={form.published} onChange={v => set("published", v)} label="Publikované" />
             <Toggle checked={form.isFeatured} onChange={v => set("isFeatured", v)} label="Zvýraznené" />
             <Toggle checked={form.isEveningOfPraise} onChange={v => set("isEveningOfPraise", v)} label="Večer chvál" />
-            <Toggle checked={form.hasForm} onChange={v => set("hasForm", v)} label="Registračný formulár" />
+            <Toggle checked={form.hasForm} onChange={v => {
+              set("hasForm", v);
+              // Pre-fill with Meno + Email defaults when enabling for the first time
+              if (v && form.formFields.length === 0) {
+                set("formFields", [
+                  { id: "builtin_name", label: "Meno", type: "text", required: true },
+                  { id: "builtin_email", label: "Email", type: "email", required: true },
+                ]);
+              }
+            }} label="Registračný formulár" />
           </div>
 
           {/* Dates */}
