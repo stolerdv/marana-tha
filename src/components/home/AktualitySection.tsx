@@ -29,10 +29,10 @@ const events: Event[] = [
 export function AktualitySection() {
   return (
     <section className="relative overflow-hidden bg-[var(--color-cream)]" style={{ zIndex: 5 }}>
-      {/* Gradient bridge: dark card colour → cream — kills the hard line */}
-      <div className="absolute inset-x-0 top-0 pointer-events-none" style={{ height: "160px", background: "linear-gradient(to bottom, #12110f 0%, var(--color-cream) 100%)", zIndex: 0 }} />
+      {/* Gradient bridge: dark → cream behind the floating VCH card */}
+      <div className="absolute inset-x-0 top-0 pointer-events-none" style={{ height: "300px", background: "linear-gradient(to bottom, #12110f 0%, var(--color-cream) 100%)", zIndex: 0 }} />
 
-      <div className="relative max-w-[1512px] mx-auto" style={{ paddingLeft: "235px", paddingRight: "235px", paddingTop: "160px", zIndex: 1 }}>
+      <div className="relative max-w-[1512px] mx-auto" style={{ paddingLeft: "235px", paddingRight: "235px", paddingTop: "290px", zIndex: 1 }}>
 
         {/* Watermark */}
         <div className="relative pt-0 pb-0">

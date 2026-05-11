@@ -204,8 +204,8 @@ export function HeroSection({ vchByCity = {} }: Props) {
         </motion.div>
       </div>
 
-      {/* ── VCH Block — overlaps next section with negative margin ── */}
-      <div className="relative z-20" style={{ paddingLeft: "235px", paddingRight: "235px", marginBottom: "-120px" }}>
+      {/* ── VCH Block — floats deep into next section ── */}
+      <div className="relative z-20" style={{ paddingLeft: "235px", paddingRight: "235px", marginBottom: "-220px" }}>
         <motion.div
           initial={{ opacity: 0, y: 40 }}
           animate={{ opacity: 1, y: 0 }}
