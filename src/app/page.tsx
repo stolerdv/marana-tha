@@ -11,7 +11,6 @@ import { ArchivSection } from "@/components/home/ArchivSection";
 import { PodporteNasSection } from "@/components/home/PodporteNasSection";
 import { NewsletterSection } from "@/components/home/NewsletterSection";
 import { KontaktSection } from "@/components/home/KontaktSection";
-import { FullscreenButton } from "@/components/ui/FullscreenButton";
 
 export default async function HomePage() {
   // Load upcoming VCH events grouped by city
@@ -44,7 +43,6 @@ export default async function HomePage() {
         <KontaktSection />
       </main>
       <Footer />
-      <FullscreenButton />
     </>
   );
 }

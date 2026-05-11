@@ -104,7 +104,7 @@ export function Navbar() {
       </div>
 
       {/* ── Main nav row ── */}
-      <nav className="flex items-center justify-between px-[235px] py-3 relative">
+      <nav className="flex items-center justify-between px-[235px] py-5 relative">
 
         {/* Left nav */}
         <div className="flex items-center gap-8">
@@ -117,7 +117,7 @@ export function Navbar() {
             >
               <Link
                 href={item.href}
-                className="font-[family-name:var(--font-commissioner)] text-[0.75rem] text-[var(--color-cream-light)] hover:text-[var(--color-gold)] transition-colors flex items-center gap-0.5"
+                className="font-[family-name:var(--font-commissioner)] text-[0.875rem] text-[var(--color-cream-light)] hover:text-[var(--color-gold)] transition-colors flex items-center gap-0.5"
               >
                 {item.label}
                 {item.hasDropdown && <DropdownArrow />}
@@ -136,7 +136,7 @@ export function Navbar() {
                         <Link
                           key={link.href}
                           href={link.href}
-                          className="block px-4 py-2.5 font-[family-name:var(--font-commissioner)] text-[0.75rem] text-[var(--color-cream-light)] hover:text-[var(--color-gold)] hover:bg-[var(--color-gold)]/10 transition-colors"
+                          className="block px-4 py-2.5 font-[family-name:var(--font-commissioner)] text-[0.875rem] text-[var(--color-cream-light)] hover:text-[var(--color-gold)] hover:bg-[var(--color-gold)]/10 transition-colors"
                         >
                           {link.label}
                         </Link>
@@ -172,7 +172,7 @@ export function Navbar() {
             >
               <Link
                 href={item.href}
-                className="font-[family-name:var(--font-commissioner)] text-[0.75rem] text-[var(--color-cream-light)] hover:text-[var(--color-gold)] transition-colors flex items-center gap-0.5"
+                className="font-[family-name:var(--font-commissioner)] text-[0.875rem] text-[var(--color-cream-light)] hover:text-[var(--color-gold)] transition-colors flex items-center gap-0.5"
               >
                 {item.label}
                 {item.hasDropdown && <DropdownArrow />}
@@ -191,7 +191,7 @@ export function Navbar() {
                         <Link
                           key={link.href}
                           href={link.href}
-                          className="block px-4 py-2.5 font-[family-name:var(--font-commissioner)] text-[0.75rem] text-[var(--color-cream-light)] hover:text-[var(--color-gold)] hover:bg-[var(--color-gold)]/10 transition-colors"
+                          className="block px-4 py-2.5 font-[family-name:var(--font-commissioner)] text-[0.875rem] text-[var(--color-cream-light)] hover:text-[var(--color-gold)] hover:bg-[var(--color-gold)]/10 transition-colors"
                         >
                           {link.label}
                         </Link>
@@ -229,7 +229,7 @@ export function Navbar() {
               <Link
                 key={item.href}
                 href={item.href}
-                className="block py-3 font-[family-name:var(--font-commissioner)] text-[0.75rem] text-[var(--color-cream-light)] border-b border-[var(--color-gold)]/20"
+                className="block py-3 font-[family-name:var(--font-commissioner)] text-[0.875rem] text-[var(--color-cream-light)] border-b border-[var(--color-gold)]/20"
                 onClick={() => setMobileOpen(false)}
               >
                 {item.label}
@@ -238,7 +238,7 @@ export function Navbar() {
             <div className="flex gap-4 pt-4">
               {externalLinks.map((link) => (
                 <a key={link.href} href={link.href} target="_blank" rel="noopener noreferrer"
-                  className="font-[family-name:var(--font-commissioner)] text-[0.75rem] font-bold"
+                  className="font-[family-name:var(--font-commissioner)] text-[0.875rem] font-bold"
                   style={{ color: "#bea055" }}>
                   {link.label} ↗
                 </a>
