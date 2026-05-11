@@ -33,7 +33,7 @@ export function SluzbyGrid({ ministries }: SluzbyGridProps) {
   return (
     <section className="bg-[var(--color-cream)] relative overflow-hidden" style={{ paddingTop: "137px", paddingBottom: "80px" }}>
 
-      {/* Decorative watermark */}
+      {/* Decorative watermark — large outlined text */}
       <div
         className="absolute pointer-events-none select-none"
         style={{
@@ -41,11 +41,11 @@ export function SluzbyGrid({ ministries }: SluzbyGridProps) {
           left: "50%",
           transform: "translate(-50%, -50%)",
           fontFamily: "var(--font-commissioner)",
-          fontSize: "320px",
+          fontSize: "280px",
           fontWeight: 700,
-          letterSpacing: "-8px",
+          letterSpacing: "20px",
           color: "transparent",
-          WebkitTextStroke: "1.5px rgba(190,160,85,0.08)",
+          WebkitTextStroke: "2px rgba(190,160,85,0.18)",
           whiteSpace: "nowrap",
           userSelect: "none",
           zIndex: 0,
@@ -55,8 +55,8 @@ export function SluzbyGrid({ ministries }: SluzbyGridProps) {
       </div>
 
       {/* Decorative thin lines */}
-      <div className="absolute pointer-events-none" style={{ top: "60px", left: "235px", right: "235px", height: "1px", backgroundColor: "rgba(190,160,85,0.12)", zIndex: 0 }} />
-      <div className="absolute pointer-events-none" style={{ bottom: "60px", left: "235px", right: "235px", height: "1px", backgroundColor: "rgba(190,160,85,0.12)", zIndex: 0 }} />
+      <div className="absolute pointer-events-none" style={{ top: "60px", left: "235px", right: "235px", height: "1px", backgroundColor: "rgba(190,160,85,0.2)", zIndex: 0 }} />
+      <div className="absolute pointer-events-none" style={{ bottom: "60px", left: "235px", right: "235px", height: "1px", backgroundColor: "rgba(190,160,85,0.2)", zIndex: 0 }} />
 
       <div style={{ paddingLeft: "235px", paddingRight: "235px", position: "relative", zIndex: 1 }}>
         <div className="flex flex-col" style={{ gap: "144px" }}>
