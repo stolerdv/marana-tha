@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
-import { ImageUpload } from "./ImageUpload";
+import { ImageUploadCrop as ImageUpload } from "./ImageUploadCrop";
 
 interface Ministry { id: string; title: string; }
 interface CityPageOption { id: string; city: string; }

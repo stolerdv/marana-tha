@@ -4,7 +4,7 @@ import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { RichEditor } from "./RichEditor";
 import { FormBuilder, type FormField } from "./FormBuilder";
-import { ImageUpload } from "./ImageUpload";
+import { ImageUploadCrop as ImageUpload } from "./ImageUploadCrop";
 import { GalleryUpload } from "./GalleryUpload";
 
 interface EventFormData {

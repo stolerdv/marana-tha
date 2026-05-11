@@ -2,7 +2,7 @@
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { RichEditor } from "./RichEditor";
-import { ImageUpload } from "./ImageUpload";
+import { ImageUploadCrop as ImageUpload } from "./ImageUploadCrop";
 
 interface PostFormData { title: string; slug: string; content: string; excerpt: string; coverImage: string; published: boolean; }
 interface PostFormProps { mode: "create" | "edit"; postId?: string; initial?: Partial<PostFormData>; }

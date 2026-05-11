@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { RichEditor } from "./RichEditor";
-import { ImageUpload } from "./ImageUpload";
+import { ImageUploadCrop as ImageUpload } from "./ImageUploadCrop";
 
 interface CityFormData {
   title: string;
