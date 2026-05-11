@@ -1,3 +1,6 @@
+export const dynamic = "force-dynamic";
+
+import { db } from "@/lib/db";
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 import { PageHero } from "@/components/shared/PageHero";
@@ -10,16 +13,17 @@ export const metadata = {
   description: "Spoločenstvo Marana Tha pôsobí v troch mestách na východnom Slovensku — Prešov, Bardejov a Košice.",
 };
 
-export default function KdeSme() {
+export default async function KdeSme() {
+  const pc = await db.pageContent.findUnique({ where: { key: "kde-sme" } });
+
   return (
     <>
       <Navbar />
       <main>
-        {/* Figma frame at y=263 → titleTop=467 (same as home frame) */}
         <PageHero
-          title="Kde pôsobíme"
-          description="Spoločenstvo Marana Tha pôsobí v troch mestách na východnom Slovensku. Každé mesto má svoju skupinu veriacich, ktorí sa stretávajú na chválach, modlitbách a formácii."
-          image="/images/kde-sme-hero.jpg"
+          title={pc?.title ?? "Kde pôsobíme"}
+          description={pc?.subtitle ?? "Spoločenstvo Marana Tha pôsobí v troch mestách na východnom Slovensku. Každé mesto má svoju skupinu veriacich, ktorí sa stretávajú na chválach, modlitbách a formácii."}
+          image={pc?.coverImage ?? "/images/kde-sme-hero.jpg"}
           titleTop={467}
         />
         <KdeSmeCards />

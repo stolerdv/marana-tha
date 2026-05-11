@@ -152,6 +152,18 @@ model Photo {
   gallery   Gallery @relation(fields: [galleryId], references: [id], onDelete: Cascade)
 }
 
+// ─── Контент страниц ─────────────────────────────────────────────────────────
+
+model PageContent {
+  key        String   @id     // "o-nas" | "pridaj-sa" | "kontakt" | "home" | "kde-sme"
+  title      String?          // Hero title override
+  subtitle   String?          // Hero subtitle/description
+  content    String?          // Rich text (Tiptap HTML)
+  coverImage String?          // Hero photo
+  data       Json?            // Page-specific extra fields (stats, values, etc.)
+  updatedAt  DateTime @updatedAt
+}
+
 // ─── Видео ───────────────────────────────────────────────────────────────────
 
 model Video {

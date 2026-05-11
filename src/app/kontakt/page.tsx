@@ -1,3 +1,6 @@
+export const dynamic = "force-dynamic";
+
+import { db } from "@/lib/db";
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 import { PageHero } from "@/components/shared/PageHero";
@@ -7,18 +10,41 @@ export const metadata = {
   description: "Kontaktné informácie spoločenstva Marana Tha.",
 };
 
-const contacts = [
-  { city: "Prešov", address: "Komunitno-pastoračné centrum sv. Jána Pavla II.\nŠvábska 22, 080 05 Prešov", email: "info@maranathapo.sk", phone: "+421 901 234 567" },
-  { city: "Bardejov", address: "Bardejov", email: "bardejov@maranathapo.sk", phone: null },
-  { city: "Košice", address: "Košice", email: "kosice@maranathapo.sk", phone: null },
-];
+export default async function KontaktPage() {
+  const pc = await db.pageContent.findUnique({ where: { key: "kontakt" } });
+  const d = (pc?.data ?? {}) as Record<string, string>;
 
-export default function KontaktPage() {
+  const contacts = [
+    {
+      city: "Prešov",
+      address: d.presovAddress ?? "Komunitno-pastoračné centrum sv. Jána Pavla II.\nŠvábska 22, 080 05 Prešov",
+      email: d.presovEmail ?? "info@maranathapo.sk",
+      phone: d.presovPhone ?? "+421 901 234 567",
+    },
+    {
+      city: "Bardejov",
+      address: d.bardejovAddress ?? "Bardejov",
+      email: d.bardejovEmail ?? "bardejov@maranathapo.sk",
+      phone: null,
+    },
+    {
+      city: "Košice",
+      address: d.kosiceAddress ?? "Košice",
+      email: d.kosiceEmail ?? "kosice@maranathapo.sk",
+      phone: null,
+    },
+  ];
+
   return (
     <>
       <Navbar />
       <main>
-        <PageHero title="Kontakt" description="Neváhaj nás kontaktovať. Sme tu pre teba." image="/images/kontakt-hero.jpg" titleTop={467} />
+        <PageHero
+          title={pc?.title ?? "Kontakt"}
+          description={pc?.subtitle ?? "Neváhaj nás kontaktovať. Sme tu pre teba."}
+          image={pc?.coverImage ?? "/images/kontakt-hero.jpg"}
+          titleTop={467}
+        />
 
         <section className="bg-[var(--color-cream)]" style={{ paddingTop: "80px", paddingBottom: "80px" }}>
           <div style={{ paddingLeft: "235px", paddingRight: "235px" }}>
@@ -27,7 +53,7 @@ export default function KontaktPage() {
             </p>
 
             <div className="flex flex-col gap-0">
-              {contacts.map((c, i) => (
+              {contacts.map((c) => (
                 <div key={c.city}>
                   <div style={{ height: "1px", backgroundColor: "#bea055" }} />
                   <div className="flex items-start py-8 gap-16">
@@ -45,7 +71,6 @@ export default function KontaktPage() {
               <div style={{ height: "1px", backgroundColor: "#bea055" }} />
             </div>
 
-            {/* Heading CTA */}
             <div className="mt-16">
               <p style={{ fontFamily: "var(--font-commissioner)", fontSize: "70px", fontWeight: 700, color: "#bea055", lineHeight: "1.1" }}>
                 Neváhaj nás<br />kontaktovať

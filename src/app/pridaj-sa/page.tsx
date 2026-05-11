@@ -1,3 +1,5 @@
+export const dynamic = "force-dynamic";
+import { db } from "@/lib/db";
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 import { PageHero } from "@/components/shared/PageHero";
@@ -49,15 +51,17 @@ const membershipTypes = [
   },
 ];
 
-export default function PridajSaPage() {
+export default async function PridajSaPage() {
+  const pc = await db.pageContent.findUnique({ where: { key: "pridaj-sa" } });
+
   return (
     <>
       <Navbar />
       <main>
         <PageHero
-          title="Pridaj sa k nám"
-          description="Hľadáš spoločenstvo kde môžeš rásť vo viere? Si na správnom mieste. Vitaj u nás."
-          image="/images/pridaj-sa-hero.jpg"
+          title={pc?.title ?? "Pridaj sa k nám"}
+          description={pc?.subtitle ?? "Hľadáš spoločenstvo kde môžeš rásť vo viere? Si na správnom mieste. Vitaj u nás."}
+          image={pc?.coverImage ?? "/images/pridaj-sa-hero.jpg"}
           titleTop={467}
         />
 

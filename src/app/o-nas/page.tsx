@@ -1,3 +1,6 @@
+export const dynamic = "force-dynamic";
+
+import { db } from "@/lib/db";
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 import { PodporteNasSection } from "@/components/home/PodporteNasSection";
@@ -14,13 +17,27 @@ export const metadata = {
   description: "Spoločenstvo Marana Tha je katolícke spoločenstvo detí, mládeže a dospelých v Prešove, Bardejove a Košiciach.",
 };
 
-export default function ONasPage() {
+export default async function ONasPage() {
+  const pc = await db.pageContent.findUnique({ where: { key: "o-nas" } });
+  const data = (pc?.data ?? {}) as Record<string, string>;
+
   return (
     <>
       <Navbar />
       <main>
-        <ONasHero />
-        <ONasStats />
+        <ONasHero
+          title={pc?.title ?? undefined}
+          description={pc?.subtitle ?? undefined}
+          image={pc?.coverImage ?? undefined}
+        />
+        <ONasStats
+          stat1Value={data.stat1Value ?? undefined}
+          stat1Label={data.stat1Label ?? undefined}
+          stat2Value={data.stat2Value ?? undefined}
+          stat2Label={data.stat2Label ?? undefined}
+          stat3Value={data.stat3Value ?? undefined}
+          stat3Label={data.stat3Label ?? undefined}
+        />
         <ONasPossobenie />
         <ONasHodnoty />
         <ONasSvedectva />
