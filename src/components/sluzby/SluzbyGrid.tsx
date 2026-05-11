@@ -33,27 +33,6 @@ export function SluzbyGrid({ ministries }: SluzbyGridProps) {
   return (
     <section className="bg-[var(--color-cream)] relative overflow-hidden" style={{ paddingTop: "137px", paddingBottom: "80px" }}>
 
-      {/* Decorative watermark — large outlined text */}
-      <div
-        className="absolute pointer-events-none select-none"
-        style={{
-          top: "50%",
-          left: "50%",
-          transform: "translate(-50%, -50%)",
-          fontFamily: "var(--font-commissioner)",
-          fontSize: "280px",
-          fontWeight: 700,
-          letterSpacing: "20px",
-          color: "transparent",
-          WebkitTextStroke: "2px rgba(190,160,85,0.18)",
-          whiteSpace: "nowrap",
-          userSelect: "none",
-          zIndex: 0,
-        }}
-      >
-        SLUŽBA
-      </div>
-
       {/* Decorative thin lines */}
       <div className="absolute pointer-events-none" style={{ top: "60px", left: "235px", right: "235px", height: "1px", backgroundColor: "rgba(190,160,85,0.2)", zIndex: 0 }} />
       <div className="absolute pointer-events-none" style={{ bottom: "60px", left: "235px", right: "235px", height: "1px", backgroundColor: "rgba(190,160,85,0.2)", zIndex: 0 }} />
@@ -61,7 +40,28 @@ export function SluzbyGrid({ ministries }: SluzbyGridProps) {
       <div style={{ paddingLeft: "235px", paddingRight: "235px", position: "relative", zIndex: 1 }}>
         <div className="flex flex-col" style={{ gap: "144px" }}>
           {rows.map((row, rowIdx) => (
-            <div key={rowIdx} className="flex justify-between">
+            <div key={rowIdx} className="relative flex justify-between">
+              {/* Per-row watermark */}
+              <div
+                className="absolute pointer-events-none select-none"
+                style={{
+                  top: "50%",
+                  left: "50%",
+                  transform: "translate(-50%, -50%)",
+                  fontFamily: "var(--font-commissioner)",
+                  fontSize: "200px",
+                  fontWeight: 700,
+                  letterSpacing: "16px",
+                  color: "transparent",
+                  WebkitTextStroke: "2px rgba(190,160,85,0.18)",
+                  whiteSpace: "nowrap",
+                  userSelect: "none",
+                  zIndex: 0,
+                }}
+              >
+                {rowIdx % 2 === 0 ? "SLUŽBA" : "SPOLOČENSTVO"}
+              </div>
+
               {row.map((sluzba, i) => {
                 const [line1, line2] = splitTitle(sluzba.title);
                 return (
