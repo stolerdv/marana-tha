@@ -8,6 +8,7 @@ import { PageHero } from "@/components/shared/PageHero";
 import { ZistitViac } from "@/components/shared/ZistitViac";
 import { PodporteNasSection } from "@/components/home/PodporteNasSection";
 import { AddToCalendar } from "@/components/udalosti/AddToCalendar";
+import { CityBadge } from "@/components/shared/CityBadge";
 import Link from "next/link";
 
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }) {
@@ -169,10 +170,12 @@ export default async function SluzbaPage({ params }: { params: Promise<{ slug: s
                             {event.title}
                           </p>
                         </Link>
-                        <p style={{ fontFamily: "var(--font-commissioner)", fontSize: "16px", color: "#635f5b", marginTop: "2px" }}>
-                          {new Date(event.startDate).toLocaleDateString("sk-SK", { day: "numeric", month: "long", year: "numeric", hour: "2-digit", minute: "2-digit" })}
-                          {event.location && ` · ${event.location}`}
-                        </p>
+                        <div className="flex items-center gap-2 flex-wrap" style={{ marginTop: "4px" }}>
+                          <p style={{ fontFamily: "var(--font-commissioner)", fontSize: "16px", color: "#635f5b" }}>
+                            {new Date(event.startDate).toLocaleDateString("sk-SK", { day: "numeric", month: "long", year: "numeric", hour: "2-digit", minute: "2-digit" })}
+                          </p>
+                          {event.location && <CityBadge city={event.location} />}
+                        </div>
                       </div>
                       <AddToCalendar
                         eventId={event.id}

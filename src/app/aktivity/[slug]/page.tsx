@@ -9,6 +9,7 @@ import { ZistitViac } from "@/components/shared/ZistitViac";
 import { PodporteNasSection } from "@/components/home/PodporteNasSection";
 import { TestimonialsCarousel } from "@/components/shared/TestimonialsCarousel";
 import { AddToCalendar } from "@/components/udalosti/AddToCalendar";
+import { CityBadge } from "@/components/shared/CityBadge";
 import Link from "next/link";
 
 const ACTIVITIES: Record<string, {
@@ -193,12 +194,14 @@ export default async function AktivitaDetailPage({ params }: { params: Promise<{
                       </div>
                       <div style={{ width: "1px", height: "44px", backgroundColor: "#e4d5b2", flexShrink: 0 }} />
                       <div style={{ flex: 1 }}>
-                        <Link href={event.isEveningOfPraise ? "/udalosti/vecer-chval" : `/udalosti/${event.slug}`} className="hover:underline">
-                          <p style={{ fontFamily: "var(--font-commissioner)", fontSize: "20px", fontWeight: 700, color: "#1c1d1e" }}>{event.title}</p>
-                        </Link>
-                        <p style={{ fontFamily: "var(--font-commissioner)", fontSize: "15px", color: "#635f5b", marginTop: "2px" }}>
+                        <div className="flex items-center gap-2 flex-wrap" style={{ marginBottom: "2px" }}>
+                          <Link href={event.isEveningOfPraise ? "/udalosti/vecer-chval" : `/udalosti/${event.slug}`} className="hover:underline">
+                            <p style={{ fontFamily: "var(--font-commissioner)", fontSize: "20px", fontWeight: 700, color: "#1c1d1e" }}>{event.title}</p>
+                          </Link>
+                          {event.location && <CityBadge city={event.location} />}
+                        </div>
+                        <p style={{ fontFamily: "var(--font-commissioner)", fontSize: "15px", color: "#635f5b" }}>
                           {new Date(event.startDate).toLocaleDateString("sk-SK", { weekday: "long", day: "numeric", month: "long", hour: "2-digit", minute: "2-digit" })}
-                          {event.location && ` · ${event.location}`}
                         </p>
                       </div>
                       <AddToCalendar

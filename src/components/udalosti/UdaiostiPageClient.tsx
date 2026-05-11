@@ -3,6 +3,7 @@
 import { useState } from "react";
 import Link from "next/link";
 import { EventsCalendarView } from "./EventsCalendarView";
+import { CityBadge } from "@/components/shared/CityBadge";
 
 interface EventItem {
   id: string;
@@ -113,12 +114,14 @@ export function UdaiostiPageClient({ upcoming, past }: Props) {
                       className="flex items-start py-6 hover:bg-[#f9efe2] transition-colors px-2 -mx-2 rounded-[8px]"
                     >
                       <div style={{ flex: 1 }}>
-                        <p style={{ fontFamily: "var(--font-commissioner)", fontSize: "30px", fontWeight: 700, color: "#1c1d1e", lineHeight: "1.3" }}>
-                          {event.title}
-                        </p>
+                        <div className="flex items-center gap-3 flex-wrap">
+                          <p style={{ fontFamily: "var(--font-commissioner)", fontSize: "30px", fontWeight: 700, color: "#1c1d1e", lineHeight: "1.3" }}>
+                            {event.title}
+                          </p>
+                          {event.location && <CityBadge city={event.location} size="md" />}
+                        </div>
                         <p style={{ fontFamily: "var(--font-commissioner)", fontSize: "20px", color: "#635f5b", marginTop: "4px" }}>
                           {new Date(event.startDate).toLocaleDateString("sk-SK", { day: "numeric", month: "long", year: "numeric", hour: "2-digit", minute: "2-digit" })}
-                          {event.location && ` · ${event.location}`}
                         </p>
                       </div>
                       <span style={{ fontFamily: "var(--font-commissioner)", fontSize: "24px", color: "#bea055", marginTop: "4px" }}>→</span>
