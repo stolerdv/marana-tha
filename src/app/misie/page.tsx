@@ -8,10 +8,14 @@ import Link from "next/link";
 import Image from "next/image";
 
 export default async function MisiePage() {
-  const missions = await db.mission.findMany({
-    where: {},
-    orderBy: [{ order: "asc" }, { createdAt: "asc" }],
-  });
+  let missions: Awaited<ReturnType<typeof db.mission.findMany>> = [];
+  try {
+    missions = await db.mission.findMany({
+      orderBy: [{ order: "asc" }, { createdAt: "asc" }],
+    });
+  } catch (e) {
+    console.error("Mission fetch error:", e);
+  }
 
   return (
     <>
@@ -39,7 +43,7 @@ export default async function MisiePage() {
 
             {missions.length === 0 ? (
               <div className="text-center py-24" style={{ color: "#635f5b", fontFamily: "var(--font-commissioner)", fontSize: "20px" }}>
-                Misijné správy čoskoro pribúdajú.
+                Misijné správy čoskoro pribúdajú. ({missions.length} záznamov)
               </div>
             ) : (
               <div className="grid gap-8" style={{ gridTemplateColumns: "repeat(3, 1fr)" }}>
