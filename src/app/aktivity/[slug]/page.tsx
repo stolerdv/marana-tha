@@ -10,6 +10,7 @@ import { PodporteNasSection } from "@/components/home/PodporteNasSection";
 import { TestimonialsCarousel } from "@/components/shared/TestimonialsCarousel";
 import { AddToCalendar } from "@/components/udalosti/AddToCalendar";
 import { CityBadge } from "@/components/shared/CityBadge";
+import { FadeIn, Stagger, StaggerItem } from "@/components/shared/FadeIn";
 import Link from "next/link";
 
 const ACTIVITIES: Record<string, {
@@ -129,21 +130,23 @@ export default async function AktivitaDetailPage({ params }: { params: Promise<{
         {/* 1. INTRO */}
         <section className="bg-[var(--color-cream)]" style={{ paddingTop: "80px", paddingBottom: "72px" }}>
           <div style={{ paddingLeft: "235px", paddingRight: "235px" }}>
-            <p style={{ fontFamily: "var(--font-commissioner)", fontSize: "50px", fontWeight: 400, lineHeight: "55px", color: "#977d3e", marginBottom: "32px" }}>
-              O aktivite
-            </p>
-            <p style={{ fontFamily: "var(--font-inter)", fontSize: "20px", color: "#1c1d1e", lineHeight: "1.75", maxWidth: "720px", marginBottom: activity.schedule ? "40px" : "0" }}>
-              {activity.longDescription}
-            </p>
-            {activity.schedule && (
-              <div style={{ display: "flex", alignItems: "center", gap: "16px" }}>
-                <div style={{ width: "4px", height: "48px", backgroundColor: "#bea055", borderRadius: "2px", flexShrink: 0 }} />
-                <div>
-                  <p style={{ fontFamily: "var(--font-commissioner)", fontSize: "13px", fontWeight: 700, color: "#977d3e", textTransform: "uppercase", letterSpacing: "0.08em" }}>Termín</p>
-                  <p style={{ fontFamily: "var(--font-commissioner)", fontSize: "22px", fontWeight: 700, color: "#1c1d1e" }}>{activity.schedule}</p>
+            <FadeIn>
+              <p style={{ fontFamily: "var(--font-commissioner)", fontSize: "50px", fontWeight: 400, lineHeight: "55px", color: "#977d3e", marginBottom: "32px" }}>
+                O aktivite
+              </p>
+              <p style={{ fontFamily: "var(--font-inter)", fontSize: "20px", color: "#1c1d1e", lineHeight: "1.75", maxWidth: "720px", marginBottom: activity.schedule ? "40px" : "0" }}>
+                {activity.longDescription}
+              </p>
+              {activity.schedule && (
+                <div style={{ display: "flex", alignItems: "center", gap: "16px" }}>
+                  <div style={{ width: "4px", height: "48px", backgroundColor: "#bea055", borderRadius: "2px", flexShrink: 0 }} />
+                  <div>
+                    <p style={{ fontFamily: "var(--font-commissioner)", fontSize: "13px", fontWeight: 700, color: "#977d3e", textTransform: "uppercase", letterSpacing: "0.08em" }}>Termín</p>
+                    <p style={{ fontFamily: "var(--font-commissioner)", fontSize: "22px", fontWeight: 700, color: "#1c1d1e" }}>{activity.schedule}</p>
+                  </div>
                 </div>
-              </div>
-            )}
+              )}
+            </FadeIn>
           </div>
         </section>
 
@@ -151,17 +154,19 @@ export default async function AktivitaDetailPage({ params }: { params: Promise<{
         {activity.gallery.length > 0 && (
           <section className="bg-[var(--color-cream)]" style={{ paddingBottom: "72px" }}>
             <div style={{ paddingLeft: "235px", paddingRight: "235px" }}>
-              <p style={{ fontFamily: "var(--font-commissioner)", fontSize: "36px", fontWeight: 400, color: "#977d3e", marginBottom: "24px" }}>
-                Galéria
-              </p>
-              <div style={{ display: "grid", gridTemplateColumns: `repeat(${Math.min(activity.gallery.length, 3)}, 1fr)`, gap: "12px" }}>
+              <FadeIn>
+                <p style={{ fontFamily: "var(--font-commissioner)", fontSize: "36px", fontWeight: 400, color: "#977d3e", marginBottom: "24px" }}>Galéria</p>
+              </FadeIn>
+              <Stagger style={{ display: "grid", gridTemplateColumns: `repeat(${Math.min(activity.gallery.length, 3)}, 1fr)`, gap: "12px" }}>
                 {activity.gallery.map((src, i) => (
-                  <div key={i} style={{ borderRadius: "12px", overflow: "hidden", aspectRatio: "4/3", backgroundColor: "#e6ded5", position: "relative" }}>
-                    {/* eslint-disable-next-line @next/next/no-img-element */}
-                    <img src={src} alt={`${activity.title} ${i + 1}`} style={{ width: "100%", height: "100%", objectFit: "cover" }} />
-                  </div>
+                  <StaggerItem key={i}>
+                    <div style={{ borderRadius: "12px", overflow: "hidden", aspectRatio: "4/3", backgroundColor: "#e6ded5" }}>
+                      {/* eslint-disable-next-line @next/next/no-img-element */}
+                      <img src={src} alt={`${activity.title} ${i + 1}`} style={{ width: "100%", height: "100%", objectFit: "cover" }} />
+                    </div>
+                  </StaggerItem>
                 ))}
-              </div>
+              </Stagger>
             </div>
           </section>
         )}
@@ -175,9 +180,11 @@ export default async function AktivitaDetailPage({ params }: { params: Promise<{
         {events.length > 0 && (
           <section className="bg-[var(--color-cream)]" style={{ paddingBottom: "80px" }}>
             <div style={{ paddingLeft: "235px", paddingRight: "235px" }}>
-              <p style={{ fontFamily: "var(--font-commissioner)", fontSize: "50px", fontWeight: 400, lineHeight: "55px", color: "#977d3e", marginBottom: "40px" }}>
-                Najbližšie udalosti
-              </p>
+              <FadeIn>
+                <p style={{ fontFamily: "var(--font-commissioner)", fontSize: "50px", fontWeight: 400, lineHeight: "55px", color: "#977d3e", marginBottom: "40px" }}>
+                  Najbližšie udalosti
+                </p>
+              </FadeIn>
               <div className="flex flex-col">
                 {events.map((event, i) => (
                   <div key={event.id}>
