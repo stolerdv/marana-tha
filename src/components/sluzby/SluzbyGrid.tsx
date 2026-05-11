@@ -53,7 +53,7 @@ export function SluzbyGrid({ ministries }: SluzbyGridProps) {
                   fontWeight: 700,
                   letterSpacing: "24px",
                   color: "transparent",
-                  WebkitTextStroke: "2px rgba(190,160,85,0.22)",
+                  WebkitTextStroke: "3px rgba(190,160,85,0.38)",
                   whiteSpace: "nowrap",
                   userSelect: "none",
                   zIndex: 0,
