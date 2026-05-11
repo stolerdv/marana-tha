@@ -30,7 +30,7 @@ export function PodporteNasSection() {
             initial={{ opacity: 0, x: -20 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
-            className="relative overflow-hidden shrink-0"
+            className="relative shrink-0"
             style={{ width: "573px", height: "588px" }}
           >
             <Image
@@ -38,6 +38,7 @@ export function PodporteNasSection() {
               alt="Podporte Marana Tha"
               fill
               className="object-cover object-top"
+              style={{ mixBlendMode: "multiply" }}
             />
           </motion.div>
 

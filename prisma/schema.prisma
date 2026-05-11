@@ -164,6 +164,23 @@ model PageContent {
   updatedAt  DateTime @updatedAt
 }
 
+// ─── Миссии ──────────────────────────────────────────────────────────────────
+
+model Mission {
+  id          String   @id @default(cuid())
+  title       String
+  slug        String   @unique
+  country     String
+  description String
+  content     String?
+  coverImage  String?
+  photos      Json?
+  order       Int      @default(0)
+  published   Boolean  @default(false)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
 // ─── Видео ───────────────────────────────────────────────────────────────────
 
 model Video {
