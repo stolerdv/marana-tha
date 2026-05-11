@@ -75,7 +75,7 @@ export function HeroSection({ vchByCity = {} }: Props) {
   }
 
   return (
-    <section className="relative" style={{ minHeight: "100vh", backgroundColor: "#1c1d1e" }}>
+    <section className="relative" style={{ minHeight: "100vh", backgroundColor: "#1c1d1e", zIndex: 10 }}>
       {/* Clipping wrapper for bg layers only — does not clip VCH card */}
       <div className="absolute inset-0 overflow-hidden">
         {/* Background photo */}
@@ -214,7 +214,7 @@ export function HeroSection({ vchByCity = {} }: Props) {
             borderRadius: "20px",
             overflow: "hidden",
             position: "relative",
-            background: "linear-gradient(160deg, rgba(18,17,15,0.97) 0%, rgba(30,25,16,0.97) 100%)",
+            background: "linear-gradient(160deg, #12110f 0%, #1e1910 100%)",
             border: "1px solid rgba(190,160,85,0.25)",
             boxShadow: "0 24px 80px rgba(0,0,0,0.6), 0 4px 24px rgba(0,0,0,0.4)",
           }}

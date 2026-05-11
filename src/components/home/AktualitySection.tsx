@@ -28,7 +28,7 @@ const events: Event[] = [
 
 export function AktualitySection() {
   return (
-    <section className="relative overflow-hidden bg-[var(--color-cream)]" style={{ paddingTop: "140px" }}>
+    <section className="relative overflow-hidden bg-[var(--color-cream)]" style={{ paddingTop: "140px", zIndex: 5 }}>
       <div className="max-w-[1512px] mx-auto" style={{ paddingLeft: "235px", paddingRight: "235px" }}>
 
         {/* Watermark */}
