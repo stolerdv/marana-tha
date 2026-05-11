@@ -49,17 +49,17 @@ export function SluzbyGrid({ ministries }: SluzbyGridProps) {
                   left: "50%",
                   transform: "translate(-50%, -50%)",
                   fontFamily: "var(--font-commissioner)",
-                  fontSize: "200px",
+                  fontSize: "160px",
                   fontWeight: 700,
-                  letterSpacing: "16px",
+                  letterSpacing: "24px",
                   color: "transparent",
-                  WebkitTextStroke: "2px rgba(190,160,85,0.18)",
+                  WebkitTextStroke: "2px rgba(190,160,85,0.22)",
                   whiteSpace: "nowrap",
                   userSelect: "none",
                   zIndex: 0,
                 }}
               >
-                {rowIdx % 2 === 0 ? "SLUŽBA" : "SPOLOČENSTVO"}
+                {rowIdx % 2 === 0 ? "SLUŽBA" : "MARANA THA"}
               </div>
 
               {row.map((sluzba, i) => {
