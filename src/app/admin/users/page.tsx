@@ -4,6 +4,7 @@ import { db } from "@/lib/db";
 import { notFound } from "next/navigation";
 import { CreateUserForm } from "@/components/admin/CreateUserForm";
 import { DeleteUserButton } from "@/components/admin/DeleteUserButton";
+import { ChangePasswordForm } from "@/components/admin/ChangePasswordForm";
 
 const ROLE_LABELS: Record<string, string> = { ADMIN: "Administrátor", EDITOR: "Editor" };
 
@@ -39,7 +40,6 @@ export default async function AdminUsersPage() {
                 Aktívni používatelia ({users.length})
               </h2>
             </div>
-
             <div className="divide-y divide-[#e4d5b2]">
               {users.map((user) => (
                 <div key={user.id} className="flex items-center justify-between px-6 py-4">
@@ -48,30 +48,17 @@ export default async function AdminUsersPage() {
                       <p style={{ fontFamily: "var(--font-commissioner)", fontSize: "16px", fontWeight: 700, color: "#1c1d1e" }}>
                         {user.name}
                       </p>
-                      <span
-                        className="px-2 py-0.5 rounded-full"
-                        style={{
-                          backgroundColor: user.role === "ADMIN" ? "#e4d5b2" : "#f3f4f6",
-                          color: user.role === "ADMIN" ? "#866f36" : "#6b7280",
-                          fontFamily: "var(--font-inter)",
-                          fontSize: "11px",
-                          fontWeight: 600,
-                        }}
-                      >
+                      <span className="px-2 py-0.5 rounded-full" style={{ backgroundColor: user.role === "ADMIN" ? "#e4d5b2" : "#f3f4f6", color: user.role === "ADMIN" ? "#866f36" : "#6b7280", fontFamily: "var(--font-inter)", fontSize: "11px", fontWeight: 600 }}>
                         {ROLE_LABELS[user.role] ?? user.role}
                       </span>
                       {user.id === currentUserId && (
-                        <span style={{ fontFamily: "var(--font-inter)", fontSize: "11px", color: "#9ca3af" }}>
-                          (ty)
-                        </span>
+                        <span style={{ fontFamily: "var(--font-inter)", fontSize: "11px", color: "#9ca3af" }}>(ty)</span>
                       )}
                     </div>
                     <p style={{ fontFamily: "var(--font-inter)", fontSize: "13px", color: "#635f5b", marginTop: "2px" }}>
                       {user.email}
                     </p>
                   </div>
-
-                  {/* Can't delete yourself or other ADMIN */}
                   {user.id !== currentUserId && user.role !== "ADMIN" && (
                     <DeleteUserButton id={user.id} name={user.name} />
                   )}
@@ -81,10 +68,23 @@ export default async function AdminUsersPage() {
           </div>
         </div>
 
-        {/* Create new editor */}
-        <div className="shrink-0" style={{ width: "320px" }}>
+        {/* Right sidebar */}
+        <div className="shrink-0 flex flex-col gap-6" style={{ width: "320px" }}>
+
+          {/* Change password */}
           <div className="rounded-[15px] p-6" style={{ backgroundColor: "#ffffff", border: "1px solid #e4d5b2" }}>
-            <h2 style={{ fontFamily: "var(--font-commissioner)", fontSize: "18px", fontWeight: 700, color: "#1c1d1e", marginBottom: "20px" }}>
+            <h2 style={{ fontFamily: "var(--font-commissioner)", fontSize: "18px", fontWeight: 700, color: "#1c1d1e", marginBottom: "6px" }}>
+              Zmeniť heslo
+            </h2>
+            <p style={{ fontFamily: "var(--font-inter)", fontSize: "13px", color: "#635f5b", marginBottom: "16px" }}>
+              Zmena hesla pre váš účet.
+            </p>
+            <ChangePasswordForm />
+          </div>
+
+          {/* Create editor */}
+          <div className="rounded-[15px] p-6" style={{ backgroundColor: "#ffffff", border: "1px solid #e4d5b2" }}>
+            <h2 style={{ fontFamily: "var(--font-commissioner)", fontSize: "18px", fontWeight: 700, color: "#1c1d1e", marginBottom: "12px" }}>
               Pridať editora
             </h2>
             <p style={{ fontFamily: "var(--font-inter)", fontSize: "13px", color: "#635f5b", marginBottom: "16px", lineHeight: 1.5 }}>
