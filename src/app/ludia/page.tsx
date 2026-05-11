@@ -21,15 +21,15 @@ function getColumns(count: number): number {
 }
 
 export default async function LudiaPage() {
-  // Leaders = people with no ministry, no city, no group
+  // Leaders = people with no ministry AND no group
   const leaders = await db.person.findMany({
     where: { published: true, ministryId: null, group: null },
     orderBy: [{ order: "asc" }, { createdAt: "asc" }],
   });
 
-  // Custom groups — people with a custom group set
+  // Custom groups — ANY person with group set (regardless of ministry)
   const groupedPeople = await db.person.findMany({
-    where: { published: true, ministryId: null, group: { not: null } },
+    where: { published: true, group: { not: null } },
     orderBy: [{ group: "asc" }, { order: "asc" }],
   });
 
@@ -41,7 +41,10 @@ export default async function LudiaPage() {
     customGroups[key].push(p);
   }
 
-  // Ministry people
+  // IDs of people already shown in custom groups (to exclude from ministry sections)
+  const groupedIds = new Set(groupedPeople.map(p => p.id));
+
+  // Ministry people — exclude those already in a custom group
   const ministriesPeople = await db.ministry.findMany({
     where: { published: true },
     orderBy: { order: "asc" },
@@ -49,12 +52,14 @@ export default async function LudiaPage() {
       id: true,
       title: true,
       people: {
-        where: { published: true },
+        where: { published: true, group: null },
         orderBy: { order: "asc" },
         select: { id: true, name: true, role: true, photo: true },
       },
     },
   });
+
+  void groupedIds; // used implicitly via where: { group: null }
 
   const isEmpty = leaders.length === 0 &&
     groupedPeople.length === 0 &&
