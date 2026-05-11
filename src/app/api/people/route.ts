@@ -23,7 +23,7 @@ export async function POST(req: NextRequest) {
 
   try {
     const body = await req.json();
-    const { name, role, photo, order, published, ministryId, cityPageId } = body;
+    const { name, role, photo, group, order, published, ministryId, cityPageId } = body;
 
     if (!name || !role) {
       return NextResponse.json({ error: "Name and role are required" }, { status: 400 });
@@ -34,6 +34,7 @@ export async function POST(req: NextRequest) {
         name,
         role,
         photo: photo ?? null,
+        group: group || null,
         order: order ?? 0,
         published: published ?? false,
         ministryId: ministryId || null,

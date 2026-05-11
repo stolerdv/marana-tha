@@ -13,7 +13,6 @@ export const metadata = {
   description: "Zoznámte sa s líderským tímom spoločenstva Marana Tha.",
 };
 
-// Adaptive grid columns based on total person count
 function getColumns(count: number): number {
   if (count <= 4) return 4;
   if (count <= 8) return 4;
@@ -22,13 +21,27 @@ function getColumns(count: number): number {
 }
 
 export default async function LudiaPage() {
-  // Leaders = ALL people not assigned to a specific ministry (includes city-assigned)
+  // Leaders = people with no ministry, no city, no group
   const leaders = await db.person.findMany({
-    where: { published: true, ministryId: null },
+    where: { published: true, ministryId: null, group: null },
     orderBy: [{ order: "asc" }, { createdAt: "asc" }],
   });
 
-  // Ministry leaders
+  // Custom groups — people with a custom group set
+  const groupedPeople = await db.person.findMany({
+    where: { published: true, ministryId: null, group: { not: null } },
+    orderBy: [{ group: "asc" }, { order: "asc" }],
+  });
+
+  // Group by group name
+  const customGroups: Record<string, typeof groupedPeople> = {};
+  for (const p of groupedPeople) {
+    const key = p.group!;
+    if (!customGroups[key]) customGroups[key] = [];
+    customGroups[key].push(p);
+  }
+
+  // Ministry people
   const ministriesPeople = await db.ministry.findMany({
     where: { published: true },
     orderBy: { order: "asc" },
@@ -43,7 +56,9 @@ export default async function LudiaPage() {
     },
   });
 
-  const leaderCols = getColumns(leaders.length);
+  const isEmpty = leaders.length === 0 &&
+    groupedPeople.length === 0 &&
+    ministriesPeople.every(m => m.people.length === 0);
 
   return (
     <>
@@ -63,38 +78,44 @@ export default async function LudiaPage() {
               <p style={{ fontFamily: "var(--font-commissioner)", fontSize: "50px", fontWeight: 400, lineHeight: "55px", color: "#977d3e", marginBottom: "48px" }}>
                 Líderský tím
               </p>
-              {/* Adaptive grid — columns depends on count */}
-              <div style={{ display: "grid", gridTemplateColumns: `repeat(${leaderCols}, 174px)`, gap: "43px" }}>
-                {leaders.map((person) => (
-                  <PersonCard key={person.id} person={person} />
-                ))}
+              <div style={{ display: "grid", gridTemplateColumns: `repeat(${getColumns(leaders.length)}, 174px)`, gap: "43px" }}>
+                {leaders.map((person) => <PersonCard key={person.id} person={person} />)}
               </div>
             </div>
           </section>
         )}
 
-        {/* Ministry people grouped by ministry */}
-        {ministriesPeople.filter(m => m.people.length > 0).map((ministry) => {
-          const cols = getColumns(ministry.people.length);
-          return (
-            <section key={ministry.id} className="bg-[var(--color-cream)]" style={{ paddingTop: "40px", paddingBottom: "60px" }}>
-              <div style={{ paddingLeft: "235px", paddingRight: "235px" }}>
-                <p style={{ fontFamily: "var(--font-commissioner)", fontSize: "30px", fontWeight: 700, lineHeight: "55px", color: "#1c1d1e", marginBottom: "16px" }}>
-                  {ministry.title}
-                </p>
-                <div style={{ height: "1px", backgroundColor: "#bea055", marginBottom: "32px" }} />
-                <div style={{ display: "grid", gridTemplateColumns: `repeat(${cols}, 174px)`, gap: "43px" }}>
-                  {ministry.people.map((person) => (
-                    <PersonCard key={person.id} person={person} />
-                  ))}
-                </div>
+        {/* Custom groups */}
+        {Object.entries(customGroups).map(([groupName, people]) => (
+          <section key={groupName} className="bg-[var(--color-cream)]" style={{ paddingTop: "40px", paddingBottom: "60px" }}>
+            <div style={{ paddingLeft: "235px", paddingRight: "235px" }}>
+              <p style={{ fontFamily: "var(--font-commissioner)", fontSize: "30px", fontWeight: 700, lineHeight: "55px", color: "#1c1d1e", marginBottom: "16px" }}>
+                {groupName}
+              </p>
+              <div style={{ height: "1px", backgroundColor: "#bea055", marginBottom: "32px" }} />
+              <div style={{ display: "grid", gridTemplateColumns: `repeat(${getColumns(people.length)}, 174px)`, gap: "43px" }}>
+                {people.map((person) => <PersonCard key={person.id} person={person} />)}
               </div>
-            </section>
-          );
-        })}
+            </div>
+          </section>
+        ))}
 
-        {/* Empty state */}
-        {leaders.length === 0 && ministriesPeople.every(m => m.people.length === 0) && (
+        {/* Ministry people */}
+        {ministriesPeople.filter(m => m.people.length > 0).map((ministry) => (
+          <section key={ministry.id} className="bg-[var(--color-cream)]" style={{ paddingTop: "40px", paddingBottom: "60px" }}>
+            <div style={{ paddingLeft: "235px", paddingRight: "235px" }}>
+              <p style={{ fontFamily: "var(--font-commissioner)", fontSize: "30px", fontWeight: 700, lineHeight: "55px", color: "#1c1d1e", marginBottom: "16px" }}>
+                {ministry.title}
+              </p>
+              <div style={{ height: "1px", backgroundColor: "#bea055", marginBottom: "32px" }} />
+              <div style={{ display: "grid", gridTemplateColumns: `repeat(${getColumns(ministry.people.length)}, 174px)`, gap: "43px" }}>
+                {ministry.people.map((person) => <PersonCard key={person.id} person={person} />)}
+              </div>
+            </div>
+          </section>
+        ))}
+
+        {isEmpty && (
           <section className="bg-[var(--color-cream)]" style={{ paddingTop: "80px", paddingBottom: "80px" }}>
             <div style={{ paddingLeft: "235px", textAlign: "center" }}>
               <p style={{ fontFamily: "var(--font-commissioner)", fontSize: "20px", color: "#635f5b" }}>

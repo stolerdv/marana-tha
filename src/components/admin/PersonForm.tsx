@@ -11,6 +11,7 @@ interface PersonFormData {
   name: string;
   role: string;
   photo: string;
+  group: string;
   order: number;
   published: boolean;
   ministryId: string;
@@ -71,6 +72,7 @@ export function PersonForm({ mode, personId, initial, ministries, cityPages }: P
     name: initial?.name ?? "",
     role: initial?.role ?? "",
     photo: initial?.photo ?? "",
+    group: initial?.group ?? "",
     order: initial?.order ?? 0,
     published: initial?.published ?? false,
     ministryId: initial?.ministryId ?? "",
@@ -81,7 +83,7 @@ export function PersonForm({ mode, personId, initial, ministries, cityPages }: P
     setForm(prev => ({ ...prev, [key]: value }));
   }
 
-  async function handleSubmit(e: React.FormEvent) {
+  async function handleSubmit(e: React.SyntheticEvent<HTMLFormElement>) {
     e.preventDefault();
     if (!form.name || !form.role) { setError("Vyplň meno a rolu."); return; }
     setSaving(true);
@@ -143,6 +145,19 @@ export function PersonForm({ mode, personId, initial, ministries, cityPages }: P
               </select>
             </FormField>
           </div>
+
+          <FormField label="Vlastná skupina (sekcia na stránke Ľudia)">
+            <input
+              type="text"
+              value={form.group}
+              onChange={e => set("group", e.target.value)}
+              placeholder="napr. Ekonomická rada, Správca M Arény..."
+              style={inputStyle}
+            />
+            <p style={{ fontFamily: "var(--font-inter)", fontSize: "11px", color: "#9ca3af", marginTop: "4px" }}>
+              Ak vyplníš, osoba sa zobrazí v tejto vlastnej sekcii — nie v Líderskom tíme ani v službe.
+            </p>
+          </FormField>
         </div>
 
         {/* RIGHT sidebar */}

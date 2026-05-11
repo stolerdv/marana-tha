@@ -9,7 +9,7 @@ export async function PUT(req: NextRequest, { params }: { params: Promise<{ id: 
   try {
     const { id } = await params;
     const body = await req.json();
-    const { name, role, photo, order, published, ministryId, cityPageId } = body;
+    const { name, role, photo, group, order, published, ministryId, cityPageId } = body;
 
     const person = await db.person.update({
       where: { id },
@@ -17,6 +17,7 @@ export async function PUT(req: NextRequest, { params }: { params: Promise<{ id: 
         name,
         role,
         photo: photo ?? null,
+        group: group || null,
         order: order ?? 0,
         published,
         ministryId: ministryId || null,

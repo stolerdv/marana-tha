@@ -28,6 +28,7 @@ export default async function EditPersonPage({ params }: { params: Promise<{ id:
           name: person.name,
           role: person.role,
           photo: person.photo ?? "",
+          group: person.group ?? "",
           order: person.order,
           published: person.published,
           ministryId: person.ministryId ?? "",

@@ -117,6 +117,7 @@ model Person {
   name       String
   role       String
   photo      String?
+  group      String?   // Custom section on /ludia e.g. "Ekonomická rada"
   order      Int       @default(0)
   published  Boolean   @default(false)
   ministryId String?
