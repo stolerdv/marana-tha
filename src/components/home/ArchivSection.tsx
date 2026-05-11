@@ -22,6 +22,13 @@ export function ArchivSection() {
           </div>
         </div>
 
+        {/* Section heading */}
+        <div className="relative text-center -mt-14 mb-6 pointer-events-none" style={{ paddingLeft: "235px", paddingRight: "235px" }}>
+          <span style={{ fontFamily: "var(--font-commissioner)", fontSize: "50px", fontWeight: 400, color: "var(--color-gold-dark)" }}>
+            archív
+          </span>
+        </div>
+
         {/* Full-width video */}
         <motion.div
           initial={{ opacity: 0 }}
