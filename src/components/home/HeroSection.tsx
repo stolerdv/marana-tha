@@ -108,23 +108,23 @@ export function HeroSection({ vchByCity = {} }: Props) {
         <div style={{ width: "1px", height: "80px", backgroundColor: "rgba(253,245,242,0.25)" }} />
       </div>
 
-      {/* ── MAIN CONTENT — vertically centered ── */}
-      <div className="relative z-10 flex flex-col items-center justify-center text-center"
-        style={{ minHeight: "calc(100vh - 260px)", paddingLeft: "235px", paddingRight: "235px", paddingTop: "140px", paddingBottom: "60px" }}>
+      {/* ── MAIN CONTENT — positioned in lower half of hero ── */}
+      <div className="relative z-10 flex flex-col items-center text-center"
+        style={{ paddingLeft: "235px", paddingRight: "235px", paddingTop: "38vh", paddingBottom: "60px" }}>
 
-        {/* Main quote — large, centered */}
+        {/* Main quote */}
         <motion.h1
           initial={{ opacity: 0, y: 32 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.35, duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
           style={{
             fontFamily: "var(--font-commissioner)",
-            fontSize: "clamp(40px, 5vw, 72px)",
+            fontSize: "clamp(36px, 4.2vw, 62px)",
             fontWeight: 700,
             color: "#fdf5f2",
             lineHeight: 1.1,
-            maxWidth: "820px",
-            marginBottom: "32px",
+            maxWidth: "760px",
+            marginBottom: "28px",
             letterSpacing: "-1px",
           }}
         >
@@ -147,12 +147,12 @@ export function HeroSection({ vchByCity = {} }: Props) {
           transition={{ delay: 0.75, duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
           style={{
             fontFamily: "var(--font-commissioner)",
-            fontSize: "20px",
+            fontSize: "19px",
             fontWeight: 400,
             color: "rgba(253,245,242,0.75)",
             lineHeight: "1.6",
-            maxWidth: "560px",
-            marginBottom: "44px",
+            maxWidth: "520px",
+            marginBottom: "36px",
           }}
         >
           Katolícke spoločenstvo v Prešove, Bardejove a Košiciach. Príď, spoznaj nás a prežívaj živú vieru spoločne s nami.
