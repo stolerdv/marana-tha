@@ -31,7 +31,7 @@ export function SluzbyGrid({ ministries }: SluzbyGridProps) {
   for (let i = 0; i < ministries.length; i += 3) rows.push(ministries.slice(i, i + 3));
 
   return (
-    <section className="bg-[var(--color-cream)] relative overflow-hidden" style={{ paddingTop: "137px", paddingBottom: "80px" }}>
+    <section className="bg-[var(--color-cream)] relative" style={{ paddingTop: "137px", paddingBottom: "80px" }}>
 
       {/* Decorative thin lines */}
       <div className="absolute pointer-events-none" style={{ top: "60px", left: "235px", right: "235px", height: "1px", backgroundColor: "rgba(190,160,85,0.2)", zIndex: 0 }} />
@@ -41,13 +41,16 @@ export function SluzbyGrid({ ministries }: SluzbyGridProps) {
         <div className="flex flex-col" style={{ gap: "144px" }}>
           {rows.map((row, rowIdx) => (
             <div key={rowIdx} className="relative flex justify-between">
-              {/* Per-row watermark — offset so text falls in gaps between cards */}
+              {/* Per-row watermark — positioned so letters fall in card gaps */}
               <div
                 className="absolute pointer-events-none select-none"
                 style={{
                   top: "50%",
-                  left: "50%",
-                  transform: `translate(${rowIdx === 0 ? "-68%" : rowIdx === 2 ? "-32%" : "-50%"}, -50%)`,
+                  ...(rowIdx === 0
+                    ? { left: "-60px", transform: "translateY(-50%)" }
+                    : rowIdx === 2
+                    ? { right: "-60px", transform: "translateY(-50%)" }
+                    : { left: "50%", transform: "translate(-50%, -50%)" }),
                   fontFamily: "var(--font-commissioner)",
                   fontSize: "160px",
                   fontWeight: 700,
