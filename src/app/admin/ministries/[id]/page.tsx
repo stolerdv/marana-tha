@@ -5,8 +5,13 @@ import Link from "next/link";
 
 export default async function EditMinistryPage({ params }: { params: Promise<{ id: string }> }) {
   const { id } = await params;
-  const ministry = await db.ministry.findUnique({ where: { id } });
+  const ministry = await db.ministry.findUnique({
+    where: { id },
+    include: { galleries: { include: { photos: { orderBy: { order: "asc" } } } } },
+  });
   if (!ministry) notFound();
+
+  const photos = ministry.galleries[0]?.photos.map(p => p.url) ?? [];
 
   return (
     <div className="p-8">
@@ -24,6 +29,7 @@ export default async function EditMinistryPage({ params }: { params: Promise<{ i
           description: ministry.description,
           content: ministry.content ?? "",
           coverImage: ministry.coverImage ?? "",
+          photos,
           icon: ministry.icon ?? "",
           order: ministry.order,
           published: ministry.published,

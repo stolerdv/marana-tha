@@ -30,6 +30,11 @@ export default async function SluzbaPage({ params }: { params: Promise<{ slug: s
           orderBy: { order: "asc" },
           select: { id: true, name: true, role: true, photo: true },
         },
+        galleries: {
+          where: { published: true },
+          include: { photos: { orderBy: { order: "asc" } } },
+          take: 1,
+        },
       },
     }),
     db.event.findMany({
@@ -43,6 +48,7 @@ export default async function SluzbaPage({ params }: { params: Promise<{ slug: s
   if (!ministry) notFound();
 
   const contactPerson = ministry.people[0] ?? null;
+  const galleryPhotos = ministry.galleries[0]?.photos ?? [];
 
   return (
     <>
@@ -141,6 +147,26 @@ export default async function SluzbaPage({ params }: { params: Promise<{ slug: s
                     </div>
                     <p style={{ fontFamily: "var(--font-inter)", fontSize: "18px", fontWeight: 400, color: "#1c1d1e", marginTop: "12px" }}>{person.name}</p>
                     {person.role && <p style={{ fontFamily: "var(--font-inter)", fontSize: "13px", color: "#977d3e", marginTop: "2px" }}>{person.role}</p>}
+                  </div>
+                ))}
+              </div>
+            </div>
+          </section>
+        )}
+
+        {/* Galéria */}
+        {galleryPhotos.length > 0 && (
+          <section className="bg-[var(--color-cream)]" style={{ paddingBottom: "80px" }}>
+            <div style={{ paddingLeft: "235px", paddingRight: "235px" }}>
+              <div style={{ height: "1px", backgroundColor: "#e4d5b2", marginBottom: "60px" }} />
+              <p style={{ fontFamily: "var(--font-commissioner)", fontSize: "36px", fontWeight: 400, color: "#977d3e", marginBottom: "24px" }}>
+                Galéria
+              </p>
+              <div style={{ display: "grid", gridTemplateColumns: `repeat(${Math.min(galleryPhotos.length, 3)}, 1fr)`, gap: "12px" }}>
+                {galleryPhotos.map((photo, i) => (
+                  <div key={photo.id} style={{ borderRadius: "12px", overflow: "hidden", aspectRatio: "4/3", backgroundColor: "#e6ded5" }}>
+                    {/* eslint-disable-next-line @next/next/no-img-element */}
+                    <img src={photo.url} alt={photo.alt ?? `Foto ${i + 1}`} style={{ width: "100%", height: "100%", objectFit: "cover" }} />
                   </div>
                 ))}
               </div>

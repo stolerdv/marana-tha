@@ -4,6 +4,7 @@ import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { RichEditor } from "./RichEditor";
 import { ImageUploadCrop as ImageUpload } from "./ImageUploadCrop";
+import { GalleryUpload } from "./GalleryUpload";
 
 interface MinistryFormData {
   title: string;
@@ -11,6 +12,7 @@ interface MinistryFormData {
   description: string;
   content: string;
   coverImage: string;
+  photos: string[];
   icon: string;
   order: number;
   published: boolean;
@@ -79,6 +81,7 @@ export function MinistryForm({ mode, ministryId, initial }: MinistryFormProps) {
     description: initial?.description ?? "",
     content: initial?.content ?? "",
     coverImage: initial?.coverImage ?? "",
+    photos: initial?.photos ?? [],
     icon: initial?.icon ?? "",
     order: initial?.order ?? 0,
     published: initial?.published ?? false,
@@ -93,7 +96,7 @@ export function MinistryForm({ mode, ministryId, initial }: MinistryFormProps) {
     if (mode === "create") set("slug", slugify(value));
   }
 
-  async function handleSubmit(e: React.FormEvent) {
+  async function handleSubmit(e: React.SyntheticEvent<HTMLFormElement>) {
     e.preventDefault();
     if (!form.title || !form.slug || !form.description) {
       setError("Vyplň všetky povinné polia.");
@@ -153,6 +156,8 @@ export function MinistryForm({ mode, ministryId, initial }: MinistryFormProps) {
           </FormField>
 
           <ImageUpload value={form.coverImage} onChange={v => set("coverImage", v)} label="Titulná fotografia" />
+
+          <GalleryUpload photos={form.photos} onChange={v => set("photos", v)} />
         </div>
 
         {/* RIGHT sidebar */}

@@ -80,17 +80,18 @@ model Registration {
 // ─── Служения ────────────────────────────────────────────────────────────────
 
 model Ministry {
-  id          String   @id @default(cuid())
+  id          String    @id @default(cuid())
   title       String
-  slug        String   @unique
+  slug        String    @unique
   description String
   content     String?
   coverImage  String?
   icon        String?
-  order       Int      @default(0)
-  published   Boolean  @default(false)
-  createdAt   DateTime @default(now())
+  order       Int       @default(0)
+  published   Boolean   @default(false)
+  createdAt   DateTime  @default(now())
   people      Person[]
+  galleries   Gallery[]
 }
 
 // ─── Страницы городов ────────────────────────────────────────────────────────
@@ -128,15 +129,17 @@ model Person {
 // ─── Галереи ─────────────────────────────────────────────────────────────────
 
 model Gallery {
-  id         String   @id @default(cuid())
+  id         String    @id @default(cuid())
   title      String
-  slug       String   @unique
+  slug       String    @unique
   coverImage String?
-  published  Boolean  @default(false)
+  published  Boolean   @default(false)
   eventId    String?
-  event      Event?   @relation(fields: [eventId], references: [id], onDelete: SetNull)
+  event      Event?    @relation(fields: [eventId], references: [id], onDelete: SetNull)
+  ministryId String?
+  ministry   Ministry? @relation(fields: [ministryId], references: [id], onDelete: SetNull)
   photos     Photo[]
-  createdAt  DateTime @default(now())
+  createdAt  DateTime  @default(now())
 }
 
 model Photo {
