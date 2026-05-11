@@ -13,14 +13,23 @@ import { NewsletterSection } from "@/components/home/NewsletterSection";
 import { KontaktSection } from "@/components/home/KontaktSection";
 
 export default async function HomePage() {
-  // Load upcoming VCH events grouped by city
-  const vchEvents = await db.event.findMany({
-    where: { isEveningOfPraise: true, published: true, startDate: { gte: new Date() } },
-    orderBy: { startDate: "asc" },
-    select: { id: true, title: true, startDate: true, location: true, slug: true },
-  });
+  const [vchEvents, upcomingEvents] = await Promise.all([
+    // VCH events grouped by city for hero countdown
+    db.event.findMany({
+      where: { isEveningOfPraise: true, published: true, startDate: { gte: new Date() } },
+      orderBy: { startDate: "asc" },
+      select: { id: true, title: true, startDate: true, location: true, slug: true },
+    }),
+    // Upcoming events for Aktuality section (next 5, non-VCH first, then all)
+    db.event.findMany({
+      where: { published: true, startDate: { gte: new Date() } },
+      orderBy: { startDate: "asc" },
+      take: 5,
+      select: { id: true, title: true, slug: true, startDate: true, location: true },
+    }),
+  ]);
 
-  // Group by city, take nearest per city
+  // Group VCH by city, take nearest per city
   const byCity: Record<string, { date: Date; title: string; slug: string }> = {};
   for (const ev of vchEvents) {
     const city = ev.location ?? "Prešov";
@@ -34,7 +43,7 @@ export default async function HomePage() {
       <Navbar />
       <main>
         <HeroSection vchByCity={byCity} />
-        <AktualitySection />
+        <AktualitySection events={upcomingEvents} />
         <ONasSection />
         <MisieSection />
         <ArchivSection />

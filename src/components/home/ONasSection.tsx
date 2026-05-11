@@ -62,7 +62,6 @@ export function ONasSection() {
                 fill
                 className="object-cover"
               />
-              <div className="absolute left-0 right-0 bottom-0 h-[82px] bg-white/80" />
             </motion.div>
           </div>
 
