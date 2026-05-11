@@ -3,7 +3,6 @@ import { db } from "@/lib/db";
 
 // No auth check — eventId is an unguessable CUID, admin page is protected by middleware
 export async function GET(req: NextRequest, { params }: { params: Promise<{ eventId: string }> }) {
-
   const { eventId } = await params;
   const { searchParams } = new URL(req.url);
   const format = searchParams.get("format");
@@ -11,27 +10,26 @@ export async function GET(req: NextRequest, { params }: { params: Promise<{ even
   const registrations = await db.registration.findMany({
     where: { eventId },
     orderBy: { createdAt: "asc" },
-    include: { event: { select: { title: true } } },
+    include: { event: { select: { title: true, slug: true } } },
   });
 
-  // CSV export
   if (format === "csv") {
-    if (registrations.length === 0) {
-      return new NextResponse("Meno,Email,Dátum\n", {
-        headers: { "Content-Type": "text/csv; charset=utf-8", "Content-Disposition": `attachment; filename="registracie.csv"` },
-      });
-    }
+    const SEP = ";"; // Slovak Excel uses semicolons
+    const BOM = "﻿"; // UTF-8 BOM so Excel opens correctly
 
-    // Collect all field keys from data JSON
+    // Collect extra field keys from data JSON (skip builtin_name/builtin_email since name+email are separate columns)
     const allKeys = new Set<string>();
     registrations.forEach(r => {
       if (r.data && typeof r.data === "object") {
-        Object.keys(r.data as object).forEach(k => allKeys.add(k));
+        Object.keys(r.data as object).forEach(k => {
+          if (k !== "builtin_name" && k !== "builtin_email") allKeys.add(k);
+        });
       }
     });
     const extraKeys = Array.from(allKeys);
 
-    const headers = ["Meno", "Email", ...extraKeys, "Dátum"].join(",");
+    const headerRow = ["Meno", "Email", ...extraKeys, "Dátum"].join(SEP);
+
     const rows = registrations.map(r => {
       const extra = extraKeys.map(k => {
         const val = (r.data as Record<string, string>)?.[k] ?? "";
@@ -42,12 +40,12 @@ export async function GET(req: NextRequest, { params }: { params: Promise<{ even
         `"${r.email.replace(/"/g, '""')}"`,
         ...extra,
         `"${new Date(r.createdAt).toLocaleDateString("sk-SK")}"`,
-      ].join(",");
+      ].join(SEP);
     });
 
-    const csv = [headers, ...rows].join("\n");
+    const csv = BOM + [headerRow, ...rows].join("\r\n");
     const eventTitle = registrations[0]?.event?.title ?? "registracie";
-    const filename = `${eventTitle.toLowerCase().replace(/\s+/g, "-")}.csv`;
+    const filename = `registracie-${eventTitle.toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g, "").replace(/\s+/g, "-")}.csv`;
 
     return new NextResponse(csv, {
       headers: {
