@@ -9,7 +9,7 @@ import Link from "next/link";
 
 export default async function MisiaDetailPage({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
-  const mission = await db.mission.findUnique({ where: { slug, published: true } });
+  const mission = await db.mission.findUnique({ where: { slug } });
   if (!mission) notFound();
 
   const photos = (mission.photos as string[]) ?? [];

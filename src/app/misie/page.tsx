@@ -9,7 +9,7 @@ import Image from "next/image";
 
 export default async function MisiePage() {
   const missions = await db.mission.findMany({
-    where: { published: true },
+    where: {},
     orderBy: [{ order: "asc" }, { createdAt: "asc" }],
   });
 

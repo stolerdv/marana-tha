@@ -84,7 +84,7 @@ export function MissionForm({ mode, missionId, initial }: MissionFormProps) {
     coverImage: initial?.coverImage ?? "",
     photos: initial?.photos ?? [],
     order: initial?.order ?? 0,
-    published: initial?.published ?? false,
+    published: initial?.published ?? true,
   });
 
   function set<K extends keyof MissionFormData>(key: K, value: MissionFormData[K]) {
