@@ -78,10 +78,13 @@ export function HeroSection({ vchByCity = {} }: Props) {
     <section className="relative overflow-hidden" style={{ minHeight: "100vh", backgroundColor: "#1c1d1e" }}>
       {/* Background photo */}
       <div className="absolute inset-0 bg-cover"
-        style={{ backgroundImage: "url('/images/hero-bg.jpg')", backgroundPosition: "72% 20%", opacity: 0.7 }} />
-      {/* Gradient overlay — stronger at top and bottom */}
+        style={{ backgroundImage: "url('/images/hero-bg.jpg')", backgroundPosition: "72% 20%" }} />
+      {/* Warm colour-burn layer — restores amber/orange tones from original */}
       <div className="absolute inset-0"
-        style={{ background: "linear-gradient(to bottom, rgba(28,29,30,0.85) 0%, rgba(28,29,30,0.2) 40%, rgba(28,29,30,0.7) 80%, rgba(28,29,30,0.95) 100%)" }} />
+        style={{ backgroundColor: "#dec4b0", mixBlendMode: "color-burn" }} />
+      {/* Dark gradient */}
+      <div className="absolute inset-0"
+        style={{ background: "linear-gradient(to bottom, #1c1d1e 12%, transparent 60%, rgba(28,29,30,0.7) 85%, rgba(28,29,30,0.97) 100%)", mixBlendMode: "multiply" }} />
 
       {/* Social icons — right edge */}
       <div className="absolute flex flex-col items-center z-20" style={{ right: "56px", top: "50%", transform: "translateY(-50%)" }}>
@@ -104,7 +107,7 @@ export function HeroSection({ vchByCity = {} }: Props) {
 
       {/* ── MAIN CONTENT — vertically centered ── */}
       <div className="relative z-10 flex flex-col items-center justify-center text-center"
-        style={{ minHeight: "100vh", paddingLeft: "235px", paddingRight: "235px", paddingTop: "120px", paddingBottom: "320px" }}>
+        style={{ minHeight: "calc(100vh - 260px)", paddingLeft: "235px", paddingRight: "235px", paddingTop: "140px", paddingBottom: "60px" }}>
 
         {/* Eyebrow label */}
         <motion.div
@@ -204,7 +207,7 @@ export function HeroSection({ vchByCity = {} }: Props) {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 1.4, duration: 0.6 }}
-          style={{ position: "absolute", bottom: "280px", left: "50%", transform: "translateX(-50%)" }}
+          style={{ marginTop: "16px" }}
         >
           <motion.div
             animate={{ y: [0, 8, 0] }}
@@ -217,8 +220,8 @@ export function HeroSection({ vchByCity = {} }: Props) {
         </motion.div>
       </div>
 
-      {/* ── VCH Block — pinned at bottom ── */}
-      <div className="absolute bottom-0 left-0 right-0 z-20" style={{ paddingLeft: "235px", paddingRight: "235px", paddingBottom: "0" }}>
+      {/* ── VCH Block — bottom, part of normal flow ── */}
+      <div className="relative z-20" style={{ paddingLeft: "235px", paddingRight: "235px" }}>
         <motion.div
           initial={{ opacity: 0, y: 40 }}
           animate={{ opacity: 1, y: 0 }}
