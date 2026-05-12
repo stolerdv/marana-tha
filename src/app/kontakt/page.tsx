@@ -39,8 +39,8 @@ export default async function KontaktPage() {
               {contacts.map((c) => (
                 <StaggerItem key={c.city}>
                   <div style={{ height: "1px", backgroundColor: "#bea055" }} />
-                  <div className="flex items-start py-8 gap-16">
-                    <div style={{ width: "200px", flexShrink: 0 }}>
+                  <div className="flex flex-col sm:flex-row items-start py-6 sm:py-8 gap-3 sm:gap-16">
+                    <div className="w-full sm:w-[200px] sm:shrink-0">
                       <p style={{ fontFamily: "var(--font-commissioner)", fontSize: "30px", fontWeight: 700, color: "#1c1d1e" }}>{c.city}</p>
                     </div>
                     <div className="flex flex-col gap-2">

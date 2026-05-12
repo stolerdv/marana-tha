@@ -42,7 +42,7 @@ export function ONasStats({ stat1Value, stat1Label, stat2Value, stat2Label, stat
   return (
     <section className="bg-[var(--color-cream)]" style={{ paddingTop: "143px" }}>
       <div className="px-4 sm:px-8 lg:px-[235px]">
-        <div className="flex justify-between" style={{ paddingLeft: "81px", paddingRight: "81px" }}>
+        <div className="flex flex-wrap justify-around sm:justify-between gap-8 sm:gap-0" style={{ paddingLeft: "0px", paddingRight: "0px" }}>
           {labels.map((label, i) => (
             <motion.div key={i} initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }} transition={{ delay: i * 0.12 }} className="flex flex-col items-start">

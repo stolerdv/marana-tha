@@ -81,9 +81,8 @@ export function SluzbyDetail({ sluzba }: SluzbyDetailProps) {
                 >
                   {/* Gold divider — Figma: 1044×1 #bea055 */}
                   <div style={{ height: "1px", backgroundColor: "#bea055", width: "100%" }} />
-                  <div className="flex items-start" style={{ paddingTop: "8px", paddingBottom: "8px" }}>
-                    {/* Type — Figma: Commissioner 700 30px lh=55px #1c1d1e */}
-                    <div style={{ width: "360px", flexShrink: 0 }}>
+                  <div className="flex flex-col sm:flex-row items-start gap-1 sm:gap-0" style={{ paddingTop: "8px", paddingBottom: "8px" }}>
+                    <div className="w-full sm:w-[360px] sm:shrink-0">
                       <span style={{ fontFamily: "var(--font-commissioner)", fontSize: "30px", fontWeight: 700, lineHeight: "55px", color: "#1c1d1e" }}>
                         {event.type}
                       </span>
@@ -120,24 +119,19 @@ export function SluzbyDetail({ sluzba }: SluzbyDetailProps) {
               initial={{ opacity: 0, y: 16 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              className="bg-white"
-              style={{ width: "1044px", borderRadius: "17px", padding: "32px" }}
+              className="bg-white w-full"
+              style={{ maxWidth: "1044px", borderRadius: "17px", padding: "clamp(16px,3vw,32px)" }}
             >
               {/* 3×3 photo grid — Figma: each photo 312×312 r=15, gap=22px, padding=32px */}
               {/* Group 72: 980×980 within card, 3 cols × 312px + 2×22px gap = 980px ✓ */}
               <div
-                style={{
-                  display: "grid",
-                  gridTemplateColumns: "repeat(3, 312px)",
-                  gridTemplateRows: "repeat(3, 312px)",
-                  gap: "22px",
-                }}
+                className="grid grid-cols-2 sm:grid-cols-3 gap-3 sm:gap-[22px]"
               >
                 {photos.slice(0, 9).map((photo, i) => (
                   <div
                     key={i}
                     className="relative overflow-hidden"
-                    style={{ width: "312px", height: "312px", borderRadius: "15px", backgroundColor: "#e6ded5" }}
+                    style={{ aspectRatio: "1", borderRadius: "15px", backgroundColor: "#e6ded5" }}
                   >
                     <Image src={photo.src} alt={photo.alt} fill className="object-cover" />
                   </div>
@@ -167,7 +161,7 @@ export function SluzbyDetail({ sluzba }: SluzbyDetailProps) {
               Kontaktná osoba
             </p>
 
-            <div className="flex gap-16 items-start">
+            <div className="flex flex-col sm:flex-row gap-8 sm:gap-16 items-start">
               {/* Person card — Figma: Group 76, 174×310 white r=15 */}
               <motion.div
                 initial={{ opacity: 0, y: 12 }}

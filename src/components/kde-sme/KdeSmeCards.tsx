@@ -60,8 +60,8 @@ export function KdeSmeCards() {
     <section className="bg-[var(--color-cream)]" style={{ paddingTop: "82px", paddingBottom: "80px" }}>
       <div className="px-4 sm:px-8 lg:px-[235px]">
 
-        {/* 3 city cards row — Figma: justify-between, each 252px wide, gap ~145px */}
-        <div className="flex justify-between">
+        {/* 3 city cards — stack on mobile, row on desktop */}
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-10 sm:gap-8 lg:gap-0 lg:flex lg:justify-between">
           {cities.map((city, i) => (
             <motion.div
               key={i}
@@ -69,7 +69,7 @@ export function KdeSmeCards() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: i * 0.1 }}
-              style={{ width: "252px" }}
+              className="w-full sm:w-auto"
             >
               {/* Gold box (108×108 r=15) with icon */}
               <div
@@ -95,12 +95,12 @@ export function KdeSmeCards() {
               </h2>
 
               {/* Gold divider — Figma: 250×1 #bea055, immediately after name (top=205px) */}
-              <div style={{ height: "1px", width: "250px", backgroundColor: "#bea055" }} />
+              <div style={{ height: "1px", width: "100%", maxWidth: "250px", backgroundColor: "#bea055" }} />
 
               {/* Photo — Figma: 250×167 r=15, 42px below divider */}
               <div
                 className="relative overflow-hidden"
-                style={{ width: "250px", height: "167px", borderRadius: "15px", marginTop: "42px" }}
+                style={{ width: "100%", maxWidth: "250px", height: "167px", borderRadius: "15px", marginTop: "42px" }}
               >
                 <Image src={city.image} alt={city.name} fill className="object-cover" />
               </div>

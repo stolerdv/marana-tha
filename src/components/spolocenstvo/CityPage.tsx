@@ -182,7 +182,7 @@ export function CityPage({ city, heroImage, description, meetingLabel, team }: C
             </p>
 
             {/* 5 team cards — Figma: Group 73 1042×310, each card 174×310 r=15, gap 43px */}
-            <div className="flex justify-between">
+            <div className="grid grid-cols-2 sm:grid-cols-3 lg:flex lg:justify-between gap-4 lg:gap-0">
               {team.map((member, i) => (
                 <motion.div
                   key={i}
@@ -191,7 +191,7 @@ export function CityPage({ city, heroImage, description, meetingLabel, team }: C
                   viewport={{ once: true }}
                   transition={{ delay: i * 0.08 }}
                   className="bg-white"
-                  style={{ width: "174px", height: "310px", borderRadius: "15px", overflow: "hidden", flexShrink: 0 }}
+                  style={{ width: "174px", height: "310px", borderRadius: "15px", overflow: "hidden" }}
                 >
                   {/* Photo — Figma: image 18, ~154×198 or ~106×125, r=15, at top 11px */}
                   <div

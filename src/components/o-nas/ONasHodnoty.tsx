@@ -68,15 +68,13 @@ export function ONasHodnoty() {
               <div style={{ height: "1px", backgroundColor: "#bea055", width: "100%" }} />
 
               {/* Row: left title + right text */}
-              <div className="flex items-start" style={{ paddingTop: "16px", paddingBottom: "16px" }}>
-                {/* Left — Figma: Commissioner 700 30px lh=55px #1c1d1e, x=0, col width to x=361 */}
-                <div style={{ width: "361px", flexShrink: 0 }}>
-                  <span style={{ fontFamily: "var(--font-commissioner)", fontSize: "30px", fontWeight: 700, lineHeight: "55px", color: "#1c1d1e" }}>
+              <div className="flex flex-col sm:flex-row items-start gap-2 sm:gap-0" style={{ paddingTop: "16px", paddingBottom: "16px" }}>
+                <div className="w-full sm:w-[361px] sm:shrink-0">
+                  <span style={{ fontFamily: "var(--font-commissioner)", fontSize: "clamp(22px,2.5vw,30px)", fontWeight: 700, lineHeight: "55px", color: "#1c1d1e" }}>
                     {h.title}
                   </span>
                 </div>
-                {/* Right — Figma: Inter 500 18px lh=26.1px #000000, x=361 from content */}
-                <p style={{ fontFamily: "var(--font-inter)", fontSize: "18px", fontWeight: 500, lineHeight: "26.1px", color: "#000000", flex: 1 }}>
+                <p style={{ fontFamily: "var(--font-inter)", fontSize: "17px", fontWeight: 500, lineHeight: "26.1px", color: "#000000", flex: 1 }}>
                   {h.text}
                 </p>
               </div>

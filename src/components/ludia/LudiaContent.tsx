@@ -108,8 +108,7 @@ export function LudiaContent({ leaders, serviceGroups }: LudiaContentProps) {
         <div className="px-4 sm:px-8 lg:px-[235px]">
           <SectionHeading watermark="líderský tím" subtitle="Líderský tím" />
 
-          {/* 5 cards row — justify-between gives gap=(1042-5*174)/4=43px ✓ */}
-          <div className="flex justify-between">
+          <div className="grid grid-cols-2 sm:grid-cols-3 lg:flex lg:justify-between gap-4 lg:gap-0">
             {leaders.map((person, i) => (
               <PersonCard key={i} person={person} delay={i * 0.08} />
             ))}
@@ -124,47 +123,22 @@ export function LudiaContent({ leaders, serviceGroups }: LudiaContentProps) {
         <div className="px-4 sm:px-8 lg:px-[235px]">
           <SectionHeading watermark="vedúci služieb" subtitle="vedúci služieb" />
 
-          {/* 3 columns — absolute positions matching Figma: 0, 367, 749 from content left */}
-          <div className="relative" style={{ height: `${3 * 310 + 3 * 55 + 6 * 16 + 3 * 108}px` }}>
-            {serviceGroups.map((group, colIdx) => {
-              // Column x positions: 0, 367, 749
-              const xPositions = [0, 367, 749];
-              return (
-                <div
-                  key={colIdx}
-                  className="absolute flex flex-col"
-                  style={{ left: `${xPositions[colIdx]}px`, top: 0, width: "174px" }}
-                >
-                  {group.people.map((person, cardIdx) => (
-                    <div key={cardIdx}>
-                      {/* Service label above each card — Commissioner 700 30px lh=55px */}
-                      <p
-                        style={{
-                          fontFamily: "var(--font-commissioner)",
-                          fontSize: "30px",
-                          fontWeight: 700,
-                          lineHeight: "55px",
-                          color: "#000000",
-                          margin: 0,
-                        }}
-                      >
-                        {group.serviceName}
-                      </p>
-
-                      {/* Person card — 174×310 */}
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-8">
+            {serviceGroups.map((group, colIdx) => (
+              <div key={colIdx} className="flex flex-col gap-6">
+                <p style={{ fontFamily: "var(--font-commissioner)", fontSize: "clamp(22px,2.5vw,30px)", fontWeight: 700, lineHeight: "1.3", color: "#000000", margin: 0 }}>
+                  {group.serviceName}
+                </p>
+                {group.people.map((person, cardIdx) => (
+                  <div key={cardIdx}>
+                      {/* Person card */}
                       <motion.div
                         initial={{ opacity: 0, y: 16 }}
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true }}
                         transition={{ delay: (colIdx + cardIdx) * 0.07 }}
                         className="bg-white"
-                        style={{
-                          width: "174px",
-                          height: "310px",
-                          borderRadius: "15px",
-                          overflow: "hidden",
-                          marginBottom: cardIdx < group.people.length - 1 ? "108px" : "0",
-                        }}
+                        style={{ width: "174px", height: "310px", borderRadius: "15px", overflow: "hidden" }}
                       >
                         <div
                           className="relative overflow-hidden"
@@ -180,11 +154,10 @@ export function LudiaContent({ leaders, serviceGroups }: LudiaContentProps) {
                           </p>
                         </div>
                       </motion.div>
-                    </div>
-                  ))}
-                </div>
-              );
-            })}
+                  </div>
+                ))}
+              </div>
+            ))}
           </div>
         </div>
       </section>
