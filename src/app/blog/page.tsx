@@ -33,7 +33,7 @@ export default async function BlogPage() {
         <section className="bg-[var(--color-cream)]" style={{ paddingTop: "80px", paddingBottom: "80px" }}>
           <div className="px-4 sm:px-8 lg:px-[235px]">
 
-            <p style={{ fontFamily: "var(--font-commissioner)", fontSize: "50px", fontWeight: 400, lineHeight: "55px", color: "#977d3e", marginBottom: "48px" }}>
+            <p style={{ fontFamily: "var(--font-commissioner)", fontSize: "clamp(32px,4vw,50px)", fontWeight: 400, lineHeight: 1.2, color: "#977d3e", marginBottom: "40px" }}>
               Články
             </p>
 
@@ -42,7 +42,7 @@ export default async function BlogPage() {
                 Čoskoro budú pridané nové články.
               </p>
             ) : (
-              <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: "32px" }}>
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
                 {posts.map((post) => (
                   <Link
                     key={post.id}
