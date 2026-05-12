@@ -5,31 +5,36 @@ import Link from "next/link";
 
 const ease = [0.22, 1, 0.36, 1] as const;
 
-const cities = [
-  {
-    name: "Prešov",
-    href: "/spolocenstvo/presov",
-    address: "Švábska 22, 080 05 Prešov",
-    email: "info@maranathapo.sk",
-    color: "#bea055",
-  },
-  {
-    name: "Košice",
-    href: "/spolocenstvo/kosice",
-    address: "Kontaktujte nás pre adresu",
-    email: "info@maranathapo.sk",
-    color: "#4a7c9b",
-  },
-  {
-    name: "Bardejov",
-    href: "/spolocenstvo/bardejov",
-    address: "Kontaktujte nás pre adresu",
-    email: "info@maranathapo.sk",
-    color: "#6b8a5e",
-  },
-];
+const CITY_CONFIG: Record<string, { name: string; href: string; color: string }> = {
+  PRESOV:   { name: "Prešov",   href: "/spolocenstvo/presov",   color: "#bea055" },
+  KOSICE:   { name: "Košice",   href: "/spolocenstvo/kosice",   color: "#4a7c9b" },
+  BARDEJOV: { name: "Bardejov", href: "/spolocenstvo/bardejov", color: "#6b8a5e" },
+};
 
-export function KontaktSection() {
+interface CityPageData {
+  city: string;
+  title: string;
+  address: string | null;
+  contactEmail: string | null;
+  contactPhone: string | null;
+}
+
+interface Props {
+  cityPages?: CityPageData[];
+}
+
+export function KontaktSection({ cityPages = [] }: Props) {
+  // Merge DB data with display config, keep fixed order
+  const cities = (["PRESOV", "KOSICE", "BARDEJOV"] as const).map(key => {
+    const db = cityPages.find(p => p.city === key);
+    const cfg = CITY_CONFIG[key];
+    return {
+      ...cfg,
+      address: db?.address ?? "Adresa bude doplnená",
+      email: db?.contactEmail ?? "info@maranathapo.sk",
+      phone: db?.contactPhone ?? null,
+    };
+  });
   return (
     <section className="relative bg-[var(--color-cream)] overflow-hidden pb-0">
       <div className="max-w-[1512px] mx-auto px-4 sm:px-8 lg:px-[235px]">
@@ -78,12 +83,17 @@ export function KontaktSection() {
                       </span>
                     </div>
 
-                    <p style={{ fontFamily: "var(--font-inter)", fontSize: "15px", color: "#1c1d1e", lineHeight: 1.6, marginBottom: "12px" }}>
+                    <p style={{ fontFamily: "var(--font-inter)", fontSize: "15px", color: "#1c1d1e", lineHeight: 1.6, marginBottom: "10px" }}>
                       {city.address}
                     </p>
-                    <a href={`mailto:${city.email}`} style={{ fontFamily: "var(--font-inter)", fontSize: "14px", color: "#977d3e" }}>
+                    <a href={`mailto:${city.email}`} className="block hover:opacity-70 transition-opacity" style={{ fontFamily: "var(--font-inter)", fontSize: "14px", color: "#977d3e", marginBottom: city.phone ? "4px" : "0" }}>
                       {city.email}
                     </a>
+                    {city.phone && (
+                      <a href={`tel:${city.phone}`} className="block hover:opacity-70 transition-opacity" style={{ fontFamily: "var(--font-inter)", fontSize: "14px", color: "#635f5b" }}>
+                        {city.phone}
+                      </a>
+                    )}
 
                     <div className="mt-4 flex items-center gap-2 opacity-0 group-hover:opacity-100 transition-opacity" style={{ color: city.color }}>
                       <span style={{ fontFamily: "var(--font-commissioner)", fontSize: "13px", fontWeight: 700 }}>Zobraziť viac</span>

@@ -13,7 +13,7 @@ import { NewsletterSection } from "@/components/home/NewsletterSection";
 import { KontaktSection } from "@/components/home/KontaktSection";
 
 export default async function HomePage() {
-  const [vchEvents, upcomingEvents, archivVideos] = await Promise.all([
+  const [vchEvents, upcomingEvents, archivVideos, cityPages] = await Promise.all([
     db.event.findMany({
       where: { isEveningOfPraise: true, published: true, startDate: { gte: new Date() } },
       orderBy: { startDate: "asc" },
@@ -30,6 +30,9 @@ export default async function HomePage() {
       orderBy: { createdAt: "desc" },
       take: 5,
       select: { id: true, title: true, youtubeUrl: true },
+    }),
+    db.cityPage.findMany({
+      select: { city: true, title: true, address: true, contactEmail: true, contactPhone: true },
     }),
   ]);
 
@@ -53,7 +56,7 @@ export default async function HomePage() {
         <ArchivSection videos={archivVideos} />
         <PodporteNasSection />
         <NewsletterSection />
-        <KontaktSection />
+        <KontaktSection cityPages={cityPages} />
       </main>
       <Footer />
     </>
