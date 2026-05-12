@@ -69,10 +69,9 @@ export default function VstupPreClenovPage() {
         <section className="bg-[var(--color-cream)]" style={{ paddingTop: "80px", paddingBottom: "80px" }}>
           <div className="px-4 sm:px-8 lg:px-[235px]">
 
-            {/* Login card */}
-            <div style={{ display: "flex", gap: "80px", alignItems: "flex-start" }}>
-              <div style={{ flex: 1 }}>
-                <p style={{ fontFamily: "var(--font-commissioner)", fontSize: "50px", fontWeight: 400, lineHeight: "55px", color: "#977d3e", marginBottom: "24px" }}>
+            <div className="flex flex-col lg:flex-row gap-10 lg:gap-20 items-start">
+              <div style={{ flex: 1, width: "100%" }}>
+                <p style={{ fontFamily: "var(--font-commissioner)", fontSize: "clamp(32px,4vw,50px)", fontWeight: 400, lineHeight: 1.2, color: "#977d3e", marginBottom: "20px" }}>
                   Členská zóna
                 </p>
                 <p style={{ fontFamily: "var(--font-inter)", fontSize: "18px", color: "#635f5b", lineHeight: "1.75", marginBottom: "40px", maxWidth: "500px" }}>
@@ -80,7 +79,7 @@ export default function VstupPreClenovPage() {
                 </p>
 
                 {/* Resources grid */}
-                <div style={{ display: "grid", gridTemplateColumns: "repeat(2, 1fr)", gap: "16px" }}>
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   {resources.map((r, i) => (
                     <div
                       key={i}
@@ -99,7 +98,7 @@ export default function VstupPreClenovPage() {
               </div>
 
               {/* Login box */}
-              <div style={{ width: "380px", flexShrink: 0 }}>
+              <div className="w-full lg:w-[380px] lg:shrink-0">
                 <div style={{ backgroundColor: "#ffffff", borderRadius: "15px", padding: "40px", border: "1px solid #e4d5b2" }}>
                   <p style={{ fontFamily: "var(--font-commissioner)", fontSize: "26px", fontWeight: 700, color: "#1c1d1e", marginBottom: "8px" }}>
                     Prihlás sa
