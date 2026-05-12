@@ -5,7 +5,7 @@ import { motion } from "framer-motion";
 export function KontaktSection() {
   return (
     <section className="relative bg-[var(--color-cream)] overflow-hidden pb-0">
-      <div className="max-w-[1512px] mx-auto" style={{ paddingLeft: "235px", paddingRight: "235px" }}>
+      <div className="max-w-[1512px] mx-auto px-4 sm:px-8 lg:px-[235px]">
 
         {/* Watermark */}
         <div className="relative flex justify-center pointer-events-none select-none pt-12 mb-4">
@@ -42,7 +42,7 @@ export function KontaktSection() {
             viewport={{ once: true }}
             transition={{ delay: 0.1 }}
           >
-            <p style={{ fontFamily: "var(--font-inter)", fontSize: "26px", fontWeight: 300, color: "var(--color-ink)", lineHeight: 1.7 }}>
+            <p style={{ fontFamily: "var(--font-inter)", fontSize: "clamp(16px, 2.5vw, 26px)", fontWeight: 300, color: "var(--color-ink)", lineHeight: 1.7 }}>
               MaranaTha Komunitno-pastoračné centrum
               <br />
               sv. Jána Pavla II.

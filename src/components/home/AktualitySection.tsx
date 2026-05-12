@@ -31,7 +31,7 @@ export function AktualitySection({ events = [] }: Props) {
       {/* Gradient bridge: dark → cream behind the floating VCH card */}
       <div className="absolute inset-x-0 top-0 pointer-events-none" style={{ height: "300px", background: "linear-gradient(to bottom, #12110f 0%, var(--color-cream) 100%)", zIndex: 0 }} />
 
-      <div className="relative max-w-[1512px] mx-auto" style={{ paddingLeft: "235px", paddingRight: "235px", paddingTop: "330px", zIndex: 1 }}>
+      <div className="relative max-w-[1512px] mx-auto px-4 sm:px-8 lg:px-[235px]" style={{ paddingTop: "330px", zIndex: 1 }}>
 
         {/* Watermark */}
         <div className="absolute pointer-events-none select-none" style={{ top: "300px", left: "50%", transform: "translateX(-50%)", fontSize: "100px", fontFamily: "var(--font-commissioner)", fontWeight: 700, color: "transparent", WebkitTextStroke: "1px rgba(0,0,0,0.06)", letterSpacing: "-2px", whiteSpace: "nowrap" }}>
@@ -75,27 +75,27 @@ export function AktualitySection({ events = [] }: Props) {
               transition={{ duration: 0.6, delay: i * 0.08, ease }}
             >
               <div style={{ height: "1px", backgroundColor: "var(--color-gold)", width: "100%" }} />
-              <Link href={`/udalosti/${event.slug}`} className="flex items-start py-6 group hover:bg-[var(--color-gold)]/5 transition-colors -mx-4 px-4 rounded-[8px]">
+              <Link href={`/udalosti/${event.slug}`} className="flex flex-col sm:flex-row sm:items-start py-6 group hover:bg-[var(--color-gold)]/5 transition-colors -mx-4 px-4 rounded-[8px]">
                 <div className="flex-1">
                   <div className="flex items-center gap-3 mb-2">
                     {event.location && <CityBadge city={event.location} size="sm" />}
                   </div>
-                  <p style={{ fontFamily: "var(--font-commissioner)", fontSize: "36px", fontWeight: 400, color: "var(--color-ink)", lineHeight: 1.2 }}>
+                  <p style={{ fontFamily: "var(--font-commissioner)", fontSize: "clamp(22px, 4vw, 36px)", fontWeight: 400, color: "var(--color-ink)", lineHeight: 1.2 }}>
                     {event.title}
                   </p>
-                  <p style={{ fontFamily: "var(--font-commissioner)", fontSize: "20px", color: "rgba(28,29,30,0.5)", marginTop: "6px" }}>
+                  <p style={{ fontFamily: "var(--font-commissioner)", fontSize: "clamp(15px, 2.5vw, 20px)", color: "rgba(28,29,30,0.5)", marginTop: "6px" }}>
                     {formatDate(event.startDate)}
                   </p>
                 </div>
-                <div style={{ width: "300px", paddingTop: "8px" }}>
+                <div className="mt-3 sm:mt-0" style={{ width: "auto", minWidth: "120px", paddingTop: "8px" }}>
                   <p style={{ fontFamily: "var(--font-commissioner)", fontSize: "13px", fontWeight: 700, letterSpacing: "3px", textTransform: "uppercase", color: "var(--color-gold)", marginBottom: "8px", opacity: 0.6 }}>
                     Čas
                   </p>
-                  <p style={{ fontFamily: "var(--font-commissioner)", fontSize: "28px", fontWeight: 400, color: "var(--color-ink)", lineHeight: 1.3 }}>
+                  <p style={{ fontFamily: "var(--font-commissioner)", fontSize: "clamp(20px, 3vw, 28px)", fontWeight: 400, color: "var(--color-ink)", lineHeight: 1.3 }}>
                     {formatTime(event.startDate)}
                   </p>
                 </div>
-                <div className="flex items-center self-center opacity-0 group-hover:opacity-100 transition-opacity" style={{ color: "var(--color-gold)", paddingLeft: "16px" }}>
+                <div className="hidden sm:flex items-center self-center opacity-0 group-hover:opacity-100 transition-opacity" style={{ color: "var(--color-gold)", paddingLeft: "16px" }}>
                   <svg width="24" height="10" viewBox="0 0 24 10" fill="none"><path d="M0 5h20M16 1l4 4-4 4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" /></svg>
                 </div>
               </Link>

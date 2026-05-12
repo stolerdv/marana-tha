@@ -25,10 +25,10 @@ export function ONasSection() {
         </span>
       </motion.div>
 
-      <div className="relative" style={{ paddingLeft: "235px", paddingRight: "235px" }}>
+      <div className="relative px-4 sm:px-8 lg:px-[235px]">
         <div className="pt-20 pb-0">
-          {/* Photos layout */}
-          <div className="relative h-[560px] mb-0">
+          {/* Photos layout — desktop: absolute positioned; mobile: stacked */}
+          <div className="hidden lg:block relative h-[560px] mb-0">
             {/* Left photo — slides in from left */}
             <motion.div
               initial={{ x: -100, opacity: 0 }}
@@ -65,11 +65,33 @@ export function ONasSection() {
             </motion.div>
           </div>
 
+          {/* Photos layout — mobile: stacked side by side */}
+          <div className="lg:hidden flex gap-3 mb-8 h-[220px] sm:h-[300px]">
+            <motion.div
+              initial={{ x: -60, opacity: 0 }}
+              whileInView={{ x: 0, opacity: 1 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8, ease }}
+              className="relative flex-1 overflow-hidden bg-[var(--color-nude)]"
+            >
+              <Image src="/images/o-nas-1.jpg" alt="Spoločenstvo Marana Tha" fill className="object-cover" />
+            </motion.div>
+            <motion.div
+              initial={{ x: 60, opacity: 0 }}
+              whileInView={{ x: 0, opacity: 1 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8, delay: 0.1, ease }}
+              className="relative flex-1 overflow-hidden bg-[var(--color-nude)]"
+            >
+              <Image src="/images/o-nas-2.jpg" alt="Spoločenstvo Marana Tha" fill className="object-cover" />
+            </motion.div>
+          </div>
+
           {/* Cream strip section */}
-          <div className="bg-[var(--color-cream-light)] -mx-[235px] px-[235px] py-12">
-            <div className="flex gap-16">
+          <div className="bg-[var(--color-cream-light)] -mx-4 sm:-mx-8 lg:-mx-[235px] px-4 sm:px-8 lg:px-[235px] py-12">
+            <div className="flex flex-col lg:flex-row gap-8 lg:gap-16">
               {/* Left: intro text */}
-              <div className="w-[370px] shrink-0">
+              <div className="w-full lg:w-[370px] lg:shrink-0">
                 <motion.p
                   initial={{ opacity: 0, y: 48 }}
                   whileInView={{ opacity: 1, y: 0 }}
@@ -84,7 +106,7 @@ export function ONasSection() {
               </div>
 
               {/* Right: columns */}
-              <div className="flex-1 flex gap-8">
+              <div className="flex-1 flex flex-col sm:flex-row gap-8">
                 {/* Left column */}
                 <motion.div
                   initial={{ opacity: 0, y: 48 }}

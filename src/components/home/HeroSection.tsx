@@ -38,7 +38,7 @@ function DarkCountdown({ target }: { target: Date }) {
     <div className="flex items-end">
       {units.map((u, i) => (
         <div key={u.label} className="flex items-end">
-          <div className="flex flex-col items-center" style={{ minWidth: "88px" }}>
+          <div className="flex flex-col items-center" style={{ minWidth: "clamp(56px, 12vw, 88px)" }}>
             <AnimatePresence mode="wait">
               <motion.span
                 key={String(u.value).padStart(2, "0")}
@@ -46,7 +46,7 @@ function DarkCountdown({ target }: { target: Date }) {
                 animate={{ y: 0, opacity: 1 }}
                 exit={{ y: 8, opacity: 0 }}
                 transition={{ duration: 0.18 }}
-                style={{ fontFamily: "var(--font-commissioner)", fontSize: "56px", fontWeight: 300, lineHeight: 1, color: "#fdf5f2", letterSpacing: "-2px", display: "block" }}
+                style={{ fontFamily: "var(--font-commissioner)", fontSize: "clamp(32px, 7vw, 56px)", fontWeight: 300, lineHeight: 1, color: "#fdf5f2", letterSpacing: "-2px", display: "block" }}
               >
                 {String(u.value).padStart(2, "0")}
               </motion.span>
@@ -89,8 +89,8 @@ export function HeroSection({ vchByCity = {} }: Props) {
           style={{ background: "linear-gradient(to bottom, #1c1d1e 12%, transparent 60%, rgba(28,29,30,0.7) 85%, rgba(28,29,30,0.97) 100%)", mixBlendMode: "multiply" }} />
       </div>
 
-      {/* Social icons — right edge */}
-      <div className="absolute flex flex-col items-center z-20" style={{ right: "56px", top: "50%", transform: "translateY(-50%)" }}>
+      {/* Social icons — right edge (hidden on mobile/tablet) */}
+      <div className="hidden lg:flex absolute flex-col items-center z-20" style={{ right: "56px", top: "50%", transform: "translateY(-50%)" }}>
         <div style={{ width: "1px", height: "80px", backgroundColor: "rgba(253,245,242,0.25)" }} />
         <div className="flex flex-col items-center" style={{ gap: "16px", padding: "20px 0" }}>
           {["Facebook", "YouTube", "Instagram"].map((name) => (
@@ -109,8 +109,8 @@ export function HeroSection({ vchByCity = {} }: Props) {
       </div>
 
       {/* ── MAIN CONTENT — positioned in lower half of hero ── */}
-      <div className="relative z-10 flex flex-col items-center text-center"
-        style={{ paddingLeft: "235px", paddingRight: "235px", paddingTop: "38vh", paddingBottom: "60px" }}>
+      <div className="relative z-10 flex flex-col items-center text-center px-6 sm:px-12 lg:px-[235px]"
+        style={{ paddingTop: "28vh", paddingBottom: "60px" }}>
 
         {/* Main quote */}
         <motion.h1
@@ -147,7 +147,7 @@ export function HeroSection({ vchByCity = {} }: Props) {
           transition={{ delay: 0.75, duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
           style={{
             fontFamily: "var(--font-commissioner)",
-            fontSize: "19px",
+            fontSize: "clamp(15px, 2.5vw, 19px)",
             fontWeight: 400,
             color: "rgba(253,245,242,0.75)",
             lineHeight: "1.6",
@@ -163,9 +163,10 @@ export function HeroSection({ vchByCity = {} }: Props) {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.9, duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
-          className="flex gap-4"
+          className="flex flex-col sm:flex-row gap-4 w-full sm:w-auto"
         >
           <Link href="/pridaj-sa"
+            className="justify-center"
             style={{
               display: "inline-flex", alignItems: "center", gap: "8px",
               backgroundColor: "#bea055", color: "#1c1d1e",
@@ -175,6 +176,7 @@ export function HeroSection({ vchByCity = {} }: Props) {
             Pridaj sa k nám
           </Link>
           <Link href="/udalosti"
+            className="justify-center"
             style={{
               display: "inline-flex", alignItems: "center", gap: "8px",
               backgroundColor: "transparent", color: "#fdf5f2",
@@ -205,7 +207,7 @@ export function HeroSection({ vchByCity = {} }: Props) {
       </div>
 
       {/* ── VCH Block — floats deep into next section ── */}
-      <div className="relative z-20" style={{ paddingLeft: "235px", paddingRight: "235px", marginBottom: "-260px" }}>
+      <div className="relative z-20 px-4 sm:px-8 lg:px-[235px]" style={{ marginBottom: "-260px" }}>
         <motion.div
           initial={{ opacity: 0, y: 40 }}
           animate={{ opacity: 1, y: 0 }}
@@ -231,7 +233,7 @@ export function HeroSection({ vchByCity = {} }: Props) {
           />
           <div style={{ padding: "28px 40px 32px" }}>
             {/* Top: label + city tabs */}
-            <div className="flex items-center justify-between" style={{ marginBottom: "16px" }}>
+            <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3" style={{ marginBottom: "16px" }}>
               <span style={{ fontFamily: "var(--font-commissioner)", fontSize: "11px", fontWeight: 700, letterSpacing: "4px", textTransform: "uppercase", color: "rgba(190,160,85,0.7)" }}>
                 Najbližší večer chvál
               </span>
@@ -261,7 +263,7 @@ export function HeroSection({ vchByCity = {} }: Props) {
             <div style={{ height: "1px", background: "linear-gradient(to right, rgba(190,160,85,0.5), transparent)", marginBottom: "20px" }} />
 
             {/* Date + countdown */}
-            <div className="flex items-end justify-between">
+            <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4">
               <div>
                 <AnimatePresence mode="wait">
                   <motion.p key={selectedCity}

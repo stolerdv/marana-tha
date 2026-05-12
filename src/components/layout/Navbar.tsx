@@ -71,7 +71,7 @@ export function Navbar() {
     <header className="absolute top-0 left-0 right-0 z-50">
 
       {/* ── Top bar: business links + member access ── */}
-      <div className="flex justify-end items-center gap-3 px-[235px] pt-[28px] pb-[16px]">
+      <div className="hidden lg:flex justify-end items-center gap-3 px-4 sm:px-8 lg:px-[235px] pt-[28px] pb-[16px]">
         {/* M Aréna / M Caffé — external links */}
         {externalLinks.map((link) => (
           <a
@@ -104,10 +104,10 @@ export function Navbar() {
       </div>
 
       {/* ── Main nav row ── */}
-      <nav className="flex items-center justify-between px-[235px] py-5 relative">
+      <nav className="flex items-center justify-between px-4 sm:px-8 lg:px-[235px] py-5 relative">
 
         {/* Left nav */}
-        <div className="flex items-center gap-8">
+        <div className="hidden lg:flex items-center gap-8">
           {navLeft.map((item) => (
             <div
               key={item.href}
@@ -162,7 +162,7 @@ export function Navbar() {
         </Link>
 
         {/* Right nav */}
-        <div className="flex items-center gap-8">
+        <div className="hidden lg:flex items-center gap-8">
           {navRight.map((item) => (
             <div
               key={item.href}

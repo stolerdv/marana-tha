@@ -6,7 +6,7 @@ import { motion } from "framer-motion";
 export function PodporteNasSection() {
   return (
     <section className="relative bg-[var(--color-cream)] overflow-hidden">
-      <div className="max-w-[1512px] mx-auto" style={{ paddingLeft: "235px", paddingRight: "235px" }}>
+      <div className="max-w-[1512px] mx-auto px-4 sm:px-8 lg:px-[235px]">
 
         {/* Watermark + subtitle */}
         <div className="relative pt-12">
@@ -23,15 +23,15 @@ export function PodporteNasSection() {
         </div>
 
         {/* Main layout: person photo LEFT + content RIGHT */}
-        <div className="flex items-start gap-0">
+        <div className="flex flex-col lg:flex-row items-start gap-0">
 
           {/* Person photo */}
           <motion.div
             initial={{ opacity: 0, x: -20 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
-            className="relative shrink-0"
-            style={{ width: "573px", height: "588px" }}
+            className="relative w-full lg:shrink-0"
+            style={{ width: "100%", maxWidth: "573px", height: "clamp(260px, 50vw, 588px)" }}
           >
             <Image
               src="/images/support-person.jpg"
@@ -43,23 +43,23 @@ export function PodporteNasSection() {
           </motion.div>
 
           {/* Right side: gold banner + QR circle + thank you */}
-          <div className="flex flex-col justify-center flex-1 pl-0" style={{ paddingLeft: "0px" }}>
+          <div className="flex flex-col justify-center flex-1">
 
             {/* Gold banner */}
             <motion.div
               initial={{ opacity: 0, x: 20 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
-              className="flex items-center px-10"
-              style={{ backgroundColor: "var(--color-gold)", width: "552px", height: "173px" }}
+              className="flex items-center px-6 sm:px-10 w-full"
+              style={{ backgroundColor: "var(--color-gold)", minHeight: "120px", height: "auto", paddingTop: "24px", paddingBottom: "24px" }}
             >
-              <p style={{ fontFamily: "var(--font-commissioner)", fontSize: "26px", fontWeight: 400, color: "white", lineHeight: 1.5 }}>
+              <p style={{ fontFamily: "var(--font-commissioner)", fontSize: "clamp(16px, 2.5vw, 26px)", fontWeight: 400, color: "white", lineHeight: 1.5 }}>
                 Podporte našu službu cez QR kód alebo na číslo účtu SK0675000000004024300145
               </p>
             </motion.div>
 
             {/* QR code in gold circle + thank you text */}
-            <div className="flex items-center gap-8 mt-6" style={{ paddingLeft: "32px" }}>
+            <div className="flex items-center gap-6 mt-6 px-4 sm:px-8">
 
               {/* Large gold circle with QR */}
               <motion.div

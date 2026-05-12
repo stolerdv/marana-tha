@@ -19,8 +19,8 @@ export function NewsletterSection() {
       {/* Subtle grain texture via radial gradient */}
       <div className="absolute inset-0 pointer-events-none" style={{ background: "radial-gradient(ellipse 80% 60% at 70% 50%, rgba(190,160,85,0.07) 0%, transparent 70%)" }} />
 
-      <div style={{ paddingLeft: "235px", paddingRight: "235px", paddingTop: "96px", paddingBottom: "96px" }}>
-        <div className="flex gap-20 items-center">
+      <div className="px-4 sm:px-8 lg:px-[235px]" style={{ paddingTop: "96px", paddingBottom: "96px" }}>
+        <div className="flex flex-col lg:flex-row gap-12 lg:gap-20 items-start lg:items-center">
 
           {/* LEFT — pitch */}
           <motion.div
@@ -28,8 +28,8 @@ export function NewsletterSection() {
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true, margin: "-80px" }}
             transition={{ duration: 0.9, ease }}
-            className="shrink-0"
-            style={{ width: "420px" }}
+            className="w-full lg:shrink-0"
+            style={{ maxWidth: "420px" }}
           >
             <span style={{ fontFamily: "var(--font-commissioner)", fontSize: "11px", fontWeight: 700, letterSpacing: "5px", textTransform: "uppercase", color: "#bea055", display: "block", marginBottom: "20px" }}>
               Newsletter

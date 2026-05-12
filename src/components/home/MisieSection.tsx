@@ -7,14 +7,14 @@ const ease = [0.22, 1, 0.36, 1] as const;
 
 export function MisieSection() {
   return (
-    <section className="relative bg-[var(--color-cream)]" style={{ paddingLeft: "235px", paddingRight: "235px", paddingTop: "80px", paddingBottom: "80px" }}>
+    <section className="relative bg-[var(--color-cream)] px-4 sm:px-8 lg:px-[235px] py-[80px]">
       <motion.div
         initial={{ opacity: 0, y: 32 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, margin: "-80px" }}
         transition={{ duration: 0.9, ease }}
         className="relative overflow-hidden"
-        style={{ borderRadius: "20px", height: "420px" }}
+        style={{ borderRadius: "20px", minHeight: "360px", height: "auto" }}
       >
         {/* Background photo */}
         <div className="absolute inset-0 bg-cover bg-center" style={{ backgroundImage: "url('/images/misie.jpg')" }} />
@@ -26,8 +26,8 @@ export function MisieSection() {
         <div className="absolute inset-0" style={{ backgroundColor: "#dec4b0", mixBlendMode: "color-burn", opacity: 0.3 }} />
 
         {/* Content */}
-        <div className="absolute inset-0 flex items-center" style={{ paddingLeft: "64px", paddingRight: "64px" }}>
-          <div style={{ maxWidth: "520px" }}>
+        <div className="absolute inset-0 flex items-center px-6 sm:px-10 lg:px-16">
+          <div className="py-12 lg:py-0" style={{ maxWidth: "520px" }}>
             {/* Eyebrow */}
             <motion.span
               initial={{ opacity: 0, y: 16 }}

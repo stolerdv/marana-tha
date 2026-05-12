@@ -64,7 +64,7 @@ function NewsletterForm() {
   }
 
   return (
-    <form onSubmit={handleSubmit} className="flex gap-2">
+    <form onSubmit={handleSubmit} className="flex gap-2 w-full">
       <input
         type="email"
         required
@@ -110,10 +110,10 @@ function NewsletterForm() {
 export function Footer() {
   return (
     <footer className="bg-[var(--color-gold-deeper)] pt-12 pb-8">
-      <div style={{ maxWidth: "1512px", paddingLeft: "235px", paddingRight: "235px", margin: "0 auto" }}>
+      <div className="max-w-[1512px] mx-auto px-4 sm:px-8 lg:px-[235px]">
 
         {/* Top row: logo + nav columns + newsletter */}
-        <div className="flex items-start justify-between gap-12" style={{ marginBottom: "48px" }}>
+        <div className="flex flex-col lg:flex-row lg:items-start lg:justify-between gap-10 lg:gap-12" style={{ marginBottom: "48px" }}>
 
           {/* Logo + socials */}
           <div className="flex flex-col gap-6" style={{ flexShrink: 0 }}>
@@ -147,7 +147,7 @@ export function Footer() {
           </div>
 
           {/* Nav columns */}
-          <div className="flex gap-12">
+          <div className="flex flex-wrap gap-8 sm:gap-12">
             {footerCols.map((col) => (
               <div key={col.label} className="flex flex-col gap-2.5">
                 <span style={{ fontFamily: "var(--font-inter)", fontSize: "11px", fontWeight: 700, color: "rgba(253,245,242,0.5)", textTransform: "uppercase", letterSpacing: "0.1em", marginBottom: "4px" }}>
@@ -168,7 +168,7 @@ export function Footer() {
           </div>
 
           {/* Newsletter */}
-          <div style={{ width: "260px", flexShrink: 0 }}>
+          <div className="w-full sm:w-auto" style={{ maxWidth: "320px", flexShrink: 0 }}>
             <p style={{ fontFamily: "var(--font-inter)", fontSize: "11px", fontWeight: 700, color: "rgba(253,245,242,0.5)", textTransform: "uppercase", letterSpacing: "0.1em", marginBottom: "12px" }}>
               Odber noviniek
             </p>
@@ -183,7 +183,7 @@ export function Footer() {
         <div style={{ height: "1px", backgroundColor: "rgba(253,245,242,0.15)", marginBottom: "28px" }} />
 
         {/* Bottom row */}
-        <div className="flex items-center justify-between">
+        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
           <p style={{ fontFamily: "var(--font-inter)", fontSize: "12px", color: "rgba(253,245,242,0.4)" }}>
             © 2026 Spoločenstvo Marana Tha. Všetky práva vyhradené.
           </p>

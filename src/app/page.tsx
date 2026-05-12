@@ -13,19 +13,23 @@ import { NewsletterSection } from "@/components/home/NewsletterSection";
 import { KontaktSection } from "@/components/home/KontaktSection";
 
 export default async function HomePage() {
-  const [vchEvents, upcomingEvents] = await Promise.all([
-    // VCH events grouped by city for hero countdown
+  const [vchEvents, upcomingEvents, archivVideos] = await Promise.all([
     db.event.findMany({
       where: { isEveningOfPraise: true, published: true, startDate: { gte: new Date() } },
       orderBy: { startDate: "asc" },
       select: { id: true, title: true, startDate: true, location: true, slug: true },
     }),
-    // Upcoming events for Aktuality section (next 5, non-VCH first, then all)
     db.event.findMany({
       where: { published: true, startDate: { gte: new Date() } },
       orderBy: { startDate: "asc" },
       take: 5,
       select: { id: true, title: true, slug: true, startDate: true, location: true },
+    }),
+    db.video.findMany({
+      where: { published: true },
+      orderBy: { createdAt: "desc" },
+      take: 5,
+      select: { id: true, title: true, youtubeUrl: true },
     }),
   ]);
 
@@ -46,7 +50,7 @@ export default async function HomePage() {
         <AktualitySection events={upcomingEvents} />
         <ONasSection />
         <MisieSection />
-        <ArchivSection />
+        <ArchivSection videos={archivVideos} />
         <PodporteNasSection />
         <NewsletterSection />
         <KontaktSection />
