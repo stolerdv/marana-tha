@@ -99,7 +99,7 @@ export function AktualitySection({ events = [] }: Props) {
         {/* CTA */}
         <div className="flex justify-center mt-10 mb-16">
           <motion.a
-            href="/udalosti"
+            href="/udalosti?view=calendar"
             initial={{ opacity: 0, y: 12 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
