@@ -75,8 +75,29 @@ export function SluzbyGrid({ ministries }: SluzbyGridProps) {
                     viewport={{ once: true }}
                     transition={{ delay: i * 0.1 }}
                     className="bg-white w-full lg:w-[282px]"
-                    style={{ minHeight: "clamp(400px, 60vw, 555px)", borderRadius: "15px", overflow: "hidden", position: "relative", boxShadow: "0 2px 20px rgba(0,0,0,0.06)" }}
+                    style={{ borderRadius: "15px", overflow: "hidden", position: "relative", boxShadow: "0 2px 20px rgba(0,0,0,0.06)" }}
                   >
+                    {/* Mobile layout — natural flow */}
+                    <div className="lg:hidden flex flex-col">
+                      {sluzba.coverImage && (
+                        <div className="relative w-full overflow-hidden" style={{ height: "200px" }}>
+                          <Image src={sluzba.coverImage} alt={sluzba.title} fill className="object-cover" />
+                        </div>
+                      )}
+                      <div style={{ padding: "20px 24px" }}>
+                        <h2 style={{ fontFamily: "var(--font-commissioner)", fontSize: "24px", fontWeight: 700, lineHeight: 1.3, color: "#1c1d1e", marginBottom: "8px" }}>{sluzba.title}</h2>
+                        <div style={{ height: "1px", backgroundColor: "#bea055", width: "100%", maxWidth: "200px", marginBottom: "12px" }} />
+                        <p style={{ fontFamily: "var(--font-inter)", fontSize: "15px", lineHeight: 1.6, color: "#000000", marginBottom: "20px" }}>{sluzba.description}</p>
+                        <Link href={`/sluzby/${sluzba.slug}`} className="inline-flex items-center gap-2"
+                          style={{ height: "44px", backgroundColor: "#bea055", borderRadius: "50px", paddingLeft: "22px", paddingRight: "16px", fontFamily: "var(--font-commissioner)", fontSize: "14px", fontWeight: 700, color: "#fdf5f2" }}>
+                          Čítať viac
+                          <svg width="28" height="8" viewBox="0 0 28 8" fill="none"><path d="M0 4h24M20 1l4 3-4 3" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" /></svg>
+                        </Link>
+                      </div>
+                    </div>
+
+                    {/* Desktop layout — Figma absolute positioning */}
+                    <div className="hidden lg:block" style={{ height: "555px", position: "relative" }}>
                     <div style={{ padding: "0 33px" }}>
                       {/* Title — 2 lines always */}
                       <h2
@@ -149,6 +170,7 @@ export function SluzbyGrid({ ministries }: SluzbyGridProps) {
                         className="object-cover"
                       />
                     </div>
+                    </div> {/* end desktop wrapper */}
                   </motion.div>
                 );
               })}
