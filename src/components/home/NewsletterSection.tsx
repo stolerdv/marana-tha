@@ -16,12 +16,9 @@ export function NewsletterSection() {
 
   return (
     <section className="relative overflow-hidden" style={{ backgroundColor: "#12110f" }}>
-      {/* Background photo */}
-      <div className="absolute inset-0 bg-cover bg-center opacity-20" style={{ backgroundImage: "url('/images/o-nas-1.jpg')" }} />
-      {/* Dark overlay */}
-      <div className="absolute inset-0" style={{ background: "linear-gradient(to right, rgba(18,17,15,0.97) 0%, rgba(18,17,15,0.75) 50%, rgba(18,17,15,0.5) 100%)" }} />
-      {/* Gold glow */}
-      <div className="absolute inset-0 pointer-events-none" style={{ background: "radial-gradient(ellipse 60% 80% at 80% 50%, rgba(190,160,85,0.08) 0%, transparent 70%)" }} />
+      {/* Background photo — right side only, fades to dark on left */}
+      <div className="absolute inset-0 bg-cover bg-center" style={{ backgroundImage: "url('/images/o-nas-1.jpg')", opacity: 0.12 }} />
+      <div className="absolute inset-0" style={{ background: "linear-gradient(to right, #12110f 40%, rgba(18,17,15,0.85) 100%)" }} />
 
       <div className="px-4 sm:px-8 lg:px-[235px]" style={{ paddingTop: "96px", paddingBottom: "96px" }}>
         <div className="flex flex-col lg:flex-row gap-12 lg:gap-20 items-start lg:items-center">
@@ -42,7 +39,7 @@ export function NewsletterSection() {
               Ostán<br />
               <span style={{ color: "#bea055" }}>v obraze.</span>
             </h2>
-            <p style={{ fontFamily: "var(--font-commissioner)", fontSize: "18px", fontWeight: 400, color: "rgba(253,245,242,0.55)", lineHeight: 1.65 }}>
+            <p style={{ fontFamily: "var(--font-commissioner)", fontSize: "18px", fontWeight: 400, color: "rgba(253,245,242,0.75)", lineHeight: 1.65 }}>
               Dostávaj správy o stretnutiach, akciách a dianí v spoločenstve Marana Tha priamo do e-mailu.
             </p>
 
