@@ -1,51 +1,16 @@
 "use client";
 
-import Image from "next/image";
+import Link from "next/link";
 import { motion } from "framer-motion";
 
-// Figma PARTNERSTVÁ section:
-// Watermark "PARTNERSTVÁ": 100px Commissioner ls=10, y=4353
-// Subtitle "partnerstvá": Commissioner 400 50px #977d3e, y=4391
-// 4 partners in 2 columns (left x=0, right x=626 from content):
-//   Left col: ZKSM (y=4353→4541), CHARIS (y=5108→5475)
-//   Right col: ENC (y=4828→5195), STRAPAR (y=5391→5660)
-// Each partner: title (Commissioner 700 30px), text (Inter 500 18px), gold divider (700×1 #bea055), button
-
 const partners = [
-  {
-    name: "ZKSM",
-    description: "Združenie kresťanských spoločenstiev mládeže. Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-    logo: null,
-    col: "left",
-    dividerY: true,
-  },
-  {
-    name: "ENC",
-    description: "Európska sieť cirkevných spoločenstiev. Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-    logo: null,
-    col: "right",
-    dividerY: true,
-  },
-  {
-    name: "CHARIS",
-    description: "Katolícka charizmatická obnova. Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-    logo: null,
-    col: "left",
-    dividerY: false,
-  },
-  {
-    name: "STRAPAR",
-    description: "Kresťanská organizácia pre mládež. Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-    logo: null,
-    col: "right",
-    dividerY: false,
-  },
+  { name: "ZKSM", slug: "zksm", description: "Združenie kresťanských spoločenstiev mládeže na Slovensku." },
+  { name: "ENC", slug: "enc", description: "Európska sieť cirkevných spoločenstiev spájajúca komunity z celej Európy." },
+  { name: "CHARIS", slug: "charis", description: "Medzinárodná organizácia pre katolícku charizmatickú obnovu." },
+  { name: "STRAPAR", slug: "strapar", description: "Kresťanská organizácia pre pastoráciu mládeže a rodín." },
 ];
 
 export function ONasPartnerstva() {
-  const leftPartners = partners.filter(p => p.col === "left");
-  const rightPartners = partners.filter(p => p.col === "right");
-
   return (
     <section className="relative bg-[var(--color-cream)] overflow-hidden" style={{ paddingTop: "100px", paddingBottom: "80px" }}>
 
@@ -85,10 +50,10 @@ export function ONasPartnerstva() {
               <p style={{ fontFamily: "var(--font-inter)", fontSize: "16px", fontWeight: 400, lineHeight: 1.65, color: "#000000", marginBottom: "24px" }}>
                 {p.description}
               </p>
-              <a href="#" className="inline-flex items-center gap-2" style={{ height: "46px", backgroundColor: "#bea055", borderRadius: "50px", paddingLeft: "24px", paddingRight: "18px", fontFamily: "var(--font-commissioner)", fontSize: "14px", fontWeight: 700, color: "#fdf5f2" }}>
+              <Link href={`/o-nas/partnerstva/${p.slug}`} className="inline-flex items-center gap-2" style={{ height: "46px", backgroundColor: "#bea055", borderRadius: "50px", paddingLeft: "24px", paddingRight: "18px", fontFamily: "var(--font-commissioner)", fontSize: "14px", fontWeight: 700, color: "#fdf5f2" }}>
                 Čítať viac
                 <svg width="28" height="8" viewBox="0 0 28 8" fill="none"><path d="M0 4h24M20 1l4 3-4 3" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" /></svg>
-              </a>
+              </Link>
             </motion.div>
           ))}
         </div>
