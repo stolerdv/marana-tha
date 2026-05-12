@@ -41,14 +41,14 @@ export function ONasSvedectva() {
       </div>
 
       {/* Subtitle — Commissioner 400 50px #977d3e */}
-      <div className="relative" style={{ paddingLeft: "235px" }}>
+      <div className="relative px-4 sm:px-8 lg:px-[235px]">
         <p style={{ fontFamily: "var(--font-commissioner)", fontSize: "50px", fontWeight: 400, lineHeight: "55px", color: "#977d3e", marginBottom: "43px" }}>
           svedectvá
         </p>
       </div>
 
-      {/* Full-width photo container — Figma: image 17 1528×633, extends slightly beyond frame edges */}
-      <div className="relative w-full overflow-hidden" style={{ height: "633px" }}>
+      {/* Full-width photo container */}
+      <div className="relative w-full overflow-hidden" style={{ height: "clamp(340px, 55vw, 633px)" }}>
         <div
           className="absolute inset-0 bg-cover bg-center"
           style={{ backgroundImage: "url('/images/o-nas-svedectva.jpg')" }}
@@ -65,11 +65,10 @@ export function ONasSvedectva() {
           style={{
             left: "50%",
             transform: "translateX(-50%)",
-            top: "98px",
-            width: "1044px",
-            height: "384px",
+            top: "clamp(20px, 5vw, 98px)",
+            width: "min(90%, 1044px)",
             borderRadius: "17px",
-            padding: "48px 56px",
+            padding: "clamp(20px, 4vw, 48px) clamp(16px, 4vw, 56px)",
             display: "flex",
             flexDirection: "column",
             gap: "16px",
