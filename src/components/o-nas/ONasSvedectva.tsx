@@ -63,10 +63,9 @@ export function ONasSvedectva() {
           viewport={{ once: true }}
           className="absolute bg-white"
           style={{
-            left: "50%",
-            transform: "translateX(-50%)",
+            left: "16px",
+            right: "16px",
             top: "clamp(16px, 4vw, 98px)",
-            width: "min(calc(100% - 32px), 1044px)",
             borderRadius: "17px",
             padding: "clamp(20px, 4vw, 48px) clamp(16px, 4vw, 56px)",
             display: "flex",

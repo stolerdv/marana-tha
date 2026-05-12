@@ -40,7 +40,7 @@ export function ONasStats({ stat1Value, stat1Label, stat2Value, stat2Label, stat
   ];
 
   return (
-    <section className="bg-[var(--color-cream)]" style={{ paddingTop: "143px" }}>
+    <section className="bg-[var(--color-cream)]" style={{ paddingTop: "clamp(48px, 8vw, 143px)" }}>
       <div className="px-4 sm:px-8 lg:px-[235px]">
         <div className="grid grid-cols-3 gap-4">
           {labels.map((label, i) => (
