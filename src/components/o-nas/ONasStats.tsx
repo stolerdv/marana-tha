@@ -56,7 +56,7 @@ export function ONasStats({ stat1Value, stat1Label, stat2Value, stat2Label, stat
             </motion.div>
           ))}
         </div>
-        <div style={{ height: "109px" }} />
+        <div style={{ height: "clamp(32px,6vw,80px)" }} />
       </div>
     </section>
   );
