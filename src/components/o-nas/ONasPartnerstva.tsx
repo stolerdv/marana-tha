@@ -75,118 +75,22 @@ export function ONasPartnerstva() {
           partnerstvá
         </p>
 
-        {/* Two-column grid — left col x=0, right col x=626 from content (= gap 626-first_col_content) */}
-        <div className="flex gap-0">
-
-          {/* Left column — width: 626px */}
-          <div className="flex flex-col" style={{ width: "626px" }}>
-            {leftPartners.map((p, i) => (
-              <motion.div
-                key={i}
-                initial={{ opacity: 0, y: 12 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: i * 0.1 }}
-                style={{ paddingBottom: "80px" }}
-              >
-                {/* Logo placeholder if exists */}
-                {p.logo && (
-                  <div style={{ marginBottom: "12px" }}>
-                    <Image src={p.logo} alt={p.name} width={45} height={51} />
-                  </div>
-                )}
-
-                {/* Gold divider above title — Figma: 700×1 #bea055 */}
-                <div style={{ height: "1px", backgroundColor: "#bea055", width: "700px", marginBottom: "0px" }} />
-
-                {/* Title — Figma: Commissioner 700 30px lh=55px #1c1d1e */}
-                <h3 style={{ fontFamily: "var(--font-commissioner)", fontSize: "30px", fontWeight: 700, lineHeight: "55px", color: "#1c1d1e", margin: "0px" }}>
-                  {p.name}
-                </h3>
-
-                {/* Description — Figma: Inter 500 18px lh=26.1px #000000 */}
-                <p style={{ fontFamily: "var(--font-inter)", fontSize: "18px", fontWeight: 500, lineHeight: "26.1px", color: "#000000", marginBottom: "32px", maxWidth: "403px" }}>
-                  {p.description}
-                </p>
-
-                {/* Button — Figma: Group 34/40, 186×50 #bea055 r=50, Commissioner 700 15px #fdf5f2 */}
-                <a
-                  href="#"
-                  className="inline-flex items-center gap-2"
-                  style={{
-                    width: "186px",
-                    height: "50px",
-                    backgroundColor: "#bea055",
-                    borderRadius: "50px",
-                    paddingLeft: "27px",
-                    paddingRight: "20px",
-                    fontFamily: "var(--font-commissioner)",
-                    fontSize: "15px",
-                    fontWeight: 700,
-                    color: "#fdf5f2",
-                  }}
-                >
-                  Čítať viac
-                  <svg width="36" height="10" viewBox="0 0 36 10" fill="none">
-                    <path d="M0 5h32M27 1l5 4-5 4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
-                  </svg>
-                </a>
-              </motion.div>
-            ))}
-          </div>
-
-          {/* Right column — starts at x=626 from content left, gap from left = 626-0=626px */}
-          <div className="flex flex-col" style={{ flex: 1 }}>
-            {rightPartners.map((p, i) => (
-              <motion.div
-                key={i}
-                initial={{ opacity: 0, y: 12 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: i * 0.1 + 0.05 }}
-                style={{ paddingBottom: "80px" }}
-              >
-                {/* Logo placeholder if exists */}
-                {p.logo && (
-                  <div style={{ marginBottom: "12px" }}>
-                    <Image src={p.logo} alt={p.name} width={36} height={36} style={{ borderRadius: "73px" }} />
-                  </div>
-                )}
-                {/* Gold divider */}
-                <div style={{ height: "1px", backgroundColor: "#bea055", width: "700px", marginBottom: "0px" }} />
-                {/* Title */}
-                <h3 style={{ fontFamily: "var(--font-commissioner)", fontSize: "30px", fontWeight: 700, lineHeight: "55px", color: "#1c1d1e", margin: "0px" }}>
-                  {p.name}
-                </h3>
-                {/* Description */}
-                <p style={{ fontFamily: "var(--font-inter)", fontSize: "18px", fontWeight: 500, lineHeight: "26.1px", color: "#000000", marginBottom: "32px", maxWidth: "403px" }}>
-                  {p.description}
-                </p>
-                {/* Button */}
-                <a
-                  href="#"
-                  className="inline-flex items-center gap-2"
-                  style={{
-                    width: "186px",
-                    height: "50px",
-                    backgroundColor: "#bea055",
-                    borderRadius: "50px",
-                    paddingLeft: "27px",
-                    paddingRight: "20px",
-                    fontFamily: "var(--font-commissioner)",
-                    fontSize: "15px",
-                    fontWeight: 700,
-                    color: "#fdf5f2",
-                  }}
-                >
-                  Čítať viac
-                  <svg width="36" height="10" viewBox="0 0 36 10" fill="none">
-                    <path d="M0 5h32M27 1l5 4-5 4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
-                  </svg>
-                </a>
-              </motion.div>
-            ))}
-          </div>
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-12 gap-y-0">
+          {partners.map((p, i) => (
+            <motion.div key={i} initial={{ opacity: 0, y: 12 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.08 }} style={{ paddingBottom: "48px" }}>
+              <div style={{ height: "1px", backgroundColor: "#bea055", width: "100%", marginBottom: "0px" }} />
+              <h3 style={{ fontFamily: "var(--font-commissioner)", fontSize: "clamp(22px,2.5vw,30px)", fontWeight: 700, lineHeight: 1.4, color: "#1c1d1e", margin: "8px 0" }}>
+                {p.name}
+              </h3>
+              <p style={{ fontFamily: "var(--font-inter)", fontSize: "16px", fontWeight: 400, lineHeight: 1.65, color: "#000000", marginBottom: "24px" }}>
+                {p.description}
+              </p>
+              <a href="#" className="inline-flex items-center gap-2" style={{ height: "46px", backgroundColor: "#bea055", borderRadius: "50px", paddingLeft: "24px", paddingRight: "18px", fontFamily: "var(--font-commissioner)", fontSize: "14px", fontWeight: 700, color: "#fdf5f2" }}>
+                Čítať viac
+                <svg width="28" height="8" viewBox="0 0 28 8" fill="none"><path d="M0 4h24M20 1l4 3-4 3" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" /></svg>
+              </a>
+            </motion.div>
+          ))}
         </div>
       </div>
     </section>

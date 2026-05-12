@@ -56,7 +56,7 @@ export default async function KontaktPage() {
 
             <FadeIn delay={0.3}>
               <div className="mt-16">
-                <p style={{ fontFamily: "var(--font-commissioner)", fontSize: "70px", fontWeight: 700, color: "#bea055", lineHeight: "1.1" }}>
+                <p style={{ fontFamily: "var(--font-commissioner)", fontSize: "clamp(36px, 6vw, 70px)", fontWeight: 700, color: "#bea055", lineHeight: "1.1" }}>
                   Neváhaj nás<br />kontaktovať
                 </p>
               </div>
