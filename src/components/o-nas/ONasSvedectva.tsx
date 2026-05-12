@@ -65,8 +65,8 @@ export function ONasSvedectva() {
           style={{
             left: "50%",
             transform: "translateX(-50%)",
-            top: "clamp(20px, 5vw, 98px)",
-            width: "min(90%, 1044px)",
+            top: "clamp(16px, 4vw, 98px)",
+            width: "min(calc(100% - 32px), 1044px)",
             borderRadius: "17px",
             padding: "clamp(20px, 4vw, 48px) clamp(16px, 4vw, 56px)",
             display: "flex",
@@ -83,13 +83,13 @@ export function ONasSvedectva() {
                   style={{ width: "45px", height: "51px", backgroundColor: "#e6ded5" }}
                 />
                 {/* Name — Figma: Inter 700 22px lh=31.9px ls=-0.11 #000000 */}
-                <span style={{ fontFamily: "var(--font-inter)", fontSize: "22px", fontWeight: 700, lineHeight: "31.9px", letterSpacing: "-0.11px", color: "#000000" }}>
+                <span style={{ fontFamily: "var(--font-inter)", fontSize: "clamp(16px,2.5vw,22px)", fontWeight: 700, lineHeight: 1.4, color: "#000000" }}>
                   {s.name}
                 </span>
               </div>
 
               {/* Quote text — Figma: Inter 500 18px lh=26.1px ls=-0.09 #000000 */}
-              <p style={{ fontFamily: "var(--font-inter)", fontSize: "18px", fontWeight: 500, lineHeight: "26.1px", letterSpacing: "-0.09px", color: "#000000", maxWidth: "703px" }}>
+              <p style={{ fontFamily: "var(--font-inter)", fontSize: "clamp(15px,2vw,18px)", fontWeight: 500, lineHeight: 1.65, color: "#000000" }}>
                 {s.text}
               </p>
 

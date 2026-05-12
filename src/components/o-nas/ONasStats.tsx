@@ -42,15 +42,15 @@ export function ONasStats({ stat1Value, stat1Label, stat2Value, stat2Label, stat
   return (
     <section className="bg-[var(--color-cream)]" style={{ paddingTop: "143px" }}>
       <div className="px-4 sm:px-8 lg:px-[235px]">
-        <div className="flex flex-wrap justify-around sm:justify-between gap-8 sm:gap-0" style={{ paddingLeft: "0px", paddingRight: "0px" }}>
+        <div className="grid grid-cols-3 gap-4">
           {labels.map((label, i) => (
             <motion.div key={i} initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }} transition={{ delay: i * 0.12 }} className="flex flex-col items-start">
               <div className="flex items-center justify-center"
-                style={{ width: "108px", height: "108px", backgroundColor: "#bea055", borderRadius: "15px" }}>
+                style={{ width: "clamp(64px,10vw,108px)", height: "clamp(64px,10vw,108px)", backgroundColor: "#bea055", borderRadius: "12px" }}>
                 {ICONS[i]}
               </div>
-              <p style={{ marginTop: "40px", fontFamily: "var(--font-commissioner)", fontSize: "30px", fontWeight: 700, lineHeight: "55px", color: "#1c1d1e", whiteSpace: "pre-line" }}>
+              <p style={{ marginTop: "clamp(16px,3vw,40px)", fontFamily: "var(--font-commissioner)", fontSize: "clamp(16px,2.5vw,30px)", fontWeight: 700, lineHeight: 1.3, color: "#1c1d1e", whiteSpace: "pre-line" }}>
                 {label}
               </p>
             </motion.div>
