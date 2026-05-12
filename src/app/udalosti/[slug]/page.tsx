@@ -50,26 +50,25 @@ export default async function EventPage({ params }: { params: Promise<{ slug: st
         <section className="bg-[var(--color-cream)]" style={{ paddingTop: "80px", paddingBottom: "80px" }}>
           <div className="px-4 sm:px-8 lg:px-[235px]">
 
-            {/* Meta row */}
-            <div className="flex items-start gap-10 rounded-[15px] p-8 mb-10"
-              style={{ backgroundColor: "#ffffff", border: "1px solid #e4d5b2" }}>
-              <div>
-                <p style={{ fontFamily: "var(--font-inter)", fontSize: "12px", fontWeight: 500, color: "#635f5b", textTransform: "uppercase", letterSpacing: "0.5px", marginBottom: "4px" }}>Dátum</p>
-                <p style={{ fontFamily: "var(--font-commissioner)", fontSize: "20px", fontWeight: 700, color: "#1c1d1e" }}>{formatDate(event.startDate)}</p>
-                {event.endDate && <p style={{ fontFamily: "var(--font-commissioner)", fontSize: "16px", color: "#635f5b" }}>do {formatDate(event.endDate)}</p>}
-              </div>
-
-              {event.location && (
-                <>
-                  <div style={{ width: "1px", backgroundColor: "#e4d5b2", alignSelf: "stretch" }} />
+            {/* Meta card */}
+            <div className="rounded-[15px] p-6 sm:p-8 mb-10" style={{ backgroundColor: "#ffffff", border: "1px solid #e4d5b2" }}>
+              {/* Date + Location row */}
+              <div className="flex flex-wrap gap-6 mb-5">
+                <div>
+                  <p style={{ fontFamily: "var(--font-inter)", fontSize: "12px", fontWeight: 500, color: "#635f5b", textTransform: "uppercase", letterSpacing: "0.5px", marginBottom: "4px" }}>Dátum</p>
+                  <p style={{ fontFamily: "var(--font-commissioner)", fontSize: "20px", fontWeight: 700, color: "#1c1d1e" }}>{formatDate(event.startDate)}</p>
+                  {event.endDate && <p style={{ fontFamily: "var(--font-commissioner)", fontSize: "16px", color: "#635f5b" }}>do {formatDate(event.endDate)}</p>}
+                </div>
+                {event.location && (
                   <div>
                     <p style={{ fontFamily: "var(--font-inter)", fontSize: "12px", fontWeight: 500, color: "#635f5b", textTransform: "uppercase", letterSpacing: "0.5px", marginBottom: "4px" }}>Miesto</p>
                     <p style={{ fontFamily: "var(--font-commissioner)", fontSize: "20px", fontWeight: 700, color: "#1c1d1e" }}>{event.location}</p>
                   </div>
-                </>
-              )}
+                )}
+              </div>
 
-              <div className="ml-auto flex items-center gap-4">
+              {/* Actions row */}
+              <div className="flex flex-wrap gap-3 items-center">
                 <AddToCalendar
                   eventId={event.id}
                   title={event.title}
@@ -79,7 +78,7 @@ export default async function EventPage({ params }: { params: Promise<{ slug: st
                   location={event.location}
                 />
                 {event.hasForm && (
-                  <a href="#registracia" className="inline-flex items-center gap-2 rounded-full px-8 py-3 transition-colors hover:bg-[#977d3e]"
+                  <a href="#registracia" className="inline-flex items-center gap-2 rounded-full px-6 py-3 transition-colors hover:bg-[#977d3e]"
                     style={{ backgroundColor: "#bea055", fontFamily: "var(--font-commissioner)", fontSize: "15px", fontWeight: 700, color: "#fdf5f2" }}>
                     Registrovať sa →
                   </a>

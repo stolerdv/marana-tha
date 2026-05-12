@@ -30,8 +30,8 @@ export function PodporteNasSection() {
             initial={{ opacity: 0, x: -20 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
-            className="relative w-full lg:shrink-0"
-            style={{ width: "100%", maxWidth: "573px", height: "clamp(260px, 50vw, 588px)" }}
+            className="relative hidden lg:block lg:shrink-0"
+            style={{ width: "573px", height: "588px" }}
           >
             <Image
               src="/images/support-person.jpg"

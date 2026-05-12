@@ -100,8 +100,8 @@ export function EventsCalendarView({ events }: Props) {
                 minHeight: "52px",
                 borderRadius: "8px",
                 padding: "6px 4px",
-                backgroundColor: isSelected ? "#1c1d1e" : day ? "#ffffff" : "transparent",
-                border: isToday ? "2px solid #bea055" : isSelected ? "2px solid #1c1d1e" : day ? "1px solid #e4d5b2" : "none",
+                backgroundColor: isSelected ? "#977d3e" : day ? "#ffffff" : "transparent",
+                border: isToday ? "2px solid #bea055" : isSelected ? "2px solid #977d3e" : day ? "1px solid #e4d5b2" : "none",
                 cursor: hasEvents ? "pointer" : day ? "default" : "default",
                 transition: "all 0.15s",
                 display: "flex",
@@ -145,7 +145,7 @@ export function EventsCalendarView({ events }: Props) {
       {/* Selected day events panel */}
       {selectedDay && selectedEvents.length > 0 && (
         <div className="mt-4 rounded-[12px] overflow-hidden" style={{ border: "1px solid #e4d5b2" }}>
-          <div style={{ backgroundColor: "#1c1d1e", padding: "12px 16px" }}>
+          <div style={{ backgroundColor: "#977d3e", padding: "12px 16px" }}>
             <p style={{ fontFamily: "var(--font-commissioner)", fontSize: "14px", fontWeight: 700, color: "#fdf5f2" }}>
               {selectedDay}. {MONTHS_SK[month]} {year} — {selectedEvents.length} {selectedEvents.length === 1 ? "udalosť" : "udalosti"}
             </p>
@@ -158,8 +158,8 @@ export function EventsCalendarView({ events }: Props) {
                 className="flex items-center justify-between px-4 py-3 hover:bg-[#f9efe2] transition-colors"
                 style={{ borderTop: i > 0 ? "1px solid #e4d5b2" : "none", backgroundColor: "#ffffff" }}
               >
-                <div className="flex items-center gap-3">
-                  <div style={{ width: "8px", height: "8px", borderRadius: "50%", backgroundColor: CITY_COLORS[ev.location ?? ""] ?? "#bea055", flexShrink: 0 }} />
+                <div className="flex items-start gap-3">
+                  <div style={{ width: "8px", height: "8px", borderRadius: "50%", backgroundColor: CITY_COLORS[ev.location ?? ""] ?? "#bea055", flexShrink: 0, marginTop: "5px" }} />
                   <div>
                     <p style={{ fontFamily: "var(--font-commissioner)", fontSize: "15px", fontWeight: 700, color: "#1c1d1e" }}>{ev.title}</p>
                     <p style={{ fontFamily: "var(--font-inter)", fontSize: "12px", color: "#635f5b" }}>

@@ -62,16 +62,16 @@ export function UdaiostiPageClient({ upcoming, past }: Props) {
           </div>
         </div>
 
-        {/* City filter — scrollable on mobile */}
-        <div className="flex gap-2 overflow-x-auto pb-2" style={{ marginBottom: "32px", scrollbarWidth: "none" }}>
+        {/* City filter — 2×2 grid on mobile, row on desktop */}
+        <div className="grid grid-cols-2 sm:flex gap-2" style={{ marginBottom: "32px" }}>
           {CITY_FILTERS.map((c) => {
             const active = c === city;
             const count = c === "Všetky" ? upcoming.length : upcoming.filter(e => e.location === c).length;
             return (
               <button key={c} onClick={() => setCity(c)} style={{
-                padding: "8px 20px", borderRadius: "50px", cursor: "pointer", flexShrink: 0,
+                padding: "8px 20px", borderRadius: "50px", cursor: "pointer",
                 border: active ? "none" : "1px solid #e4d5b2",
-                backgroundColor: active ? "#1c1d1e" : "#ffffff",
+                backgroundColor: active ? "#977d3e" : "#ffffff",
                 fontFamily: "var(--font-commissioner)", fontSize: "14px", fontWeight: 700,
                 color: active ? "#fdf5f2" : "#635f5b", transition: "all 0.15s",
                 display: "flex", alignItems: "center", gap: "6px",
