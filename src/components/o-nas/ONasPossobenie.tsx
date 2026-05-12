@@ -23,7 +23,7 @@ export function ONasPossobenie() {
 
       {/* ── NAŠE PÔSOBENIE ── */}
       {/* Figma: image on right (x=522 from content, bleeds off screen), text on left */}
-      <div className="relative" style={{, height: "550px" }}>
+      <div className="relative" style={{ height: "550px" }}>
 
         {/* Large photo — bleeds right off content edge */}
         <motion.div
@@ -65,7 +65,7 @@ export function ONasPossobenie() {
 
       {/* ── NAŠA VÍZIA ── */}
       {/* Figma: image bleeds LEFT (x=-303 from content = starts at x=235-303=-68px from section left), text on right */}
-      <div className="relative" style={{, height: "600px" }}>
+      <div className="relative" style={{ height: "600px" }}>
 
         {/* Large photo — bleeds left off section edge */}
         <motion.div

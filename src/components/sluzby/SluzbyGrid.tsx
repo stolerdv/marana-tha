@@ -37,7 +37,7 @@ export function SluzbyGrid({ ministries }: SluzbyGridProps) {
       <div className="absolute pointer-events-none" style={{ top: "60px", left: "235px", right: "235px", height: "1px", backgroundColor: "rgba(190,160,85,0.2)", zIndex: 0 }} />
       <div className="absolute pointer-events-none" style={{ bottom: "60px", left: "235px", right: "235px", height: "1px", backgroundColor: "rgba(190,160,85,0.2)", zIndex: 0 }} />
 
-      <div style={{, position: "relative", zIndex: 1 }}>
+      <div style={{ position: "relative", zIndex: 1 }}>
         <div className="flex flex-col" style={{ gap: "144px" }}>
           {rows.map((row, rowIdx) => (
             <div key={rowIdx} className="relative flex justify-between">

@@ -120,7 +120,7 @@ export default async function LudiaPage() {
 
         {isEmpty && (
           <section className="bg-[var(--color-cream)]" style={{ paddingTop: "80px", paddingBottom: "80px" }}>
-            <div style={{, textAlign: "center" }}>
+            <div style={{ textAlign: "center" }}>
               <p style={{ fontFamily: "var(--font-commissioner)", fontSize: "20px", color: "#635f5b" }}>Ľudia budú čoskoro pridaní.</p>
             </div>
           </section>
