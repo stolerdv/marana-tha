@@ -122,7 +122,7 @@ export function Footer() {
               alt="Marana Tha"
               width={217}
               height={52}
-              className="h-[52px] w-auto"
+              className="h-[40px] sm:h-[52px] w-auto max-w-[180px] sm:max-w-none"
             />
             <div className="flex items-center gap-4">
               <a href="#" aria-label="Facebook" className="text-[var(--color-beige)] hover:text-white transition-colors">
