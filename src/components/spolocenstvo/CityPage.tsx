@@ -1,8 +1,9 @@
 "use client";
 
 import Image from "next/image";
-import { motion } from "framer-motion";
-import { useRef } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import { useRef, useState, useEffect } from "react";
+import Link from "next/link";
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 import { PageHero } from "@/components/shared/PageHero";
@@ -15,13 +16,45 @@ interface TeamMember {
   image?: string;
 }
 
+interface NextVCH { id: string; title: string; slug: string; startDate: Date; }
+
 interface CityPageProps {
   city: string;
   heroImage: string;
   description: string;
-  // Figma: "Kde sa stretávame" event label, e.g. "Večer chvál v PO"
   meetingLabel: string;
+  nextVCH?: NextVCH;
   team: TeamMember[];
+}
+
+function calcTime(target: Date) {
+  const diff = new Date(target).getTime() - Date.now();
+  if (diff <= 0) return { d: 0, h: 0, m: 0, s: 0 };
+  return { d: Math.floor(diff / 86400000), h: Math.floor((diff / 3600000) % 24), m: Math.floor((diff / 60000) % 60), s: Math.floor((diff / 1000) % 60) };
+}
+
+function CityCountdown({ target }: { target: Date }) {
+  const [t, setT] = useState(calcTime(target));
+  useEffect(() => { const id = setInterval(() => setT(calcTime(target)), 1000); return () => clearInterval(id); }, [target]);
+  const units = [{ v: t.d, l: "dní" }, { v: t.h, l: "hodín" }, { v: t.m, l: "minút" }, { v: t.s, l: "sekúnd" }];
+  return (
+    <div className="flex items-end">
+      {units.map((u, i) => (
+        <div key={u.l} className="flex items-end">
+          <div className="flex flex-col items-center" style={{ minWidth: "clamp(52px,10vw,80px)" }}>
+            <AnimatePresence mode="wait">
+              <motion.span key={String(u.v).padStart(2,"0")} initial={{ y:-6,opacity:0 }} animate={{ y:0,opacity:1 }} exit={{ y:6,opacity:0 }} transition={{ duration: 0.15 }}
+                style={{ fontFamily:"var(--font-commissioner)", fontSize:"clamp(28px,5vw,48px)", fontWeight:300, lineHeight:1, color:"#fdf5f2", letterSpacing:"-1px", display:"block" }}>
+                {String(u.v).padStart(2,"0")}
+              </motion.span>
+            </AnimatePresence>
+            <span style={{ fontFamily:"var(--font-commissioner)", fontSize:"10px", fontWeight:400, color:"rgba(253,245,242,0.45)", textTransform:"uppercase", letterSpacing:"2px", marginTop:"3px" }}>{u.l}</span>
+          </div>
+          {i < 3 && <span style={{ fontFamily:"var(--font-commissioner)", fontSize:"clamp(20px,4vw,36px)", fontWeight:300, color:"rgba(190,160,85,0.45)", lineHeight:1, marginBottom:"16px", padding:"0 2px" }}>:</span>}
+        </div>
+      ))}
+    </div>
+  );
 }
 
 // Figma city frame at y=263 → titleTop=467 (same as kde-sme)
@@ -71,7 +104,7 @@ function TeamCarousel({ team }: { team: TeamMember[] }) {
   );
 }
 
-export function CityPage({ city, heroImage, description, meetingLabel, team }: CityPageProps) {
+export function CityPage({ city, heroImage, description, meetingLabel, nextVCH, team }: CityPageProps) {
   return (
     <>
       <Navbar />
@@ -84,24 +117,47 @@ export function CityPage({ city, heroImage, description, meetingLabel, team }: C
           titleTop={467}
         />
 
-        {/* ── KDE SA STRETÁVAME ── */}
-        <section className="bg-[var(--color-cream)] overflow-hidden px-4 sm:px-8 lg:px-[235px] pt-8 pb-0">
-          {/* Photo with overlay text */}
-          <div className="relative overflow-hidden w-full" style={{ borderRadius: "15px", height: "clamp(180px, 30vw, 280px)" }}>
-            <div className="absolute inset-0 bg-cover bg-center" style={{ backgroundImage: `url('${heroImage}')`, filter: "grayscale(80%)" }} />
-            <div className="absolute inset-0 bg-black/50" />
-            {/* Centered text overlay */}
-            <div className="absolute inset-0 flex flex-col items-center justify-center gap-3 px-4">
-              <span style={{ fontFamily: "var(--font-inter)", fontSize: "clamp(22px,4vw,50px)", fontWeight: 700, color: "#fdf5f2", textAlign: "center" }}>
-                Kde sa stretávame
-              </span>
-              <div style={{ border: "1px solid rgba(253,245,242,0.6)", borderRadius: "75px", padding: "8px 20px" }}>
-                <span style={{ fontFamily: "var(--font-inter)", fontSize: "clamp(14px,2vw,20px)", color: "#fdf5f2" }}>{meetingLabel}</span>
+        {/* ── KDE SA STRETÁVAME + VCH COUNTDOWN ── */}
+        <section className="bg-[var(--color-cream)] px-4 sm:px-8 lg:px-[235px] pt-8 pb-8">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.7 }}
+            style={{ borderRadius: "20px", overflow: "hidden", position: "relative", background: "linear-gradient(160deg, #12110f 0%, #1e1910 100%)", border: "1px solid rgba(190,160,85,0.25)", boxShadow: "0 8px 40px rgba(0,0,0,0.4)" }}
+          >
+            {/* B&W bg photo */}
+            <div className="absolute inset-0" style={{ backgroundImage: `url('${heroImage}')`, backgroundSize: "cover", backgroundPosition: "center", filter: "grayscale(100%)", opacity: 0.1 }} />
+            <div style={{ padding: "28px clamp(20px,4vw,40px) 32px", position: "relative" }}>
+              {/* Label */}
+              <div className="flex items-center justify-between flex-wrap gap-3" style={{ marginBottom: "16px" }}>
+                <span style={{ fontFamily: "var(--font-commissioner)", fontSize: "11px", fontWeight: 700, letterSpacing: "4px", textTransform: "uppercase", color: "rgba(190,160,85,0.7)" }}>
+                  Najbližší večer chvál · {city}
+                </span>
+                <span style={{ fontFamily: "var(--font-commissioner)", fontSize: "12px", color: "rgba(253,245,242,0.4)", border: "1px solid rgba(253,245,242,0.15)", borderRadius: "50px", padding: "4px 14px" }}>
+                  {meetingLabel}
+                </span>
               </div>
+              <div style={{ height: "1px", background: "linear-gradient(to right, rgba(190,160,85,0.5), transparent)", marginBottom: "20px" }} />
+
+              {nextVCH ? (
+                <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4">
+                  <div>
+                    <p style={{ fontFamily: "var(--font-commissioner)", fontSize: "clamp(18px,3vw,26px)", fontWeight: 700, color: "#fdf5f2", marginBottom: "16px", lineHeight: 1.2 }}>
+                      {new Date(nextVCH.startDate).toLocaleDateString("sk-SK", { day: "numeric", month: "long", year: "numeric" })}
+                    </p>
+                    <CityCountdown target={new Date(nextVCH.startDate)} />
+                  </div>
+                  <Link href={`/udalosti/vecer-chval`} className="self-start sm:self-auto hover:opacity-80 transition-opacity"
+                    style={{ fontFamily: "var(--font-commissioner)", fontSize: "14px", fontWeight: 700, color: "#bea055", display: "flex", alignItems: "center", gap: "8px", paddingBottom: "4px" }}>
+                    Zobraziť všetky
+                    <svg width="24" height="8" viewBox="0 0 24 8" fill="none"><path d="M0 4h20M16 1l4 3-4 3" stroke="#bea055" strokeWidth="1.5" strokeLinecap="round" /></svg>
+                  </Link>
+                </div>
+              ) : (
+                <p style={{ fontFamily: "var(--font-commissioner)", fontSize: "18px", color: "rgba(253,245,242,0.4)" }}>
+                  Termín bude čoskoro oznámený
+                </p>
+              )}
             </div>
-          </div>
-          {/* Beige strip below */}
-          <div style={{ backgroundColor: "#e6ded5", borderRadius: "15px", height: "clamp(40px,8vw,80px)", marginTop: "-20px", position: "relative", zIndex: 0 }} />
+          </motion.div>
         </section>
 
         {/* ── LÍDERSKÝ TÍM section ── */}
