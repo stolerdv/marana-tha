@@ -18,7 +18,10 @@ export const metadata = {
 };
 
 export default async function ONasPage() {
-  const pc = await db.pageContent.findUnique({ where: { key: "o-nas" } });
+  const [pc, partners] = await Promise.all([
+    db.pageContent.findUnique({ where: { key: "o-nas" } }),
+    db.partner.findMany({ where: { published: true }, orderBy: [{ order: "asc" }, { createdAt: "asc" }], select: { id: true, name: true, slug: true, description: true } }),
+  ]);
   const data = (pc?.data ?? {}) as Record<string, string>;
 
   return (
@@ -41,7 +44,7 @@ export default async function ONasPage() {
         <ONasPossobenie />
         <ONasHodnoty />
         <ONasSvedectva />
-        <ONasPartnerstva />
+        <ONasPartnerstva partners={partners} />
         <ZistitViac />
         <PodporteNasSection />
       </main>

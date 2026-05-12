@@ -3,14 +3,10 @@
 import Link from "next/link";
 import { motion } from "framer-motion";
 
-const partners = [
-  { name: "ZKSM", slug: "zksm", description: "Združenie kresťanských spoločenstiev mládeže na Slovensku." },
-  { name: "ENC", slug: "enc", description: "Európska sieť cirkevných spoločenstiev spájajúca komunity z celej Európy." },
-  { name: "CHARIS", slug: "charis", description: "Medzinárodná organizácia pre katolícku charizmatickú obnovu." },
-  { name: "STRAPAR", slug: "strapar", description: "Kresťanská organizácia pre pastoráciu mládeže a rodín." },
-];
+interface Partner { id: string; name: string; slug: string; description: string; }
+interface Props { partners?: Partner[]; }
 
-export function ONasPartnerstva() {
+export function ONasPartnerstva({ partners = [] }: Props) {
   return (
     <section className="relative bg-[var(--color-cream)] overflow-hidden" style={{ paddingTop: "100px", paddingBottom: "80px" }}>
 

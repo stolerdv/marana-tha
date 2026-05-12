@@ -5,28 +5,21 @@ import { notFound } from "next/navigation";
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 import Link from "next/link";
-import { motion } from "framer-motion";
-
-const PARTNER_IMAGES: Record<string, string> = {
-  "partner-zksm":    "/images/hero-bg.jpg",
-  "partner-enc":     "/images/hero-bg.jpg",
-  "partner-charis":  "/images/o-nas-possobenie-1.jpg",
-  "partner-strapar": "/images/o-nas-possobenie-2.jpg",
-};
 
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
-  const page = await db.pageContent.findUnique({ where: { key: `partner-${slug}` } });
-  if (!page) return { title: "Marana Tha" };
-  return { title: `${page.title} | Partnerstvá | Marana Tha`, description: page.subtitle ?? "" };
+  const partner = await db.partner.findUnique({ where: { slug } });
+  if (!partner) return { title: "Marana Tha" };
+  return { title: `${partner.name} | Partnerstvá | Marana Tha`, description: partner.description };
 }
 
 export default async function PartnerPage({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
-  const page = await db.pageContent.findUnique({ where: { key: `partner-${slug}` } });
+  const page = await db.partner.findUnique({ where: { slug } });
   if (!page) notFound();
 
-  const heroImage = page.coverImage ?? PARTNER_IMAGES[`partner-${slug}`] ?? "/images/hero-bg.jpg";
+  // Map Partner fields to what the template expects
+  const heroImage = page.coverImage ?? "/images/hero-bg.jpg";
 
   return (
     <>
@@ -45,13 +38,11 @@ export default async function PartnerPage({ params }: { params: Promise<{ slug: 
               Partnerstvá
             </span>
             <h1 style={{ fontFamily: "var(--font-commissioner)", fontSize: "clamp(40px,6vw,72px)", fontWeight: 700, color: "#fdf5f2", lineHeight: 1.05, letterSpacing: "-1px", marginBottom: "16px" }}>
-              {page.title}
+              {page.name}
             </h1>
-            {page.subtitle && (
-              <p style={{ fontFamily: "var(--font-commissioner)", fontSize: "clamp(16px,2vw,20px)", color: "rgba(253,245,242,0.7)", maxWidth: "560px" }}>
-                {page.subtitle}
-              </p>
-            )}
+            <p style={{ fontFamily: "var(--font-commissioner)", fontSize: "clamp(16px,2vw,20px)", color: "rgba(253,245,242,0.7)", maxWidth: "560px" }}>
+              {page.description}
+            </p>
           </div>
         </section>
 

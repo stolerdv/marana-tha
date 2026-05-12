@@ -13,6 +13,7 @@ const editorNavItems = [
   { href: "/admin/posts", label: "Blog", icon: "📝" },
   { href: "/admin/media", label: "Médiá", icon: "🎬" },
   { href: "/admin/misie", label: "Misie", icon: "✈️" },
+  { href: "/admin/partnerstva", label: "Partnerstvá", icon: "🤝" },
   { href: "/admin/pages", label: "Stránky", icon: "📄" },
 ];
 
