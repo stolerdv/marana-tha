@@ -59,7 +59,7 @@ export function AktivityGrid() {
 
   return (
     <section className="bg-[var(--color-cream)]" style={{ paddingTop: "137px" }}>
-      <div style={{ paddingLeft: "235px", paddingRight: "235px" }}>
+      <div className="px-4 sm:px-8 lg:px-[235px]">
         <div className="flex flex-col" style={{ gap: "144px", paddingBottom: "144px" }}>
           {rows.map((row, rowIdx) => (
             <div key={rowIdx} className="flex justify-between">

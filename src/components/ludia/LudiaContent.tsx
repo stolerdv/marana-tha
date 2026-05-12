@@ -105,7 +105,7 @@ export function LudiaContent({ leaders, serviceGroups }: LudiaContentProps) {
       {/* ── LÍDERSKÝ TÍM ── */}
       {/* Cards at y=1287 from frame top; hero ends at 990 → pt=297 */}
       <section className="bg-[var(--color-cream)] overflow-hidden" style={{ paddingTop: "137px", paddingBottom: "80px" }}>
-        <div style={{ paddingLeft: "235px", paddingRight: "235px" }}>
+        <div className="px-4 sm:px-8 lg:px-[235px]">
           <SectionHeading watermark="líderský tím" subtitle="Líderský tím" />
 
           {/* 5 cards row — justify-between gives gap=(1042-5*174)/4=43px ✓ */}
@@ -121,7 +121,7 @@ export function LudiaContent({ leaders, serviceGroups }: LudiaContentProps) {
       {/* 3 columns with service label + 3 person cards each */}
       {/* Column x positions from content left: 0, 367, 749 */}
       <section className="bg-[var(--color-cream)] overflow-hidden" style={{ paddingTop: "80px", paddingBottom: "80px" }}>
-        <div style={{ paddingLeft: "235px", paddingRight: "235px" }}>
+        <div className="px-4 sm:px-8 lg:px-[235px]">
           <SectionHeading watermark="vedúci služieb" subtitle="vedúci služieb" />
 
           {/* 3 columns — absolute positions matching Figma: 0, 367, 749 from content left */}

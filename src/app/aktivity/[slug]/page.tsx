@@ -129,7 +129,7 @@ export default async function AktivitaDetailPage({ params }: { params: Promise<{
 
         {/* 1. INTRO */}
         <section className="bg-[var(--color-cream)]" style={{ paddingTop: "80px", paddingBottom: "72px" }}>
-          <div style={{ paddingLeft: "235px", paddingRight: "235px" }}>
+          <div className="px-4 sm:px-8 lg:px-[235px]">
             <FadeIn>
               <p style={{ fontFamily: "var(--font-commissioner)", fontSize: "50px", fontWeight: 400, lineHeight: "55px", color: "#977d3e", marginBottom: "32px" }}>
                 O aktivite
@@ -153,7 +153,7 @@ export default async function AktivitaDetailPage({ params }: { params: Promise<{
         {/* 2. GALÉRIA */}
         {activity.gallery.length > 0 && (
           <section className="bg-[var(--color-cream)]" style={{ paddingBottom: "72px" }}>
-            <div style={{ paddingLeft: "235px", paddingRight: "235px" }}>
+            <div className="px-4 sm:px-8 lg:px-[235px]">
               <FadeIn>
                 <p style={{ fontFamily: "var(--font-commissioner)", fontSize: "36px", fontWeight: 400, color: "#977d3e", marginBottom: "24px" }}>Galéria</p>
               </FadeIn>
@@ -179,7 +179,7 @@ export default async function AktivitaDetailPage({ params }: { params: Promise<{
         {/* 4. NAJBLIŽŠIE — calendar style */}
         {events.length > 0 && (
           <section className="bg-[var(--color-cream)]" style={{ paddingBottom: "80px" }}>
-            <div style={{ paddingLeft: "235px", paddingRight: "235px" }}>
+            <div className="px-4 sm:px-8 lg:px-[235px]">
               <FadeIn>
                 <p style={{ fontFamily: "var(--font-commissioner)", fontSize: "50px", fontWeight: 400, lineHeight: "55px", color: "#977d3e", marginBottom: "40px" }}>
                   Najbližšie udalosti
@@ -233,7 +233,7 @@ export default async function AktivitaDetailPage({ params }: { params: Promise<{
 
         {/* CTA */}
         <section className="bg-[var(--color-cream)]" style={{ paddingBottom: "80px" }}>
-          <div style={{ paddingLeft: "235px", paddingRight: "235px" }}>
+          <div className="px-4 sm:px-8 lg:px-[235px]">
             <div style={{ backgroundColor: "#ffffff", borderRadius: "15px", padding: "48px 56px", display: "flex", alignItems: "center", justifyContent: "space-between" }}>
               <div>
                 <p style={{ fontFamily: "var(--font-commissioner)", fontSize: "30px", fontWeight: 700, color: "#1c1d1e", marginBottom: "8px" }}>

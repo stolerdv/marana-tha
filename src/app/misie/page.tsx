@@ -29,7 +29,7 @@ export default async function MisiePage() {
         />
 
         <section className="bg-[var(--color-cream)]" style={{ paddingTop: "80px", paddingBottom: "80px" }}>
-          <div style={{ paddingLeft: "235px", paddingRight: "235px" }}>
+          <div className="px-4 sm:px-8 lg:px-[235px]">
 
             {/* Section heading */}
             <div className="mb-12">

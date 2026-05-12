@@ -48,7 +48,7 @@ export default async function EventPage({ params }: { params: Promise<{ slug: st
         <PageHero title={event.title} description={event.description} image={event.coverImage ?? "/images/default-event-hero.jpg"} titleTop={467} />
 
         <section className="bg-[var(--color-cream)]" style={{ paddingTop: "80px", paddingBottom: "80px" }}>
-          <div style={{ paddingLeft: "235px", paddingRight: "235px" }}>
+          <div className="px-4 sm:px-8 lg:px-[235px]">
 
             {/* Meta row */}
             <div className="flex items-start gap-10 rounded-[15px] p-8 mb-10"

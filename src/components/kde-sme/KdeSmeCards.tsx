@@ -58,7 +58,7 @@ export function KdeSmeCards() {
   return (
     // pt=82px: city cards start 82px below hero (y=1072 - y=990 = 82px)
     <section className="bg-[var(--color-cream)]" style={{ paddingTop: "82px", paddingBottom: "80px" }}>
-      <div style={{ paddingLeft: "235px", paddingRight: "235px" }}>
+      <div className="px-4 sm:px-8 lg:px-[235px]">
 
         {/* 3 city cards row — Figma: justify-between, each 252px wide, gap ~145px */}
         <div className="flex justify-between">

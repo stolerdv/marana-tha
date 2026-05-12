@@ -67,7 +67,7 @@ export default function VstupPreClenovPage() {
         />
 
         <section className="bg-[var(--color-cream)]" style={{ paddingTop: "80px", paddingBottom: "80px" }}>
-          <div style={{ paddingLeft: "235px", paddingRight: "235px" }}>
+          <div className="px-4 sm:px-8 lg:px-[235px]">
 
             {/* Login card */}
             <div style={{ display: "flex", gap: "80px", alignItems: "flex-start" }}>

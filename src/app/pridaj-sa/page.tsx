@@ -67,7 +67,7 @@ export default async function PridajSaPage() {
 
         {/* Intro */}
         <section className="bg-[var(--color-cream)]" style={{ paddingTop: "80px", paddingBottom: "0" }}>
-          <div style={{ paddingLeft: "235px", paddingRight: "235px" }}>
+          <div className="px-4 sm:px-8 lg:px-[235px]">
             <div className="flex gap-24 items-start">
               <div style={{ flex: 1 }}>
                 <p style={{ fontFamily: "var(--font-commissioner)", fontSize: "50px", fontWeight: 400, lineHeight: "55px", color: "#977d3e", marginBottom: "32px" }}>
@@ -92,7 +92,7 @@ export default async function PridajSaPage() {
 
         {/* 3 membership types */}
         <section className="bg-[var(--color-cream)]" style={{ paddingTop: "72px", paddingBottom: "80px" }}>
-          <div style={{ paddingLeft: "235px", paddingRight: "235px" }}>
+          <div className="px-4 sm:px-8 lg:px-[235px]">
             <p style={{ fontFamily: "var(--font-commissioner)", fontSize: "50px", fontWeight: 400, lineHeight: "55px", color: "#977d3e", marginBottom: "48px" }}>
               Ako to funguje
             </p>
@@ -182,7 +182,7 @@ export default async function PridajSaPage() {
 
         {/* CTA + Form */}
         <section className="bg-[var(--color-cream)]" style={{ paddingTop: "80px", paddingBottom: "80px" }}>
-          <div style={{ paddingLeft: "235px", paddingRight: "235px" }}>
+          <div className="px-4 sm:px-8 lg:px-[235px]">
             <div className="flex gap-24">
               {/* Left — CTA text */}
               <div style={{ flex: 1 }}>

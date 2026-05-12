@@ -67,6 +67,11 @@ export function Navbar() {
   const [openDropdown, setOpenDropdown] = useState<string | null>(null);
   const [mobileOpen, setMobileOpen] = useState(false);
 
+  // Lock body scroll when mobile menu is open
+  if (typeof window !== "undefined") {
+    document.body.style.overflow = mobileOpen ? "hidden" : "";
+  }
+
   return (
     <header className="absolute top-0 left-0 right-0 z-50">
 
@@ -216,15 +221,34 @@ export function Navbar() {
         </button>
       </nav>
 
-      {/* Mobile menu */}
+      {/* Mobile menu — fixed full-screen overlay */}
       <AnimatePresence>
         {mobileOpen && (
           <motion.div
-            initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: "auto" }}
-            exit={{ opacity: 0, height: 0 }}
-            className="lg:hidden bg-[var(--color-ink)]/97 px-6 pb-8 overflow-hidden"
+            initial={{ opacity: 0, x: "100%" }}
+            animate={{ opacity: 1, x: 0 }}
+            exit={{ opacity: 0, x: "100%" }}
+            transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
+            className="lg:hidden fixed inset-0 z-[200] flex flex-col"
+            style={{ backgroundColor: "#12110f", overflowY: "auto" }}
           >
+          {/* Close button row */}
+          <div className="flex items-center justify-between px-6 py-5 shrink-0" style={{ borderBottom: "1px solid rgba(190,160,85,0.15)" }}>
+            <span style={{ fontFamily: "var(--font-commissioner)", fontSize: "13px", fontWeight: 700, letterSpacing: "3px", textTransform: "uppercase", color: "#bea055", opacity: 0.6 }}>
+              Menu
+            </span>
+            <button
+              onClick={() => setMobileOpen(false)}
+              className="flex items-center justify-center hover:opacity-70 transition-opacity"
+              aria-label="Zavrieť menu"
+              style={{ width: "36px", height: "36px", border: "1px solid rgba(190,160,85,0.3)", borderRadius: "50%", color: "#fdf5f2" }}
+            >
+              <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+                <path d="M1 1l12 12M13 1L1 13" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
+              </svg>
+            </button>
+          </div>
+          <div className="px-6 pb-8 flex-1">
             {[
               { label: "Spoločenstvo", links: spolocenstvoLinks },
               { label: "Aktivity", links: [...aktivityLinks, { href: "/udalosti", label: "Udalosti" }] },
@@ -265,6 +289,7 @@ export function Navbar() {
                 Vstup pre členov
               </Link>
             </div>
+          </div>
           </motion.div>
         )}
       </AnimatePresence>

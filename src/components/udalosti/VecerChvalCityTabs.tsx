@@ -26,7 +26,7 @@ export function VecerChvalCityTabs({ eventsByCity }: Props) {
 
   return (
     <section className="bg-[var(--color-cream)]" style={{ paddingTop: "64px", paddingBottom: "80px" }}>
-      <div style={{ paddingLeft: "235px", paddingRight: "235px" }}>
+      <div className="px-4 sm:px-8 lg:px-[235px]">
 
         {/* City switcher */}
         <div className="flex gap-3" style={{ marginBottom: "48px" }}>

@@ -24,7 +24,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
         <PageHero title={post.title} description={post.excerpt ?? ""} image={post.coverImage ?? "/images/blog-hero.jpg"} titleTop={467} />
 
         <section className="bg-[var(--color-cream)]" style={{ paddingTop: "80px", paddingBottom: "80px" }}>
-          <div style={{ paddingLeft: "235px", paddingRight: "235px" }}>
+          <div className="px-4 sm:px-8 lg:px-[235px]">
             {/* Date */}
             <p style={{ fontFamily: "var(--font-inter)", fontSize: "14px", color: "#635f5b", marginBottom: "32px" }}>
               {new Date(post.createdAt).toLocaleDateString("sk-SK", { day: "numeric", month: "long", year: "numeric" })}

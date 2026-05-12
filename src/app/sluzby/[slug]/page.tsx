@@ -51,7 +51,7 @@ export default async function SluzbaPage({ params }: { params: Promise<{ slug: s
 
         {/* O službe */}
         <section className="bg-[var(--color-cream)]" style={{ paddingTop: "80px", paddingBottom: "80px" }}>
-          <div style={{ paddingLeft: "235px", paddingRight: "235px" }}>
+          <div className="px-4 sm:px-8 lg:px-[235px]">
             <div className="flex gap-20 items-start">
               <div style={{ flex: 1 }}>
                 <FadeIn>
@@ -100,7 +100,7 @@ export default async function SluzbaPage({ params }: { params: Promise<{ slug: s
         {/* Tím služby */}
         {ministry.people.length > 0 && (
           <section className="bg-[var(--color-cream)]" style={{ paddingBottom: "80px" }}>
-            <div style={{ paddingLeft: "235px", paddingRight: "235px" }}>
+            <div className="px-4 sm:px-8 lg:px-[235px]">
               <div style={{ height: "1px", backgroundColor: "#e4d5b2", marginBottom: "60px" }} />
               <FadeIn>
                 <p style={{ fontFamily: "var(--font-commissioner)", fontSize: "36px", fontWeight: 700, color: "#1c1d1e", marginBottom: "36px" }}>Tím služby</p>
@@ -128,7 +128,7 @@ export default async function SluzbaPage({ params }: { params: Promise<{ slug: s
         {/* Galéria */}
         {galleryPhotos.length > 0 && (
           <section className="bg-[var(--color-cream)]" style={{ paddingBottom: "80px" }}>
-            <div style={{ paddingLeft: "235px", paddingRight: "235px" }}>
+            <div className="px-4 sm:px-8 lg:px-[235px]">
               <div style={{ height: "1px", backgroundColor: "#e4d5b2", marginBottom: "60px" }} />
               <FadeIn>
                 <p style={{ fontFamily: "var(--font-commissioner)", fontSize: "36px", fontWeight: 400, color: "#977d3e", marginBottom: "24px" }}>Galéria</p>
@@ -150,7 +150,7 @@ export default async function SluzbaPage({ params }: { params: Promise<{ slug: s
         {/* Najbližšie udalosti */}
         {upcomingEvents.length > 0 && (
           <section className="bg-[var(--color-cream)]" style={{ paddingBottom: "80px" }}>
-            <div style={{ paddingLeft: "235px", paddingRight: "235px" }}>
+            <div className="px-4 sm:px-8 lg:px-[235px]">
               <div style={{ height: "1px", backgroundColor: "#e4d5b2", marginBottom: "60px" }} />
               <FadeIn>
                 <p style={{ fontFamily: "var(--font-commissioner)", fontSize: "50px", fontWeight: 400, lineHeight: "55px", color: "#977d3e", marginBottom: "40px" }}>
@@ -186,7 +186,7 @@ export default async function SluzbaPage({ params }: { params: Promise<{ slug: s
 
         {/* CTA */}
         <section className="bg-[var(--color-cream)]" style={{ paddingBottom: "80px" }}>
-          <div style={{ paddingLeft: "235px", paddingRight: "235px" }}>
+          <div className="px-4 sm:px-8 lg:px-[235px]">
             <FadeIn>
               <div style={{ backgroundColor: "#ffffff", borderRadius: "15px", padding: "48px 56px", display: "flex", alignItems: "center", justifyContent: "space-between" }}>
                 <div>

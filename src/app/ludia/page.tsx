@@ -63,7 +63,7 @@ export default async function LudiaPage() {
         {/* Líderský tím */}
         {leaders.length > 0 && (
           <section className="bg-[var(--color-cream)]" style={{ paddingTop: "80px", paddingBottom: "60px" }}>
-            <div style={{ paddingLeft: "235px", paddingRight: "235px" }}>
+            <div className="px-4 sm:px-8 lg:px-[235px]">
               <FadeIn>
                 <p style={{ fontFamily: "var(--font-commissioner)", fontSize: "50px", fontWeight: 400, lineHeight: "55px", color: "#977d3e", marginBottom: "48px" }}>
                   Líderský tím
@@ -83,7 +83,7 @@ export default async function LudiaPage() {
         {/* Custom groups */}
         {Object.entries(customGroups).map(([groupName, people]) => (
           <section key={groupName} className="bg-[var(--color-cream)]" style={{ paddingTop: "40px", paddingBottom: "60px" }}>
-            <div style={{ paddingLeft: "235px", paddingRight: "235px" }}>
+            <div className="px-4 sm:px-8 lg:px-[235px]">
               <FadeIn>
                 <p style={{ fontFamily: "var(--font-commissioner)", fontSize: "30px", fontWeight: 700, lineHeight: "55px", color: "#1c1d1e", marginBottom: "16px" }}>{groupName}</p>
                 <div style={{ height: "1px", backgroundColor: "#bea055", marginBottom: "32px" }} />
@@ -102,7 +102,7 @@ export default async function LudiaPage() {
         {/* Ministry people */}
         {ministriesPeople.filter(m => m.people.length > 0).map((ministry) => (
           <section key={ministry.id} className="bg-[var(--color-cream)]" style={{ paddingTop: "40px", paddingBottom: "60px" }}>
-            <div style={{ paddingLeft: "235px", paddingRight: "235px" }}>
+            <div className="px-4 sm:px-8 lg:px-[235px]">
               <FadeIn>
                 <p style={{ fontFamily: "var(--font-commissioner)", fontSize: "30px", fontWeight: 700, lineHeight: "55px", color: "#1c1d1e", marginBottom: "16px" }}>{ministry.title}</p>
                 <div style={{ height: "1px", backgroundColor: "#bea055", marginBottom: "32px" }} />
@@ -120,7 +120,7 @@ export default async function LudiaPage() {
 
         {isEmpty && (
           <section className="bg-[var(--color-cream)]" style={{ paddingTop: "80px", paddingBottom: "80px" }}>
-            <div style={{ paddingLeft: "235px", textAlign: "center" }}>
+            <div style={{, textAlign: "center" }}>
               <p style={{ fontFamily: "var(--font-commissioner)", fontSize: "20px", color: "#635f5b" }}>Ľudia budú čoskoro pridaní.</p>
             </div>
           </section>

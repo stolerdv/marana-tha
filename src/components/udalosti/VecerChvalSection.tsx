@@ -41,7 +41,7 @@ export function VecerChvalSection() {
   // We position it as a continuation below PageHero (no top margin needed if placed right after hero)
 
   return (
-    <section className="bg-[var(--color-cream)]" style={{ paddingLeft: "235px", paddingRight: "235px", paddingBottom: "80px" }}>
+    <section className="bg-[var(--color-cream)]" style={{, paddingBottom: "80px" }}>
       {/* Group 94 container — 1044×618px */}
       <motion.div
         initial={{ opacity: 0, y: 20 }}
