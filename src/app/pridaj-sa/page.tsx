@@ -68,20 +68,20 @@ export default async function PridajSaPage() {
         {/* Intro */}
         <section className="bg-[var(--color-cream)]" style={{ paddingTop: "80px", paddingBottom: "0" }}>
           <div className="px-4 sm:px-8 lg:px-[235px]">
-            <div className="flex gap-24 items-start">
+            <div className="flex flex-col lg:flex-row gap-8 lg:gap-24 items-start">
               <div style={{ flex: 1 }}>
-                <p style={{ fontFamily: "var(--font-commissioner)", fontSize: "50px", fontWeight: 400, lineHeight: "55px", color: "#977d3e", marginBottom: "32px" }}>
+                <p style={{ fontFamily: "var(--font-commissioner)", fontSize: "clamp(36px,4vw,50px)", fontWeight: 400, lineHeight: 1.2, color: "#977d3e", marginBottom: "24px" }}>
                   Každý má tu miesto
                 </p>
-                <p style={{ fontFamily: "var(--font-inter)", fontSize: "20px", color: "#1c1d1e", lineHeight: "1.75", maxWidth: "560px" }}>
+                <p style={{ fontFamily: "var(--font-inter)", fontSize: "18px", color: "#1c1d1e", lineHeight: "1.75", maxWidth: "560px" }}>
                   Marana Tha je miesto pre každého — bez ohľadu na to, kde sa nachádzaš na svojej duchovnej ceste. Príď taký, aký si. Príjmeme ťa s otvorenou náručou.
                 </p>
               </div>
-              <div className="flex gap-4 pt-4">
+              <div className="flex flex-wrap gap-3 lg:pt-4">
                 {[{ href: "/spolocenstvo/presov", label: "Prešov" }, { href: "/spolocenstvo/bardejov", label: "Bardejov" }, { href: "/spolocenstvo/kosice", label: "Košice" }].map(c => (
                   <Link key={c.href} href={c.href}
-                    className="inline-flex items-center gap-2 rounded-full px-6 py-3 transition-colors hover:bg-[#977d3e]"
-                    style={{ backgroundColor: "#bea055", fontFamily: "var(--font-commissioner)", fontSize: "15px", fontWeight: 700, color: "#fdf5f2" }}>
+                    className="inline-flex items-center gap-2 rounded-full px-5 py-2.5 transition-colors hover:bg-[#977d3e]"
+                    style={{ backgroundColor: "#bea055", fontFamily: "var(--font-commissioner)", fontSize: "14px", fontWeight: 700, color: "#fdf5f2" }}>
                     {c.label} →
                   </Link>
                 ))}
@@ -209,13 +209,13 @@ export default async function PridajSaPage() {
         {/* CTA + Form */}
         <section id="pridat-sa" className="bg-[var(--color-cream)]" style={{ paddingTop: "80px", paddingBottom: "80px" }}>
           <div className="px-4 sm:px-8 lg:px-[235px]">
-            <div className="flex gap-24">
+            <div className="flex flex-col lg:flex-row gap-12 lg:gap-24">
               {/* Left — CTA text */}
-              <div style={{ flex: 1 }}>
-                <p style={{ fontFamily: "var(--font-commissioner)", fontSize: "50px", fontWeight: 400, lineHeight: "55px", color: "#977d3e", marginBottom: "24px" }}>
+              <div className="flex-1">
+                <p style={{ fontFamily: "var(--font-commissioner)", fontSize: "clamp(36px,4vw,50px)", fontWeight: 400, lineHeight: 1.2, color: "#977d3e", marginBottom: "24px" }}>
                   Urob prvý krok
                 </p>
-                <p style={{ fontFamily: "var(--font-inter)", fontSize: "18px", color: "#1c1d1e", lineHeight: "1.75", marginBottom: "32px", maxWidth: "440px" }}>
+                <p style={{ fontFamily: "var(--font-inter)", fontSize: "18px", color: "#1c1d1e", lineHeight: "1.75", marginBottom: "32px" }}>
                   Napíš nám — radi ťa privítame, odpovieme na otázky a pomôžeme ti nájsť to pravé miesto v našom spoločenstve.
                 </p>
                 <div style={{ borderLeft: "3px solid #bea055", paddingLeft: "20px" }}>
@@ -229,7 +229,7 @@ export default async function PridajSaPage() {
               </div>
 
               {/* Right — contact form */}
-              <div style={{ width: "480px", flexShrink: 0 }}>
+              <div className="w-full lg:w-[480px] lg:shrink-0">
                 <PridajSaForm />
               </div>
             </div>
