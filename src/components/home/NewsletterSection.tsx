@@ -16,9 +16,8 @@ export function NewsletterSection() {
 
   return (
     <section className="relative overflow-hidden" style={{ backgroundColor: "#12110f" }}>
-      {/* Subtle background — very faint, doesn't interfere with text */}
-      <div className="absolute inset-0 bg-cover bg-center" style={{ backgroundImage: "url('/images/o-nas-1.jpg')", opacity: 0.06 }} />
-      <div className="absolute inset-0" style={{ background: "linear-gradient(to right, #12110f 55%, rgba(18,17,15,0.92) 100%)" }} />
+      {/* Gold accent glow — top right */}
+      <div className="absolute pointer-events-none" style={{ top: 0, right: 0, width: "40%", height: "100%", background: "radial-gradient(ellipse at top right, rgba(190,160,85,0.06) 0%, transparent 70%)" }} />
 
       <div className="px-4 sm:px-8 lg:px-[235px]" style={{ paddingTop: "96px", paddingBottom: "96px" }}>
         <div className="flex flex-col lg:flex-row gap-12 lg:gap-20 items-start lg:items-center">
