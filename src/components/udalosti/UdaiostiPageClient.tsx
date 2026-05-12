@@ -20,6 +20,7 @@ interface EventItem {
 interface Props {
   upcoming: EventItem[];
   past: EventItem[];
+  initialView?: "list" | "calendar";
 }
 
 const CITY_FILTERS = ["Všetky", "Prešov", "Košice", "Bardejov"] as const;
@@ -30,8 +31,8 @@ function filterByCity(events: EventItem[], city: CityFilter) {
   return events.filter(e => e.location === city);
 }
 
-export function UdaiostiPageClient({ upcoming, past }: Props) {
-  const [view, setView] = useState<"list" | "calendar">("list");
+export function UdaiostiPageClient({ upcoming, past, initialView = "list" }: Props) {
+  const [view, setView] = useState<"list" | "calendar">(initialView);
   const [city, setCity] = useState<CityFilter>("Všetky");
 
   const filteredUpcoming = filterByCity(upcoming, city);

@@ -11,7 +11,8 @@ export const metadata = {
   description: "Nadchádzajúce akcie spoločenstva Marana Tha.",
 };
 
-export default async function UdaiostiPage() {
+export default async function UdaiostiPage({ searchParams }: { searchParams: Promise<{ view?: string }> }) {
+  const { view } = await searchParams;
   const [upcoming, past] = await Promise.all([
     db.event.findMany({
       where: { published: true, startDate: { gte: new Date() } },
@@ -31,7 +32,7 @@ export default async function UdaiostiPage() {
       <Navbar />
       <main>
         <PageHero title="Udalosti" description="Pridaj sa k nám na naše pravidelné stretnutia a špeciálne akcie." image="/images/udalosti-hero.jpg" titleTop={467} />
-        <UdaiostiPageClient upcoming={upcoming} past={past} />
+        <UdaiostiPageClient upcoming={upcoming} past={past} initialView={view === "calendar" ? "calendar" : "list"} />
       </main>
       <Footer />
     </>
