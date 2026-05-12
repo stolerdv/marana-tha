@@ -223,26 +223,47 @@ export function Navbar() {
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
-            className="lg:hidden bg-[var(--color-ink)]/95 px-6 pb-6"
+            className="lg:hidden bg-[var(--color-ink)]/97 px-6 pb-8 overflow-hidden"
           >
-            {[...spolocenstvoLinks, ...aktivityLinks, { href: "/udalosti", label: "Udalosti" }, ...mediaLinks, { href: "/kontakt", label: "Kontakt" }].map((item) => (
-              <Link
-                key={item.href}
-                href={item.href}
-                className="block py-3 font-[family-name:var(--font-commissioner)] text-[0.875rem] text-[var(--color-cream-light)] border-b border-[var(--color-gold)]/20"
-                onClick={() => setMobileOpen(false)}
-              >
-                {item.label}
-              </Link>
+            {[
+              { label: "Spoločenstvo", links: spolocenstvoLinks },
+              { label: "Aktivity", links: [...aktivityLinks, { href: "/udalosti", label: "Udalosti" }] },
+              { label: "Médiá & kontakt", links: [...mediaLinks, { href: "/kontakt", label: "Kontakt" }] },
+            ].map((section, si) => (
+              <div key={section.label} style={{ marginTop: si === 0 ? "8px" : "20px" }}>
+                <p style={{ fontFamily: "var(--font-commissioner)", fontSize: "11px", fontWeight: 700, letterSpacing: "3px", textTransform: "uppercase", color: "#bea055", opacity: 0.7, marginBottom: "4px" }}>
+                  {section.label}
+                </p>
+                {section.links.map((item) => (
+                  <Link
+                    key={item.href}
+                    href={item.href}
+                    className="block py-2.5 font-[family-name:var(--font-commissioner)] text-[1rem] text-[var(--color-cream-light)] border-b border-[var(--color-gold)]/15 hover:text-[var(--color-gold)] transition-colors"
+                    onClick={() => setMobileOpen(false)}
+                  >
+                    {item.label}
+                  </Link>
+                ))}
+              </div>
             ))}
-            <div className="flex gap-4 pt-4">
+
+            {/* External + member links */}
+            <div className="flex flex-wrap gap-3 pt-6 mt-2 border-t border-[var(--color-gold)]/20">
               {externalLinks.map((link) => (
                 <a key={link.href} href={link.href} target="_blank" rel="noopener noreferrer"
-                  className="font-[family-name:var(--font-commissioner)] text-[0.875rem] font-bold"
-                  style={{ color: "#bea055" }}>
+                  className="px-4 py-2 rounded-full border font-[family-name:var(--font-commissioner)] text-[0.875rem] font-bold transition-colors hover:bg-[var(--color-gold)]/10"
+                  style={{ color: "#bea055", borderColor: "rgba(190,160,85,0.4)" }}>
                   {link.label} ↗
                 </a>
               ))}
+              <Link
+                href="/vstup-pre-clenov"
+                onClick={() => setMobileOpen(false)}
+                className="px-4 py-2 rounded-full font-[family-name:var(--font-commissioner)] text-[0.875rem] font-bold"
+                style={{ backgroundColor: "#bea055", color: "#1c1d1e" }}
+              >
+                Vstup pre členov
+              </Link>
             </div>
           </motion.div>
         )}
