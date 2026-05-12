@@ -43,7 +43,14 @@ export function NewsletterSection() {
             </p>
 
             {/* Decorative gold line */}
-            <div style={{ width: "48px", height: "2px", backgroundColor: "#bea055", marginTop: "36px", opacity: 0.4 }} />
+            <div style={{ width: "48px", height: "2px", backgroundColor: "#bea055", marginTop: "36px", marginBottom: "28px", opacity: 0.4 }} />
+
+            {/* Image below text — darkened */}
+            <div className="hidden lg:block relative overflow-hidden" style={{ borderRadius: "12px", height: "180px" }}>
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img src="/images/o-nas-1.jpg" alt="" style={{ width: "100%", height: "100%", objectFit: "cover", opacity: 0.45 }} />
+              <div className="absolute inset-0" style={{ background: "linear-gradient(to top, #12110f 0%, transparent 60%)" }} />
+            </div>
           </motion.div>
 
           {/* RIGHT — form */}
