@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import { motion } from "framer-motion";
+import { useRef, useState } from "react";
 
 // Figma frame 10 @(14077,263) 1512×5440. Content left=14312.
 //
@@ -60,6 +61,52 @@ function PersonCard({ person, delay = 0 }: { person: Person; delay?: number }) {
   );
 }
 
+function LeadersCarousel({ leaders }: { leaders: Person[] }) {
+  const ref = useRef<HTMLDivElement>(null);
+  const [pos, setPos] = useState(0);
+
+  function scroll(dir: number) {
+    const el = ref.current;
+    if (!el) return;
+    el.scrollBy({ left: dir * 190, behavior: "smooth" });
+  }
+
+  return (
+    <div className="relative">
+      {/* Desktop: flex row. Mobile: horizontal scroll */}
+      <div
+        ref={ref}
+        className="flex gap-4 lg:gap-0 lg:justify-between overflow-x-auto lg:overflow-visible pb-2 lg:pb-0"
+        style={{ scrollbarWidth: "none", scrollSnapType: "x mandatory" }}
+        onScroll={e => setPos((e.target as HTMLDivElement).scrollLeft)}
+      >
+        {leaders.map((person, i) => (
+          <div key={i} className="shrink-0 lg:shrink" style={{ scrollSnapAlign: "start" }}>
+            <PersonCard person={person} delay={i * 0.08} />
+          </div>
+        ))}
+      </div>
+
+      {/* Mobile arrow controls */}
+      <div className="flex items-center justify-center gap-4 mt-4 lg:hidden">
+        <button onClick={() => scroll(-1)} disabled={pos <= 10}
+          className="flex items-center justify-center disabled:opacity-30 transition-all"
+          style={{ width: "36px", height: "36px", borderRadius: "50%", border: "1.5px solid #bea055", color: "#bea055", background: "transparent" }}>
+          <svg width="8" height="14" viewBox="0 0 8 14" fill="none"><path d="M7 1L1 7l6 6" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" /></svg>
+        </button>
+        <span style={{ fontFamily: "var(--font-commissioner)", fontSize: "13px", color: "#977d3e" }}>
+          {leaders.length} ľudí
+        </span>
+        <button onClick={() => scroll(1)}
+          className="flex items-center justify-center transition-all"
+          style={{ width: "36px", height: "36px", borderRadius: "50%", border: "1.5px solid #bea055", color: "#bea055", background: "transparent" }}>
+          <svg width="8" height="14" viewBox="0 0 8 14" fill="none"><path d="M1 1l6 6-6 6" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" /></svg>
+        </button>
+      </div>
+    </div>
+  );
+}
+
 function SectionHeading({ watermark, subtitle }: { watermark: string; subtitle: string }) {
   return (
     <div className="relative" style={{ marginBottom: "48px" }}>
@@ -108,11 +155,7 @@ export function LudiaContent({ leaders, serviceGroups }: LudiaContentProps) {
         <div className="px-4 sm:px-8 lg:px-[235px]">
           <SectionHeading watermark="líderský tím" subtitle="Líderský tím" />
 
-          <div className="grid grid-cols-2 sm:grid-cols-3 lg:flex lg:justify-between gap-4 lg:gap-0">
-            {leaders.map((person, i) => (
-              <PersonCard key={i} person={person} delay={i * 0.08} />
-            ))}
-          </div>
+          <LeadersCarousel leaders={leaders} />
         </div>
       </section>
 

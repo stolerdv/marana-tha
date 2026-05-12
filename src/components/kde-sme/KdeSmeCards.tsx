@@ -61,7 +61,7 @@ export function KdeSmeCards() {
       <div className="px-4 sm:px-8 lg:px-[235px]">
 
         {/* 3 city cards */}
-        <div className="grid grid-cols-1 sm:grid-cols-3 gap-8 lg:gap-0 lg:flex lg:justify-between">
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-8 lg:gap-0 lg:flex lg:justify-between justify-items-center sm:justify-items-start">
           {cities.map((city, i) => (
             <motion.div
               key={i}

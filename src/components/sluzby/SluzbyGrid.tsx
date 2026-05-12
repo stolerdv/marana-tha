@@ -74,8 +74,8 @@ export function SluzbyGrid({ ministries }: SluzbyGridProps) {
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
                     transition={{ delay: i * 0.1 }}
-                    className="bg-white"
-                    style={{ width: "282px", height: "555px", borderRadius: "15px", overflow: "hidden", flexShrink: 0, position: "relative", boxShadow: "0 2px 20px rgba(0,0,0,0.06)" }}
+                    className="bg-white w-full lg:w-[282px]"
+                    style={{ minHeight: "clamp(400px, 60vw, 555px)", borderRadius: "15px", overflow: "hidden", position: "relative", boxShadow: "0 2px 20px rgba(0,0,0,0.06)" }}
                   >
                     <div style={{ padding: "0 33px" }}>
                       {/* Title — 2 lines always */}
@@ -93,7 +93,7 @@ export function SluzbyGrid({ ministries }: SluzbyGridProps) {
                         {line2 && <><br />{line2}</>}
                       </h2>
 
-                      <div style={{ height: "1px", backgroundColor: "#bea055", width: "218px", marginTop: "6px" }} />
+                      <div style={{ height: "1px", backgroundColor: "#bea055", width: "100%", maxWidth: "218px", marginTop: "6px" }} />
 
                       <p
                         style={{
