@@ -86,8 +86,7 @@ export function ONasSvedectva() {
         <div className="absolute inset-0 bg-black/35" />
 
         {/* Card */}
-        <div className="absolute inset-x-4 sm:inset-x-8 lg:inset-x-auto" style={{ top: "clamp(16px,4vw,80px)", left: undefined, right: undefined, maxWidth: "860px", margin: "0 auto" }}
-          {...{ style: { position: "absolute", top: "clamp(16px,4vw,80px)", left: "16px", right: "16px" } }}>
+        <div style={{ position: "absolute", top: "clamp(16px,4vw,80px)", left: "16px", right: "16px" }}>
 
           <AnimatePresence mode="wait" custom={direction}>
             <motion.div
