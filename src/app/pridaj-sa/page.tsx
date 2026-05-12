@@ -163,7 +163,7 @@ export default async function PridajSaPage() {
                     {type.description}
                   </p>
 
-                  <div className="flex flex-col gap-2">
+                  <div className="flex flex-col gap-2" style={{ marginBottom: "28px" }}>
                     {type.points.map((point, j) => (
                       <div key={j} className="flex items-start gap-2">
                         <span style={{ color: type.textColor, opacity: 0.7, marginTop: "3px", flexShrink: 0 }}>✓</span>
@@ -173,7 +173,31 @@ export default async function PridajSaPage() {
                       </div>
                     ))}
                   </div>
+
+                  {/* CTA button */}
+                  <a href="#pridat-sa"
+                    style={{
+                      display: "inline-flex", alignItems: "center", gap: "6px",
+                      backgroundColor: "rgba(255,255,255,0.2)",
+                      border: `1px solid ${type.textColor === "#fdf5f2" ? "rgba(253,245,242,0.4)" : "rgba(0,0,0,0.15)"}`,
+                      borderRadius: "50px", padding: "10px 20px",
+                      fontFamily: "var(--font-commissioner)", fontSize: "14px", fontWeight: 700,
+                      color: type.textColor, textDecoration: "none", transition: "background 0.2s",
+                    }}>
+                    Začať →
+                  </a>
                 </div>
+              ))}
+            </div>
+
+            {/* Swipe dots — mobile only */}
+            <div className="flex justify-center gap-2 mt-4 lg:hidden">
+              {membershipTypes.map((_, i) => (
+                <div key={i} style={{
+                  width: i === 0 ? "20px" : "6px", height: "6px",
+                  borderRadius: "3px", backgroundColor: i === 0 ? "#977d3e" : "rgba(151,125,62,0.3)",
+                  transition: "all 0.3s",
+                }} />
               ))}
             </div>
           </div>
@@ -183,7 +207,7 @@ export default async function PridajSaPage() {
         <PridajSaTestimonials />
 
         {/* CTA + Form */}
-        <section className="bg-[var(--color-cream)]" style={{ paddingTop: "80px", paddingBottom: "80px" }}>
+        <section id="pridat-sa" className="bg-[var(--color-cream)]" style={{ paddingTop: "80px", paddingBottom: "80px" }}>
           <div className="px-4 sm:px-8 lg:px-[235px]">
             <div className="flex gap-24">
               {/* Left — CTA text */}
