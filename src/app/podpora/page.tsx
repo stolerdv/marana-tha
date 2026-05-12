@@ -61,30 +61,27 @@ export default function PodporaPage() {
           <div className="px-4 sm:px-8 lg:px-[235px]">
 
             {/* Intro */}
-            <div style={{ maxWidth: "700px", marginBottom: "72px" }}>
-              <p style={{ fontFamily: "var(--font-commissioner)", fontSize: "50px", fontWeight: 400, lineHeight: "55px", color: "#977d3e", marginBottom: "24px" }}>
+            <div style={{ maxWidth: "700px", marginBottom: "48px" }}>
+              <p style={{ fontFamily: "var(--font-commissioner)", fontSize: "clamp(32px,4vw,50px)", fontWeight: 400, lineHeight: 1.2, color: "#977d3e", marginBottom: "20px" }}>
                 Prečo podporiť
               </p>
-              <p style={{ fontFamily: "var(--font-inter)", fontSize: "20px", color: "#1c1d1e", lineHeight: "1.75" }}>
+              <p style={{ fontFamily: "var(--font-inter)", fontSize: "clamp(16px,2vw,20px)", color: "#1c1d1e", lineHeight: "1.75" }}>
                 Spoločenstvo Marana Tha je financované výlučne z dobrovoľných príspevkov svojich členov a priaznivcov. Každý dar — veľký či malý — pomáha pokryť náklady na priestory, organizáciu podujatí, hudobnú a produkčnú službu a misijné aktivity.
               </p>
             </div>
 
-            {/* 3 ways */}
-            <div className="flex gap-8" style={{ marginBottom: "72px" }}>
+            {/* 3 ways — stack on mobile */}
+            <div className="flex flex-col sm:flex-row gap-6" style={{ marginBottom: "48px" }}>
               {ways.map((w, i) => (
-                <div
-                  key={i}
-                  style={{ flex: 1, backgroundColor: "#ffffff", borderRadius: "15px", padding: "36px 32px", border: "1px solid #e4d5b2" }}
-                >
-                  <div style={{ color: "#bea055", marginBottom: "20px" }}>{w.icon}</div>
-                  <p style={{ fontFamily: "var(--font-commissioner)", fontSize: "22px", fontWeight: 700, color: "#1c1d1e", marginBottom: "10px" }}>
+                <div key={i} className="flex-1" style={{ backgroundColor: "#ffffff", borderRadius: "15px", padding: "clamp(24px,3vw,36px) clamp(20px,3vw,32px)", border: "1px solid #e4d5b2" }}>
+                  <div style={{ color: "#bea055", marginBottom: "16px" }}>{w.icon}</div>
+                  <p style={{ fontFamily: "var(--font-commissioner)", fontSize: "20px", fontWeight: 700, color: "#1c1d1e", marginBottom: "8px" }}>
                     {w.title}
                   </p>
-                  <p style={{ fontFamily: "var(--font-inter)", fontSize: "15px", color: "#635f5b", lineHeight: "1.6", marginBottom: "20px" }}>
+                  <p style={{ fontFamily: "var(--font-inter)", fontSize: "15px", color: "#635f5b", lineHeight: "1.6", marginBottom: "16px" }}>
                     {w.description}
                   </p>
-                  <div style={{ height: "1px", backgroundColor: "#e4d5b2", marginBottom: "16px" }} />
+                  <div style={{ height: "1px", backgroundColor: "#e4d5b2", marginBottom: "12px" }} />
                   <p style={{ fontFamily: "var(--font-commissioner)", fontSize: "15px", fontWeight: 700, color: "#1c1d1e", marginBottom: "4px" }}>
                     {w.detail}
                   </p>
@@ -95,15 +92,15 @@ export default function PodporaPage() {
               ))}
             </div>
 
-            {/* Quote / thank you */}
-            <div style={{ backgroundColor: "#977d3e", borderRadius: "15px", padding: "56px 64px", position: "relative", overflow: "hidden" }}>
-              <div style={{ position: "absolute", top: "16px", left: "40px", fontFamily: "Georgia, serif", fontSize: "120px", color: "rgba(255,255,255,0.1)", lineHeight: 1 }}>
+            {/* Quote */}
+            <div style={{ backgroundColor: "#977d3e", borderRadius: "15px", padding: "clamp(28px,4vw,56px) clamp(24px,5vw,64px)", position: "relative", overflow: "hidden" }}>
+              <div style={{ position: "absolute", top: "8px", left: "24px", fontFamily: "Georgia, serif", fontSize: "clamp(60px,10vw,120px)", color: "rgba(255,255,255,0.1)", lineHeight: 1, pointerEvents: "none" }}>
                 "
               </div>
-              <p style={{ fontFamily: "var(--font-commissioner)", fontSize: "28px", fontWeight: 400, color: "#fdf5f2", lineHeight: "1.6", maxWidth: "680px", position: "relative" }}>
+              <p style={{ fontFamily: "var(--font-commissioner)", fontSize: "clamp(18px,2.5vw,28px)", fontWeight: 400, color: "#fdf5f2", lineHeight: "1.6", maxWidth: "680px", position: "relative" }}>
                 Každý nech dáva, ako si umienil v srdci, nie so zármutkom alebo z donútenia, lebo Boh miluje ochotného darcu.
               </p>
-              <p style={{ fontFamily: "var(--font-inter)", fontSize: "14px", color: "rgba(253,245,242,0.6)", marginTop: "20px" }}>
+              <p style={{ fontFamily: "var(--font-inter)", fontSize: "14px", color: "rgba(253,245,242,0.6)", marginTop: "16px" }}>
                 2. Korinťanom 9:7
               </p>
             </div>
