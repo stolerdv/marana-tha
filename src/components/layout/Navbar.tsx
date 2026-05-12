@@ -155,7 +155,7 @@ export function Navbar() {
         </div>
 
         {/* Logo centered */}
-        <Link href="/" className="absolute left-1/2 -translate-x-1/2">
+        <Link href="/" className="absolute left-1/2 -translate-x-1/2 active:scale-95 active:opacity-70 transition-all duration-150">
           <Image
             src="/images/logo.png"
             alt="Marana Tha"
