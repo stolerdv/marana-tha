@@ -33,22 +33,13 @@ export function AktualitySection({ events = [] }: Props) {
 
       <div className="relative max-w-[1512px] mx-auto px-4 sm:px-8 lg:px-[235px]" style={{ paddingTop: "330px", zIndex: 1 }}>
 
-        {/* Watermark */}
-        <div className="absolute pointer-events-none select-none" style={{ top: "300px", left: "50%", transform: "translateX(-50%)", fontSize: "100px", fontFamily: "var(--font-commissioner)", fontWeight: 700, color: "transparent", WebkitTextStroke: "1px rgba(0,0,0,0.06)", letterSpacing: "-2px", whiteSpace: "nowrap" }}>
+        {/* Watermark — desktop only */}
+        <div className="hidden lg:block absolute pointer-events-none select-none" style={{ top: "300px", left: "50%", transform: "translateX(-50%)", fontSize: "100px", fontFamily: "var(--font-commissioner)", fontWeight: 700, color: "transparent", WebkitTextStroke: "1px rgba(0,0,0,0.06)", letterSpacing: "-2px", whiteSpace: "nowrap" }}>
           AKTUALITY
         </div>
 
         {/* Heading */}
         <div className="relative mb-10">
-          <motion.span
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.7, ease }}
-            style={{ fontFamily: "var(--font-commissioner)", fontSize: "50px", fontWeight: 400, color: "var(--color-gold-dark)", display: "block", marginBottom: "8px" }}
-          >
-            aktuality
-          </motion.span>
           <motion.h2
             initial={{ opacity: 0, y: 16 }}
             whileInView={{ opacity: 1, y: 0 }}

@@ -16,8 +16,12 @@ export function NewsletterSection() {
 
   return (
     <section className="relative overflow-hidden" style={{ backgroundColor: "#12110f" }}>
-      {/* Subtle grain texture via radial gradient */}
-      <div className="absolute inset-0 pointer-events-none" style={{ background: "radial-gradient(ellipse 80% 60% at 70% 50%, rgba(190,160,85,0.07) 0%, transparent 70%)" }} />
+      {/* Background photo */}
+      <div className="absolute inset-0 bg-cover bg-center opacity-20" style={{ backgroundImage: "url('/images/o-nas-1.jpg')" }} />
+      {/* Dark overlay */}
+      <div className="absolute inset-0" style={{ background: "linear-gradient(to right, rgba(18,17,15,0.97) 0%, rgba(18,17,15,0.75) 50%, rgba(18,17,15,0.5) 100%)" }} />
+      {/* Gold glow */}
+      <div className="absolute inset-0 pointer-events-none" style={{ background: "radial-gradient(ellipse 60% 80% at 80% 50%, rgba(190,160,85,0.08) 0%, transparent 70%)" }} />
 
       <div className="px-4 sm:px-8 lg:px-[235px]" style={{ paddingTop: "96px", paddingBottom: "96px" }}>
         <div className="flex flex-col lg:flex-row gap-12 lg:gap-20 items-start lg:items-center">
@@ -67,7 +71,7 @@ export function NewsletterSection() {
             ) : (
               <form onSubmit={handleSubmit} className="flex flex-col gap-0">
                 {/* Name row */}
-                <div className="flex gap-6">
+                <div className="flex flex-col sm:flex-row gap-6">
                   {(["meno", "priezvisko"] as const).map((field, i) => (
                     <motion.div
                       key={field}

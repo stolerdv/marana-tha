@@ -40,7 +40,7 @@ function NewsletterForm() {
   const [email, setEmail] = useState("");
   const [status, setStatus] = useState<"idle" | "done" | "error">("idle");
 
-  async function handleSubmit(e: React.FormEvent) {
+  async function handleSubmit(e: React.SyntheticEvent<HTMLFormElement>) {
     e.preventDefault();
     if (!email) return;
     try {
@@ -183,19 +183,13 @@ export function Footer() {
         <div style={{ height: "1px", backgroundColor: "rgba(253,245,242,0.15)", marginBottom: "28px" }} />
 
         {/* Bottom row */}
-        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
-          <p style={{ fontFamily: "var(--font-inter)", fontSize: "12px", color: "rgba(253,245,242,0.4)" }}>
+        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2">
+          <p style={{ fontFamily: "var(--font-inter)", fontSize: "12px", color: "rgba(253,245,242,0.35)" }}>
             © 2026 Spoločenstvo Marana Tha. Všetky práva vyhradené.
           </p>
-          <div className="flex items-center gap-2">
-            <svg width="24" height="24" viewBox="0 0 62 62" fill="none">
-              <circle cx="31" cy="31" r="30" stroke="rgba(253,245,242,0.3)" strokeWidth="1" />
-              <path d="M31 10 L31 52 M20 20 L31 10 L42 20" stroke="rgba(253,245,242,0.3)" strokeWidth="1.5" />
-            </svg>
-            <span style={{ fontFamily: "var(--font-commissioner)", fontSize: "12px", fontWeight: 700, color: "rgba(253,245,242,0.4)" }}>
-              Made with ♡ by MaranaTha Design 2026
-            </span>
-          </div>
+          <span style={{ fontFamily: "var(--font-inter)", fontSize: "12px", color: "rgba(253,245,242,0.3)" }}>
+            Made with ♡ by MaranaTha Design 2026
+          </span>
         </div>
       </div>
     </footer>
