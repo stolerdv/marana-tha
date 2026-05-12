@@ -61,7 +61,7 @@ export function PostForm({ mode, postId, initial }: PostFormProps) {
           <label style={{ fontFamily: "var(--font-inter)", fontSize: "13px", fontWeight: 500, color: "#292929" }}>Obsah *</label>
           <RichEditor value={form.content} onChange={v => set("content", v)} placeholder="Obsah príspevku..." />
         </div>
-        <ImageUpload value={form.coverImage} onChange={v => set("coverImage", v)} label="Titulná fotografia" />
+        <ImageUpload value={form.coverImage} onChange={v => set("coverImage", v)} label="Titulná fotografia (odporúčaný formát 3:2)" defaultAspect={3/2} />
       </div>
 
       <div className="flex flex-col gap-6 shrink-0" style={{ width: "240px" }}>
