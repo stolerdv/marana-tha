@@ -123,6 +123,7 @@ export function Navbar() {
               <Link
                 href={item.href}
                 className="font-[family-name:var(--font-commissioner)] text-[0.875rem] text-[var(--color-cream-light)] hover:text-[var(--color-gold)] transition-colors flex items-center gap-0.5"
+                style={item.href === "/spolocenstvo" ? { border: "1px solid rgba(253,245,242,0.5)", borderRadius: "50px", padding: "5px 14px" } : {}}
               >
                 {item.label}
                 {item.hasDropdown && <DropdownArrow />}

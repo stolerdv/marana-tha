@@ -4,6 +4,13 @@ import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import Image from "next/image";
 import { Footer } from "@/components/layout/Footer";
+import { AktualitySection } from "@/components/home/AktualitySection";
+import { ONasSection } from "@/components/home/ONasSection";
+import { MisieSection } from "@/components/home/MisieSection";
+import { ArchivSection } from "@/components/home/ArchivSection";
+import { PodporteNasSection } from "@/components/home/PodporteNasSection";
+import { NewsletterSection } from "@/components/home/NewsletterSection";
+import { KontaktSection } from "@/components/home/KontaktSection";
 
 // ── Страница сравнения: оригинальный дизайн Figma ──
 
@@ -132,6 +139,14 @@ export default function OldPage() {
             </div>
           </div>
         </section>
+        {/* All sections below — same as homepage */}
+        <AktualitySection />
+        <ONasSection />
+        <MisieSection />
+        <ArchivSection />
+        <PodporteNasSection />
+        <NewsletterSection />
+        <KontaktSection />
       </main>
       <Footer />
     </>
