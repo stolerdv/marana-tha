@@ -39,15 +39,16 @@ export function UdaiostiPageClient({ upcoming, past }: Props) {
   const allFiltered = filterByCity([...upcoming, ...past], city);
 
   return (
-    <section className="bg-[var(--color-cream)]" style={{ paddingTop: "80px", paddingBottom: "80px" }}>
+    <section className="bg-[var(--color-cream)]" style={{ paddingTop: "60px", paddingBottom: "80px" }}>
       <div className="px-4 sm:px-8 lg:px-[235px]">
 
-        {/* Top row: title + view toggle */}
-        <div className="flex items-center justify-between" style={{ marginBottom: "24px" }}>
-          <p style={{ fontFamily: "var(--font-commissioner)", fontSize: "50px", fontWeight: 400, lineHeight: "55px", color: "#977d3e" }}>
+        {/* Title row */}
+        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4" style={{ marginBottom: "20px" }}>
+          <p style={{ fontFamily: "var(--font-commissioner)", fontSize: "clamp(32px,5vw,50px)", fontWeight: 400, lineHeight: 1.2, color: "#977d3e" }}>
             Nadchádzajúce udalosti
           </p>
-          <div className="flex gap-2" style={{ backgroundColor: "#ffffff", borderRadius: "50px", padding: "4px", border: "1px solid #e4d5b2" }}>
+          {/* View toggle */}
+          <div className="self-start sm:self-auto flex gap-2 shrink-0" style={{ backgroundColor: "#ffffff", borderRadius: "50px", padding: "4px", border: "1px solid #e4d5b2" }}>
             {(["list", "calendar"] as const).map((v) => (
               <button key={v} onClick={() => setView(v)} style={{
                 padding: "8px 20px", borderRadius: "50px", border: "none", cursor: "pointer",
@@ -61,14 +62,14 @@ export function UdaiostiPageClient({ upcoming, past }: Props) {
           </div>
         </div>
 
-        {/* City filter tabs */}
-        <div className="flex gap-2" style={{ marginBottom: "40px" }}>
+        {/* City filter — scrollable on mobile */}
+        <div className="flex gap-2 overflow-x-auto pb-2" style={{ marginBottom: "32px", scrollbarWidth: "none" }}>
           {CITY_FILTERS.map((c) => {
             const active = c === city;
             const count = c === "Všetky" ? upcoming.length : upcoming.filter(e => e.location === c).length;
             return (
               <button key={c} onClick={() => setCity(c)} style={{
-                padding: "8px 20px", borderRadius: "50px", cursor: "pointer",
+                padding: "8px 20px", borderRadius: "50px", cursor: "pointer", flexShrink: 0,
                 border: active ? "none" : "1px solid #e4d5b2",
                 backgroundColor: active ? "#1c1d1e" : "#ffffff",
                 fontFamily: "var(--font-commissioner)", fontSize: "14px", fontWeight: 700,
@@ -111,20 +112,22 @@ export function UdaiostiPageClient({ upcoming, past }: Props) {
                     <div style={{ height: "1px", backgroundColor: "#bea055" }} />
                     <Link
                       href={event.isEveningOfPraise ? "/udalosti/vecer-chval" : `/udalosti/${event.slug}`}
-                      className="flex items-start py-6 hover:bg-[#f9efe2] transition-colors px-2 -mx-2 rounded-[8px]"
+                      className="flex items-start py-5 hover:bg-[#f9efe2] transition-colors px-2 -mx-2 rounded-[8px] group"
                     >
                       <div style={{ flex: 1 }}>
                         <div className="flex items-center gap-3 flex-wrap">
-                          <p style={{ fontFamily: "var(--font-commissioner)", fontSize: "30px", fontWeight: 700, color: "#1c1d1e", lineHeight: "1.3" }}>
+                          <p style={{ fontFamily: "var(--font-commissioner)", fontSize: "clamp(20px,3vw,30px)", fontWeight: 700, color: "#1c1d1e", lineHeight: "1.3" }}>
                             {event.title}
                           </p>
                           {event.location && <CityBadge city={event.location} size="md" />}
                         </div>
-                        <p style={{ fontFamily: "var(--font-commissioner)", fontSize: "20px", color: "#635f5b", marginTop: "4px" }}>
-                          {new Date(event.startDate).toLocaleDateString("sk-SK", { day: "numeric", month: "long", year: "numeric", hour: "2-digit", minute: "2-digit" })}
+                        <p style={{ fontFamily: "var(--font-commissioner)", fontSize: "16px", color: "#635f5b", marginTop: "4px" }}>
+                          {new Date(event.startDate).toLocaleDateString("sk-SK", { day: "numeric", month: "long", year: "numeric" })}
+                          {" "}
+                          {new Date(event.startDate).toLocaleTimeString("sk-SK", { hour: "2-digit", minute: "2-digit" })}
                         </p>
                       </div>
-                      <span style={{ fontFamily: "var(--font-commissioner)", fontSize: "24px", color: "#bea055", marginTop: "4px" }}>→</span>
+                      <span className="opacity-0 group-hover:opacity-100 transition-opacity" style={{ fontFamily: "var(--font-commissioner)", fontSize: "24px", color: "#bea055", marginTop: "4px", paddingLeft: "16px" }}>→</span>
                     </Link>
                   </div>
                 ))}
@@ -134,10 +137,10 @@ export function UdaiostiPageClient({ upcoming, past }: Props) {
 
             {filteredPast.length > 0 && (
               <>
-                <p style={{ fontFamily: "var(--font-commissioner)", fontSize: "50px", fontWeight: 400, lineHeight: "55px", color: "#977d3e", marginBottom: "40px" }}>
+                <p style={{ fontFamily: "var(--font-commissioner)", fontSize: "clamp(28px,4vw,50px)", fontWeight: 400, color: "#977d3e", marginBottom: "32px" }}>
                   Minulé udalosti
                 </p>
-                <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: "24px" }}>
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
                   {filteredPast.map((event) => (
                     <Link key={event.id}
                       href={event.isEveningOfPraise ? "/udalosti/vecer-chval" : `/udalosti/${event.slug}`}
