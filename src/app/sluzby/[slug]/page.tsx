@@ -52,7 +52,7 @@ export default async function SluzbaPage({ params }: { params: Promise<{ slug: s
         {/* O službe */}
         <section className="bg-[var(--color-cream)]" style={{ paddingTop: "80px", paddingBottom: "80px" }}>
           <div className="px-4 sm:px-8 lg:px-[235px]">
-            <div className="flex gap-20 items-start">
+            <div className="flex flex-col lg:flex-row gap-10 lg:gap-20 items-start">
               <div style={{ flex: 1 }}>
                 <FadeIn>
                   <p style={{ fontFamily: "var(--font-commissioner)", fontSize: "50px", fontWeight: 400, lineHeight: "55px", color: "#977d3e", marginBottom: "32px" }}>
@@ -133,7 +133,7 @@ export default async function SluzbaPage({ params }: { params: Promise<{ slug: s
               <FadeIn>
                 <p style={{ fontFamily: "var(--font-commissioner)", fontSize: "36px", fontWeight: 400, color: "#977d3e", marginBottom: "24px" }}>Galéria</p>
               </FadeIn>
-              <Stagger style={{ display: "grid", gridTemplateColumns: `repeat(${Math.min(galleryPhotos.length, 3)}, 1fr)`, gap: "12px" }}>
+              <Stagger className="grid grid-cols-2 sm:grid-cols-3 gap-3">
                 {galleryPhotos.map((photo, i) => (
                   <StaggerItem key={photo.id}>
                     <div style={{ borderRadius: "12px", overflow: "hidden", aspectRatio: "4/3", backgroundColor: "#e6ded5" }}>
@@ -161,19 +161,23 @@ export default async function SluzbaPage({ params }: { params: Promise<{ slug: s
                 {upcomingEvents.map((event) => (
                   <FadeIn key={event.id}>
                     <div style={{ height: "1px", backgroundColor: "#bea055" }} />
-                    <div className="flex items-center py-5 gap-6">
+                    <div className="flex flex-col sm:flex-row sm:items-center py-5 gap-3 sm:gap-6">
                       <div style={{ flex: 1 }}>
                         <Link href={event.isEveningOfPraise ? "/udalosti/vecer-chval" : `/udalosti/${event.slug}`} className="hover:underline">
-                          <p style={{ fontFamily: "var(--font-commissioner)", fontSize: "24px", fontWeight: 700, color: "#1c1d1e" }}>{event.title}</p>
+                          <p style={{ fontFamily: "var(--font-commissioner)", fontSize: "clamp(18px,2.5vw,24px)", fontWeight: 700, color: "#1c1d1e" }}>{event.title}</p>
                         </Link>
                         <div className="flex items-center gap-2 flex-wrap" style={{ marginTop: "4px" }}>
-                          <p style={{ fontFamily: "var(--font-commissioner)", fontSize: "16px", color: "#635f5b" }}>
-                            {new Date(event.startDate).toLocaleDateString("sk-SK", { day: "numeric", month: "long", year: "numeric", hour: "2-digit", minute: "2-digit" })}
+                          <p style={{ fontFamily: "var(--font-commissioner)", fontSize: "15px", color: "#635f5b" }}>
+                            {new Date(event.startDate).toLocaleDateString("sk-SK", { day: "numeric", month: "long", year: "numeric" })}
+                            {" · "}
+                            {new Date(event.startDate).toLocaleTimeString("sk-SK", { hour: "2-digit", minute: "2-digit" })}
                           </p>
                           {event.location && <CityBadge city={event.location} />}
                         </div>
                       </div>
-                      <AddToCalendar eventId={event.id} title={event.title} description={event.description} startDate={event.startDate} endDate={event.endDate} location={event.location} />
+                      <div className="self-start sm:self-auto">
+                        <AddToCalendar eventId={event.id} title={event.title} description={event.description} startDate={event.startDate} endDate={event.endDate} location={event.location} />
+                      </div>
                     </div>
                   </FadeIn>
                 ))}
@@ -188,12 +192,13 @@ export default async function SluzbaPage({ params }: { params: Promise<{ slug: s
         <section className="bg-[var(--color-cream)]" style={{ paddingBottom: "80px" }}>
           <div className="px-4 sm:px-8 lg:px-[235px]">
             <FadeIn>
-              <div style={{ backgroundColor: "#ffffff", borderRadius: "15px", padding: "48px 56px", display: "flex", alignItems: "center", justifyContent: "space-between" }}>
+              <div className="flex flex-col sm:flex-row items-start sm:items-center gap-6 sm:justify-between"
+                style={{ backgroundColor: "#ffffff", borderRadius: "15px", padding: "clamp(24px,4vw,48px) clamp(20px,4vw,56px)" }}>
                 <div>
-                  <p style={{ fontFamily: "var(--font-commissioner)", fontSize: "30px", fontWeight: 700, color: "#1c1d1e", marginBottom: "8px" }}>Chceš sa zapojiť?</p>
-                  <p style={{ fontFamily: "var(--font-inter)", fontSize: "16px", color: "#635f5b" }}>Napíš nám a radi ťa uvítame v tejto službe.</p>
+                  <p style={{ fontFamily: "var(--font-commissioner)", fontSize: "clamp(22px,2.5vw,30px)", fontWeight: 700, color: "#1c1d1e", marginBottom: "8px" }}>Chceš sa zapojiť?</p>
+                  <p style={{ fontFamily: "var(--font-inter)", fontSize: "15px", color: "#635f5b" }}>Napíš nám a radi ťa uvítame v tejto službe.</p>
                 </div>
-                <Link href="/pridaj-sa" style={{ display: "inline-flex", alignItems: "center", gap: "8px", backgroundColor: "#bea055", borderRadius: "50px", padding: "16px 36px", fontFamily: "var(--font-commissioner)", fontSize: "15px", fontWeight: 700, color: "#fdf5f2", flexShrink: 0 }}>
+                <Link href="/pridaj-sa" style={{ display: "inline-flex", alignItems: "center", gap: "8px", backgroundColor: "#bea055", borderRadius: "50px", padding: "14px 28px", fontFamily: "var(--font-commissioner)", fontSize: "15px", fontWeight: 700, color: "#fdf5f2", flexShrink: 0 }}>
                   Pridaj sa →
                 </Link>
               </div>
