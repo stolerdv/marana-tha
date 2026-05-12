@@ -60,8 +60,8 @@ export function KdeSmeCards() {
     <section className="bg-[var(--color-cream)]" style={{ paddingTop: "82px", paddingBottom: "80px" }}>
       <div className="px-4 sm:px-8 lg:px-[235px]">
 
-        {/* 3 city cards — stack on mobile, row on desktop */}
-        <div className="grid grid-cols-1 sm:grid-cols-3 gap-10 sm:gap-8 lg:gap-0 lg:flex lg:justify-between">
+        {/* 3 city cards */}
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-8 lg:gap-0 lg:flex lg:justify-between">
           {cities.map((city, i) => (
             <motion.div
               key={i}
@@ -69,83 +69,38 @@ export function KdeSmeCards() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: i * 0.1 }}
-              className="w-full sm:w-auto"
+              className="flex flex-col"
+              style={{ maxWidth: "100%" }}
             >
-              {/* Gold box (108×108 r=15) with icon */}
-              <div
-                className="flex items-center justify-center"
-                style={{ width: "108px", height: "108px", backgroundColor: "#bea055", borderRadius: "15px" }}
-              >
+              {/* Gold icon box */}
+              <div className="flex items-center justify-center shrink-0"
+                style={{ width: "80px", height: "80px", backgroundColor: "#bea055", borderRadius: "15px", marginBottom: "20px" }}>
                 {city.icon}
               </div>
 
-              {/* City name — Figma: Commissioner 700 30px lh=55px, top=150px from card top */}
-              <h2
-                style={{
-                  marginTop: `${150 - 108}px`,   // 42px from box bottom
-                  fontFamily: "var(--font-commissioner)",
-                  fontSize: "30px",
-                  fontWeight: 700,
-                  lineHeight: "55px",
-                  color: "#1c1d1e",
-                  marginBottom: "0px",
-                }}
-              >
+              {/* City name */}
+              <h2 style={{ fontFamily: "var(--font-commissioner)", fontSize: "clamp(24px,2.5vw,30px)", fontWeight: 700, lineHeight: 1.3, color: "#1c1d1e", marginBottom: "8px" }}>
                 {city.name}
               </h2>
 
-              {/* Gold divider — Figma: 250×1 #bea055, immediately after name (top=205px) */}
-              <div style={{ height: "1px", width: "100%", maxWidth: "250px", backgroundColor: "#bea055" }} />
+              {/* Gold divider */}
+              <div style={{ height: "1px", width: "100%", maxWidth: "250px", backgroundColor: "#bea055", marginBottom: "20px" }} />
 
-              {/* Photo — Figma: 250×167 r=15, 42px below divider */}
-              <div
-                className="relative overflow-hidden"
-                style={{ width: "100%", maxWidth: "250px", height: "167px", borderRadius: "15px", marginTop: "42px" }}
-              >
+              {/* Photo */}
+              <div className="relative overflow-hidden w-full" style={{ maxWidth: "250px", aspectRatio: "3/2", borderRadius: "15px", marginBottom: "20px" }}>
                 <Image src={city.image} alt={city.name} fill className="object-cover" />
               </div>
 
-              {/* Body text — Figma: Inter 500 18px lh=26.1px ls=-0.09 #000000, 225px wide, top=458px → 44px below photo bottom */}
-              <p
-                style={{
-                  marginTop: "44px",
-                  width: "225px",
-                  fontFamily: "var(--font-inter)",
-                  fontSize: "18px",
-                  fontWeight: 500,
-                  lineHeight: "26.1px",
-                  letterSpacing: "-0.09px",
-                  color: "#000000",
-                  marginBottom: "0px",
-                }}
-              >
+              {/* Body text */}
+              <p style={{ fontFamily: "var(--font-inter)", fontSize: "16px", fontWeight: 400, lineHeight: 1.65, color: "#000000", marginBottom: "24px", maxWidth: "280px" }}>
                 {city.text}
               </p>
 
-              {/* Button — Figma: Group 42/49, 186×50 #bea055 r=50, Commissioner 700 15px #fdf5f2 */}
-              {/* top=639px from card top → gap from text bottom ≈ 639-(458+130)=51px */}
-              <Link
-                href={city.href}
-                className="inline-flex items-center gap-2"
-                style={{
-                  marginTop: "51px",
-                  width: "186px",
-                  height: "50px",
-                  backgroundColor: "#bea055",
-                  borderRadius: "50px",
-                  paddingLeft: "27px",
-                  paddingRight: "20px",
-                  fontFamily: "var(--font-commissioner)",
-                  fontSize: "15px",
-                  fontWeight: 700,
-                  color: "#fdf5f2",
-                  display: "inline-flex",
-                }}
-              >
+              {/* Button */}
+              <Link href={city.href} className="inline-flex items-center gap-2 self-start"
+                style={{ height: "46px", backgroundColor: "#bea055", borderRadius: "50px", paddingLeft: "24px", paddingRight: "18px", fontFamily: "var(--font-commissioner)", fontSize: "15px", fontWeight: 700, color: "#fdf5f2" }}>
                 Čítať viac
-                <svg width="36" height="10" viewBox="0 0 36 10" fill="none">
-                  <path d="M0 5h32M27 1l5 4-5 4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
-                </svg>
+                <svg width="28" height="8" viewBox="0 0 28 8" fill="none"><path d="M0 4h24M20 1l4 3-4 3" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" /></svg>
               </Link>
             </motion.div>
           ))}
