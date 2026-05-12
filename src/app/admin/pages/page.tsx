@@ -10,6 +10,10 @@ const PAGES = [
   { key: "pridaj-sa",label: "Pridaj sa k nám", desc: "Úvodný text, foto", icon: "🤝", href: "/pridaj-sa" },
   { key: "kontakt",  label: "Kontakt",         desc: "Adresa, telefón, email, mapa", icon: "✉️", href: "/kontakt" },
   { key: "sluzby",   label: "Naša služba",     desc: "Úvodný text nad sieťou služieb", icon: "🙏", href: "/sluzby" },
+  { key: "partner-zksm",    label: "Partner — ZKSM",    desc: "Názov, text, fotografia", icon: "🤝", href: "/o-nas/partnerstva/zksm" },
+  { key: "partner-enc",     label: "Partner — ENC",     desc: "Názov, text, fotografia", icon: "🤝", href: "/o-nas/partnerstva/enc" },
+  { key: "partner-charis",  label: "Partner — CHARIS",  desc: "Názov, text, fotografia", icon: "🤝", href: "/o-nas/partnerstva/charis" },
+  { key: "partner-strapar", label: "Partner — STRAPAR", desc: "Názov, text, fotografia", icon: "🤝", href: "/o-nas/partnerstva/strapar" },
 ];
 
 export default async function AdminPagesPage() {

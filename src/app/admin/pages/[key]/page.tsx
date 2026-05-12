@@ -79,6 +79,42 @@ const PAGE_META: Record<string, {
       { key: "coverImage", label: "Hero fotografia", type: "image" },
     ],
   },
+  "partner-zksm": {
+    label: "Partnerstvo — ZKSM",
+    fields: [
+      { key: "title", label: "Názov partnera", type: "text" },
+      { key: "subtitle", label: "Krátky popis (podnadpis)", type: "textarea" },
+      { key: "content", label: "Podrobný text o partnerstve", type: "richtext" },
+      { key: "coverImage", label: "Fotografia (hero pozadie)", type: "image" },
+    ],
+  },
+  "partner-enc": {
+    label: "Partnerstvo — ENC",
+    fields: [
+      { key: "title", label: "Názov partnera", type: "text" },
+      { key: "subtitle", label: "Krátky popis (podnadpis)", type: "textarea" },
+      { key: "content", label: "Podrobný text o partnerstve", type: "richtext" },
+      { key: "coverImage", label: "Fotografia (hero pozadie)", type: "image" },
+    ],
+  },
+  "partner-charis": {
+    label: "Partnerstvo — CHARIS",
+    fields: [
+      { key: "title", label: "Názov partnera", type: "text" },
+      { key: "subtitle", label: "Krátky popis (podnadpis)", type: "textarea" },
+      { key: "content", label: "Podrobný text o partnerstve", type: "richtext" },
+      { key: "coverImage", label: "Fotografia (hero pozadie)", type: "image" },
+    ],
+  },
+  "partner-strapar": {
+    label: "Partnerstvo — STRAPAR",
+    fields: [
+      { key: "title", label: "Názov partnera", type: "text" },
+      { key: "subtitle", label: "Krátky popis (podnadpis)", type: "textarea" },
+      { key: "content", label: "Podrobný text o partnerstve", type: "richtext" },
+      { key: "coverImage", label: "Fotografia (hero pozadie)", type: "image" },
+    ],
+  },
 };
 
 export default async function EditPagePage({ params }: { params: Promise<{ key: string }> }) {
