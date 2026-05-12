@@ -52,7 +52,7 @@ export function CityPage({ city, heroImage, description, meetingLabel, team }: C
         {/* ── KDE SA STRETÁVAME strip ── */}
         {/* Starts at y=843 from section top (= after hero 990px, this section starts 17px gap after hero bg end ≈ just append below) */}
         {/* We use a wrapper section then the overlapping strips inside */}
-        <section className="bg-[var(--color-cream)] overflow-hidden" className="px-4 sm:px-8 lg:px-[235px]">
+        <section className="bg-[var(--color-cream)] overflow-hidden px-4 sm:px-8 lg:px-[235px]">
           <div className="relative" style={{ width: "1044px" }}>
 
             {/* Photo strip — Figma: image 8, 1044×243, r=15 */}
@@ -166,7 +166,7 @@ export function CityPage({ city, heroImage, description, meetingLabel, team }: C
             líderský tím
           </div>
 
-          <div className="relative" className="px-4 sm:px-8 lg:px-[235px]">
+          <div className="relative px-4 sm:px-8 lg:px-[235px]">
             {/* Subtitle — Figma: Commissioner 400 50px #977d3e lh=55px */}
             <p
               style={{

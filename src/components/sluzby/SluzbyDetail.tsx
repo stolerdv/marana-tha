@@ -63,7 +63,7 @@ export function SluzbyDetail({ sluzba }: SluzbyDetailProps) {
             udalosti | stretnutia
           </div>
 
-          <div className="relative" className="px-4 sm:px-8 lg:px-[235px]">
+          <div className="relative px-4 sm:px-8 lg:px-[235px]">
             {/* Subtitle */}
             <p style={{ fontFamily: "var(--font-commissioner)", fontSize: "50px", fontWeight: 400, lineHeight: "55px", color: "#977d3e", marginBottom: "40px" }}>
               udalosti | stretnutia
@@ -109,7 +109,7 @@ export function SluzbyDetail({ sluzba }: SluzbyDetailProps) {
             galéria
           </div>
 
-          <div className="relative" className="px-4 sm:px-8 lg:px-[235px]">
+          <div className="relative px-4 sm:px-8 lg:px-[235px]">
             {/* Subtitle */}
             <p style={{ fontFamily: "var(--font-commissioner)", fontSize: "50px", fontWeight: 400, lineHeight: "55px", color: "#977d3e", marginBottom: "48px" }}>
               galéria
@@ -161,7 +161,7 @@ export function SluzbyDetail({ sluzba }: SluzbyDetailProps) {
             kontaktná osoba
           </div>
 
-          <div className="relative" className="px-4 sm:px-8 lg:px-[235px]">
+          <div className="relative px-4 sm:px-8 lg:px-[235px]">
             {/* Subtitle */}
             <p style={{ fontFamily: "var(--font-commissioner)", fontSize: "50px", fontWeight: 400, lineHeight: "55px", color: "#977d3e", marginBottom: "48px" }}>
               Kontaktná osoba

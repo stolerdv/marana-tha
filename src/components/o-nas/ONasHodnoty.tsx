@@ -53,7 +53,7 @@ export function ONasHodnoty() {
         naše hodnoty
       </div>
 
-      <div className="relative" className="px-4 sm:px-8 lg:px-[235px]">
+      <div className="relative px-4 sm:px-8 lg:px-[235px]">
 
         {/* Subtitle — Figma: Commissioner 400 50px #977d3e lh=55px */}
         <p style={{ fontFamily: "var(--font-commissioner)", fontSize: "50px", fontWeight: 400, lineHeight: "55px", color: "#977d3e", marginBottom: "0px" }}>
