@@ -96,12 +96,14 @@ export default async function PridajSaPage() {
             <p style={{ fontFamily: "var(--font-commissioner)", fontSize: "50px", fontWeight: 400, lineHeight: "55px", color: "#977d3e", marginBottom: "48px" }}>
               Ako to funguje
             </p>
-            <div className="flex gap-8">
+            {/* Mobile: horizontal snap scroll. Desktop: regular flex */}
+            <div className="flex gap-6 lg:gap-8 overflow-x-auto lg:overflow-visible snap-x snap-mandatory pb-4 lg:pb-0 -mx-4 px-4 lg:mx-0 lg:px-0"
+              style={{ scrollbarWidth: "none" }}>
               {membershipTypes.map((type, idx) => (
                 <div
                   key={type.tag}
+                  className="snap-start shrink-0 w-[80vw] sm:w-[60vw] lg:w-auto lg:flex-1"
                   style={{
-                    flex: 1,
                     backgroundColor: type.color,
                     borderRadius: "15px",
                     padding: "40px 36px",
