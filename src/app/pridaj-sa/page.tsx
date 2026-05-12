@@ -5,6 +5,7 @@ import { Footer } from "@/components/layout/Footer";
 import { PageHero } from "@/components/shared/PageHero";
 import { PridajSaTestimonials } from "@/components/pridaj-sa/PridajSaTestimonials";
 import { PridajSaForm } from "@/components/pridaj-sa/PridajSaForm";
+import { MembershipCarousel } from "@/components/pridaj-sa/MembershipCarousel";
 import Link from "next/link";
 
 export const metadata = {
@@ -91,119 +92,16 @@ export default async function PridajSaPage() {
         </section>
 
         {/* 3 membership types */}
-        <section className="bg-[var(--color-cream)]" style={{ paddingTop: "72px", paddingBottom: "80px" }}>
+        <section className="bg-[var(--color-cream)]" style={{ paddingTop: "72px", paddingBottom: "48px" }}>
           <div className="px-4 sm:px-8 lg:px-[235px]">
             <p style={{ fontFamily: "var(--font-commissioner)", fontSize: "50px", fontWeight: 400, lineHeight: "55px", color: "#977d3e", marginBottom: "48px" }}>
               Ako to funguje
             </p>
-            {/* Mobile: horizontal snap scroll. Desktop: regular flex */}
-            <div className="flex gap-6 lg:gap-8 overflow-x-auto lg:overflow-visible snap-x snap-mandatory pb-4 lg:pb-0 -mx-4 px-4 lg:mx-0 lg:px-0"
-              style={{ scrollbarWidth: "none" }}>
-              {membershipTypes.map((type, idx) => (
-                <div
-                  key={type.tag}
-                  className="snap-start shrink-0 w-[80vw] sm:w-[60vw] lg:w-auto lg:flex-1"
-                  style={{
-                    backgroundColor: type.color,
-                    borderRadius: "15px",
-                    padding: "40px 36px",
-                    position: "relative",
-                  }}
-                >
-                  {/* Step number */}
-                  <div style={{
-                    position: "absolute",
-                    top: "24px",
-                    right: "24px",
-                    fontFamily: "var(--font-commissioner)",
-                    fontSize: "60px",
-                    fontWeight: 700,
-                    color: "rgba(255,255,255,0.15)",
-                    lineHeight: 1,
-                  }}>
-                    {String(idx + 1).padStart(2, "0")}
-                  </div>
-
-                  {/* Tag */}
-                  <div style={{
-                    display: "inline-block",
-                    backgroundColor: "rgba(255,255,255,0.2)",
-                    borderRadius: "50px",
-                    padding: "4px 14px",
-                    fontFamily: "var(--font-commissioner)",
-                    fontSize: "12px",
-                    fontWeight: 700,
-                    color: type.textColor,
-                    textTransform: "uppercase",
-                    letterSpacing: "0.08em",
-                    marginBottom: "20px",
-                  }}>
-                    {type.tag}
-                  </div>
-
-                  <h3 style={{
-                    fontFamily: "var(--font-commissioner)",
-                    fontSize: "28px",
-                    fontWeight: 700,
-                    color: type.textColor,
-                    marginBottom: "16px",
-                    lineHeight: "1.2",
-                  }}>
-                    {type.title}
-                  </h3>
-
-                  <p style={{
-                    fontFamily: "var(--font-inter)",
-                    fontSize: "16px",
-                    color: type.textColor,
-                    lineHeight: "1.65",
-                    marginBottom: "24px",
-                    opacity: 0.9,
-                  }}>
-                    {type.description}
-                  </p>
-
-                  <div className="flex flex-col gap-2" style={{ marginBottom: "28px" }}>
-                    {type.points.map((point, j) => (
-                      <div key={j} className="flex items-start gap-2">
-                        <span style={{ color: type.textColor, opacity: 0.7, marginTop: "3px", flexShrink: 0 }}>✓</span>
-                        <span style={{ fontFamily: "var(--font-inter)", fontSize: "14px", color: type.textColor, opacity: 0.85, lineHeight: "1.5" }}>
-                          {point}
-                        </span>
-                      </div>
-                    ))}
-                  </div>
-
-                  {/* CTA button */}
-                  <a href="#pridat-sa"
-                    style={{
-                      display: "inline-flex", alignItems: "center", gap: "6px",
-                      backgroundColor: "rgba(255,255,255,0.2)",
-                      border: `1px solid ${type.textColor === "#fdf5f2" ? "rgba(253,245,242,0.4)" : "rgba(0,0,0,0.15)"}`,
-                      borderRadius: "50px", padding: "10px 20px",
-                      fontFamily: "var(--font-commissioner)", fontSize: "14px", fontWeight: 700,
-                      color: type.textColor, textDecoration: "none", transition: "background 0.2s",
-                    }}>
-                    Začať →
-                  </a>
-                </div>
-              ))}
-            </div>
-
-            {/* Swipe dots — mobile only */}
-            <div className="flex justify-center gap-2 mt-4 lg:hidden">
-              {membershipTypes.map((_, i) => (
-                <div key={i} style={{
-                  width: i === 0 ? "20px" : "6px", height: "6px",
-                  borderRadius: "3px", backgroundColor: i === 0 ? "#977d3e" : "rgba(151,125,62,0.3)",
-                  transition: "all 0.3s",
-                }} />
-              ))}
-            </div>
+            <MembershipCarousel types={membershipTypes} />
           </div>
         </section>
 
-        {/* Testimonials carousel */}
+        {/* Testimonials carousel — reduced top padding to close the gap */}
         <PridajSaTestimonials />
 
         {/* CTA + Form */}
