@@ -9,9 +9,9 @@ interface Props { vchByCity?: Record<string, VCHEvent>; }
 
 export function HeroSection({ vchByCity = {} }: Props) {
   return (
-    <section className="relative" style={{ minHeight: "100vh", backgroundColor: "#1c1d1e", zIndex: 10 }}>
+    <section className="relative" style={{ minHeight: "100vh", backgroundColor: "#1c1d1e" }}>
       {/* Clipping wrapper for bg layers only — does not clip VCH card */}
-      <div className="absolute inset-0 overflow-hidden">
+      <div className="absolute inset-0 overflow-hidden" style={{ pointerEvents: "none" }}>
         <div className="absolute inset-0 bg-cover"
           style={{ backgroundImage: "url('/images/hero-bg.jpg')", backgroundPosition: "72% 20%" }} />
         <div className="absolute inset-0"
