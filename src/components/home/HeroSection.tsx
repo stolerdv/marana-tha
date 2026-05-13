@@ -5,7 +5,7 @@ import Link from "next/link";
 
 export function HeroSection() {
   return (
-    <section className="relative" style={{ minHeight: "100vh", backgroundColor: "#1c1d1e", zIndex: 10 }}>
+    <section className="relative" style={{ minHeight: "100vh", backgroundColor: "#1c1d1e" }}>
       {/* Clipping wrapper for bg layers only */}
       <div className="absolute inset-0 overflow-hidden">
         <div className="absolute inset-0 bg-cover"
