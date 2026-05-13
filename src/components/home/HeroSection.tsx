@@ -41,7 +41,7 @@ export function HeroSection({ vchByCity = {} }: Props) {
 
       {/* ── MAIN CONTENT ── */}
       <div className="relative z-10 flex flex-col items-center text-center px-6 sm:px-12 lg:px-[235px]"
-        style={{ paddingTop: "28vh", paddingBottom: "60px" }}>
+        style={{ paddingTop: "28vh", paddingBottom: "220px" }}>
 
         <motion.h1
           initial={{ opacity: 0, y: 32 }}
