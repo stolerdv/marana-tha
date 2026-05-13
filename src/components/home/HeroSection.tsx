@@ -2,11 +2,15 @@
 
 import { motion } from "framer-motion";
 import Link from "next/link";
+import { VCHCard } from "./VCHCard";
 
-export function HeroSection() {
+interface VCHEvent { date: Date; title: string; slug: string; }
+interface Props { vchByCity?: Record<string, VCHEvent>; }
+
+export function HeroSection({ vchByCity = {} }: Props) {
   return (
-    <section className="relative" style={{ minHeight: "100vh", backgroundColor: "#1c1d1e" }}>
-      {/* Clipping wrapper for bg layers only */}
+    <section className="relative" style={{ minHeight: "100vh", backgroundColor: "#1c1d1e", zIndex: 10 }}>
+      {/* Clipping wrapper for bg layers only — does not clip VCH card */}
       <div className="absolute inset-0 overflow-hidden">
         <div className="absolute inset-0 bg-cover"
           style={{ backgroundImage: "url('/images/hero-bg.jpg')", backgroundPosition: "72% 20%" }} />
@@ -37,7 +41,7 @@ export function HeroSection() {
 
       {/* ── MAIN CONTENT ── */}
       <div className="relative z-10 flex flex-col items-center text-center px-6 sm:px-12 lg:px-[235px]"
-        style={{ paddingTop: "28vh", paddingBottom: "320px" }}>
+        style={{ paddingTop: "28vh", paddingBottom: "60px" }}>
 
         <motion.h1
           initial={{ opacity: 0, y: 32 }}
@@ -126,6 +130,11 @@ export function HeroSection() {
             </svg>
           </motion.div>
         </motion.div>
+      </div>
+
+      {/* ── VCH Block — floats 260px into the next section ── */}
+      <div className="relative px-4 sm:px-8 lg:px-[235px]" style={{ marginBottom: "-260px", zIndex: 30 }}>
+        <VCHCard vchByCity={vchByCity} />
       </div>
     </section>
   );
