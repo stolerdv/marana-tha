@@ -49,8 +49,8 @@ export default async function HomePage() {
     <>
       <Navbar />
       <main>
-        <HeroSection vchByCity={byCity} />
-        <AktualitySection events={upcomingEvents} />
+        <HeroSection />
+        <AktualitySection events={upcomingEvents} vchByCity={byCity} />
         <ONasSection />
         <MisieSection />
         <ArchivSection videos={archivVideos} />

@@ -3,6 +3,7 @@
 import { motion } from "framer-motion";
 import Link from "next/link";
 import { CityBadge } from "@/components/shared/CityBadge";
+import { VCHCard } from "./VCHCard";
 
 interface AktualityEvent {
   id: string;
@@ -12,8 +13,11 @@ interface AktualityEvent {
   location: string | null;
 }
 
+interface VCHEvent { date: Date; title: string; slug: string; }
+
 interface Props {
   events?: AktualityEvent[];
+  vchByCity?: Record<string, VCHEvent>;
 }
 
 const ease = [0.22, 1, 0.36, 1] as const;
@@ -25,16 +29,21 @@ function formatTime(d: Date) {
   return new Date(d).toLocaleTimeString("sk-SK", { hour: "2-digit", minute: "2-digit" });
 }
 
-export function AktualitySection({ events = [] }: Props) {
+export function AktualitySection({ events = [], vchByCity = {} }: Props) {
   return (
     <section className="relative bg-[var(--color-cream)]" style={{ zIndex: 5 }}>
-      {/* Gradient bridge: dark → cream behind the floating VCH card */}
+      {/* Gradient bridge: dark → cream */}
       <div className="absolute inset-x-0 top-0 pointer-events-none" style={{ height: "300px", background: "linear-gradient(to bottom, #12110f 0%, var(--color-cream) 100%)", zIndex: 0 }} />
 
-      <div className="relative max-w-[1512px] mx-auto px-4 sm:px-8 lg:px-[235px]" style={{ paddingTop: "330px", zIndex: 1 }}>
+      {/* VCH Card — floats up into hero section */}
+      <div className="relative px-4 sm:px-8 lg:px-[235px]" style={{ marginTop: "-260px", zIndex: 10 }}>
+        <VCHCard vchByCity={vchByCity} />
+      </div>
+
+      <div className="relative max-w-[1512px] mx-auto px-4 sm:px-8 lg:px-[235px]" style={{ paddingTop: "100px", zIndex: 1 }}>
 
         {/* Watermark — desktop only */}
-        <div className="hidden lg:block absolute pointer-events-none select-none" style={{ top: "300px", left: "50%", transform: "translateX(-50%)", fontSize: "100px", fontFamily: "var(--font-commissioner)", fontWeight: 700, color: "transparent", WebkitTextStroke: "1px rgba(0,0,0,0.06)", letterSpacing: "-2px", whiteSpace: "nowrap" }}>
+        <div className="hidden lg:block absolute pointer-events-none select-none" style={{ top: "80px", left: "50%", transform: "translateX(-50%)", fontSize: "100px", fontFamily: "var(--font-commissioner)", fontWeight: 700, color: "transparent", WebkitTextStroke: "1px rgba(0,0,0,0.06)", letterSpacing: "-2px", whiteSpace: "nowrap" }}>
           AKTUALITY
         </div>
 
