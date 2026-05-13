@@ -31,7 +31,7 @@ export function AktualitySection({ events = [] }: Props) {
       {/* Gradient bridge: dark → cream behind the floating VCH card */}
       <div className="absolute inset-x-0 top-0" style={{ height: "300px", background: "linear-gradient(to bottom, #12110f 0%, var(--color-cream) 100%)", zIndex: 0 }} />
 
-      <div className="relative max-w-[1512px] mx-auto px-4 sm:px-8 lg:px-[235px]" style={{ paddingTop: "330px", zIndex: 1, pointerEvents: "auto" }}>
+      <div className="relative max-w-[1512px] mx-auto px-4 sm:px-8 lg:px-[235px]" style={{ paddingTop: "400px", zIndex: 1, pointerEvents: "auto" }}>
 
         {/* Watermark — desktop only */}
         <div className="hidden lg:block absolute pointer-events-none select-none" style={{ top: "300px", left: "50%", transform: "translateX(-50%)", fontSize: "100px", fontFamily: "var(--font-commissioner)", fontWeight: 700, color: "transparent", WebkitTextStroke: "1px rgba(0,0,0,0.06)", letterSpacing: "-2px", whiteSpace: "nowrap" }}>
