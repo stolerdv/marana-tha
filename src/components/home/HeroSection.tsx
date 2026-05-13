@@ -41,7 +41,7 @@ export function HeroSection({ vchByCity = {} }: Props) {
 
       {/* ── MAIN CONTENT ── */}
       <div className="relative z-10 flex flex-col items-center text-center px-6 sm:px-12 lg:px-[235px]"
-        style={{ paddingTop: "28vh", paddingBottom: "60px" }}>
+        style={{ paddingTop: "24vh", paddingBottom: "96px" }}>
 
         <motion.h1
           initial={{ opacity: 0, y: 32 }}
@@ -132,8 +132,8 @@ export function HeroSection({ vchByCity = {} }: Props) {
         </motion.div>
       </div>
 
-      {/* ── VCH Block — floats 260px into the next section ── */}
-      <div className="relative px-4 sm:px-8 lg:px-[235px]" style={{ marginBottom: "-260px", zIndex: 30 }}>
+      {/* ── VCH Block — sits inside hero with breathing room above & below ── */}
+      <div className="relative px-4 sm:px-8 lg:px-[235px]" style={{ paddingBottom: "72px", zIndex: 30 }}>
         <VCHCard vchByCity={vchByCity} />
       </div>
     </section>
