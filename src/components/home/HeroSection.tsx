@@ -207,7 +207,7 @@ export function HeroSection({ vchByCity = {} }: Props) {
       </div>
 
       {/* ── VCH Block — floats deep into next section ── */}
-      <div className="relative z-20 px-4 sm:px-8 lg:px-[235px]" style={{ marginBottom: "-260px" }}>
+      <div className="relative px-4 sm:px-8 lg:px-[235px]" style={{ marginBottom: "-260px", zIndex: 30, isolation: "isolate", pointerEvents: "auto" }}>
         <motion.div
           initial={{ opacity: 0, y: 40 }}
           animate={{ opacity: 1, y: 0 }}

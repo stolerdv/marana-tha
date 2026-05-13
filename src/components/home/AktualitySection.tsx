@@ -27,7 +27,7 @@ function formatTime(d: Date) {
 
 export function AktualitySection({ events = [] }: Props) {
   return (
-    <section className="relative overflow-hidden bg-[var(--color-cream)]" style={{ zIndex: 5 }}>
+    <section className="relative bg-[var(--color-cream)]" style={{ zIndex: 5 }}>
       {/* Gradient bridge: dark → cream behind the floating VCH card */}
       <div className="absolute inset-x-0 top-0 pointer-events-none" style={{ height: "300px", background: "linear-gradient(to bottom, #12110f 0%, var(--color-cream) 100%)", zIndex: 0 }} />
 
