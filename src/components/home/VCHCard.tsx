@@ -95,6 +95,7 @@ export function VCHCard({ vchByCity = {} }: Props) {
           backgroundPosition: "center 20%",
           filter: "grayscale(100%)",
           opacity: 0.12,
+          pointerEvents: "none",
         }}
       />
       <div style={{ padding: "28px 40px 32px" }}>
